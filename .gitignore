@@ -38,6 +38,14 @@
 !waybar/
 
 # And files
+<<<<<<< HEAD
 !every-arch.md
 !starship.toml
 !libinput-gestures.conf
+=======
+README.md
+!every-arch.md
+!starship.toml
+!libinput-gestures.conf
+
+>>>>>>> 0f63b09 (Initial commit)
