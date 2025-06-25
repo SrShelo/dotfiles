@@ -4,3 +4,4 @@ Some files must be symlinked to $HOME directory:
 - .MyKeys
 - vim/.vimrc
 - vim/.vim
+- .XCompose

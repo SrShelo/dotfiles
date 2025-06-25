@@ -31,6 +31,7 @@
 !htop/
 !btop/
 !vim/
+!nvim/
 
 # Misc
 !xkb/
@@ -42,4 +43,6 @@ README.md
 !every-arch.md
 !starship.toml
 !libinput-gestures.conf
+!mimeapps.list
+!.XCompose
 

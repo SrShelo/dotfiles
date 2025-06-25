@@ -49,7 +49,7 @@ wrap = "no"
 
 [opener]
 edit = [
-	{ run = 'vim "$@"', block = true, for = "unix" },
+	{ run = 'nvim "$@"', block = true, for = "unix" },
 ]
 # Go into the folder when is opened
 dir = [

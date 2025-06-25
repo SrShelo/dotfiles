@@ -1,0 +1,42 @@
+# import the default Compose file for your locale
+# use `man 5 Compose` command for more info
+# You can get inspired by /usr/share/X11/locale/<localename>/Compose
+# See /usr/include/X11/keysymdef.h for symbol names
+# Full list of unicode symbols: https://unicode.org/charts/ #(download a pdf of a category)
+include "%L"
+
+<Multi_key> <l> <o> <l> : "\20077"
+
+<Multi_key> <degree> : "ª"
+<Multi_key> <questiondown> <exclamdown> : "⸘"
+<Multi_key> <exclamdown> <questiondown> : "⸘"
+
+<Multi_key> <question> <exclam> : "‽"
+<Multi_key> <exclam> <question> : "‽"
+
+<Multi_key> <comma> <comma> : "\20013" U200B
+<Multi_key> <space> <period> : "\20011" U2009
+<Multi_key> <space> <comma> : "\20012" U200A
+
+# non breaking hyphen
+<Multi_key> <space> <minus> : "‑" U2011
+<Multi_key> <minus> <space> : "‑" U2011
+#<Multi_key> <minus> <period> <period> : "‒" U2012
+<Multi_key> <minus> <minus> <period> : "–" U2013
+<Multi_key> <minus> <minus> <space> : "–" U2013
+<Multi_key> <minus> <minus> <minus> : "—" U2014
+#<Multi_key> <minus> <minus> <minus> : "―" U2015
+
+<Multi_key> <bar> <bar> : "\20026" U2016
+<Multi_key> <percent> <o> : ""
+<Multi_key> <percent> <0> <space> : "‰"
+<Multi_key> <percent> <o> <space> : "‰"
+<Multi_key> <percent> <0> <0> : "‱"
+<Multi_key> <percent> <o> <o> : "‱"
+<Multi_key> <0> <slash> : ""
+<Multi_key> <0> <slash> <0> <0> <space> : "‰"
+<Multi_key> <0> <slash> <0> <0> <0> : "‱"
+<Multi_key> <o> <slash> : ""
+<Multi_key> <o> <slash> <o> <o> <space> : "‰"
+<Multi_key> <o> <slash> <o> <o> <o> : "‱"
+

@@ -1,0 +1,14 @@
+[Default Applications]
+image/jpeg=feh.desktop;
+image/png=feh.desktop;
+image/gif=mpv.desktop;
+application/pdf=org.pwmt.zathura.desktop
+application/epub=com.github.johnfactotum.Foliate.desktop
+text/html=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/about=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/unknown=org.qutebrowser.qutebrowser.desktop
+x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
+x-scheme-handler/terabox=TeraBox.desktop
+inode/directory=open.ghostty.in.a.dir.desktop

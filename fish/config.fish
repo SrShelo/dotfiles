@@ -29,6 +29,7 @@ end
 export VISUAL=vim
 
 #alias dotfiles="git --git-dir $HOME/.dotfiles/ --work-tree $HOME"
+alias update="~/.config/fish/scripts/update-arch.sh"
 alias ls="exa --group-directories-first"
 alias tre="exa -T"
 # Git aliases
