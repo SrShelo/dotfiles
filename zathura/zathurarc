@@ -1,0 +1,115 @@
+# Colors
+set completion-group-fg				"#EBDBB2"
+set completion-group-bg				"#282828"
+set completion-fg							"#EBDBB2"
+set completion-bg							"#282828"
+set completion-highlight-fg		"#EBDBB2"
+set completion-highlight-bg		"#458588"
+
+set notification-error-fg			"#EBDBB2"
+set notification-error-bg			"#3C3836"
+set notification-warning-fg		"#EBDBB2"
+set notification-warning-bg		"#3C3836"
+set notification-fg						"#EBDBB2"
+set notification-bg						"#3C3836"
+
+set index-fg									"#EBDBB2"
+set index-bg									"#1D2021"
+set index-active-fg						"#EBDBB2"
+set index-active-bg						"#282828"
+
+set inputbar-fg								"#EBDBB2"
+set inputbar-bg								"#3C3836"
+
+set statusbar-fg							"#EBDBB2"
+set statusbar-bg							"#282828"
+
+#set highlight-transparency		0.5
+#set highlight-color						"#00BC00"
+#set highlight-active-color		"#9FBC00"
+
+set default-fg								"#001512"
+set default-bg								"#1D2021"
+#set recolor-lightcolor				"#282828" 
+#set recolor-darkcolor					"#EBDBB2"
+set recolor-lightcolor				"#EBDBB2"
+set recolor-darkcolor					"#282828"
+
+# Visuals
+set page-padding 2
+set statusbar-h-padding 10
+set statusbar-v-padding 0
+set adjust-open best-fit
+set guioptions ""
+set set adjust-open true
+
+# Behavior
+set zoom-max 2000
+set zoom-min 5
+set zoom-step 5
+set scroll-step 75
+set scroll-hstep 75
+set selection-notification false
+
+# Keys
+map s scroll up
+map z scroll down
+map a scroll left
+map x scroll right
+
+map S scroll half-up
+map Z scroll half-down
+map A navigate previous
+map X navigate next
+
+map K scroll half-up
+map J scroll half-down
+map H navigate previous
+map L navigate next
+
+map <S-Up> scroll half-up
+map <S-Down> scroll half-down
+map <S-Left> navigate previous
+map <S-Right> navigate next
+
+map c zoom in
+map C zoom out
+map <C-s> zoom in
+map <C-z> zoom out
+
+map r rotate rotate-cw
+map R rotate rotate-ccw
+
+unmap q normal
+map <A-q> quit
+map <C-q> quit
+map <C-w> quit
+
+map <A-r> reload
+map <C-p> print
+
+unmap e normal
+map e exec /home/shelo/.config/zathura/TOGGLE_ZC.sh
+map <C-c> set selection-clipboard clipboard
+
+map w adjust_window width
+map W adjust_window best-fit
+
+map visual q abort
+map insert q abort
+map fullscreen q abort
+map index q abort
+
+unmap v
+unmap h
+map v toggle_statusbar
+map h toggle_statusbar
+
+# For macro scripts
+# Toggle colors
+map ¡qq set "recolor-lightcolor '#EBDBB2'"
+map ¡qw set "recolor-darkcolor '#282828'"
+map ¡i recolor
+map ¡wq set "recolor-lightcolor '#282828'"
+map ¡ww set "recolor-darkcolor '#EBDBB2'"
+# Copy to clipboard

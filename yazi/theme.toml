@@ -1,0 +1,22 @@
+[flavor]
+dark = "catppuccin-macchiato"
+light = "kanagawa-lotus"
+
+[mgr]
+hovered = { reversed = true }
+
+[icon]
+prepend_globs = [
+	{ name = "/home/*/Desktop/", text = "󰥟" },
+	{ name = "/home/*/Desktop/Biblioteca/", text = "" },
+	{ name = "/home/*/Desktop/Biblioteca/local/", text = "" },
+	{ name = "/home/*/Desktop/Biblioteca/nube/", text = "" },
+	{ name = "/home/*/MEGA/", text = "󰅢" },
+	{ name = "**scripts/", text = "󰯂" },
+	{ name = "/home/*/Lab/", text = "󰂓" },
+	{ name = "/home/*/Games/", text = "󰊗" },
+]
+prepend_conds = [
+	{ if = "dir & hidden", text = "󱞞", fg = "yellow" },
+	{ if = "dir", text = "", fg = "yellow" },
+]

@@ -1,0 +1,24 @@
+config-file = keybindings
+config-file = custom_shader
+
+theme = Banana Blueberry
+
+confirm-close-surface = false
+selection-invert-fg-bg = true
+# Possible values: block, bar, underline, block_hollow
+cursor-style = block
+#cursor-color = white
+#cursor-text = color...
+cursor-invert-fg-bg = true
+cursor-style-blink = true
+cursor-opacity = 1.0
+
+mouse-hide-while-typing = true
+# 0.5 for 1 step
+mouse-scroll-multiplier = 1
+
+background-opacity = 1.0
+background-blur = false
+
+working-directory = inherit
+

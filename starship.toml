@@ -1,0 +1,136 @@
+# These could look good:                 
+# ~# DISPLAY #~
+format = """
+[ ](white)\
+$username\
+[ 󰙚 ](bright-white)\
+$directory\
+[ ](white)\
+$git_branch\
+$git_status\
+[ ](white)\
+[\
+$java\
+$lua\
+$python\
+$nodejs\
+$c\
+$cpp\
+$haskell\
+$rust\
+]()\
+$docker_context\
+[](white)
+[ ]()\
+[ 󰝗 ](bright-white)
+"""
+
+# Time
+right_format = """\
+[](fg:black)[  ](bg:black fg:white)
+$time\
+[ ](fg:black)
+"""
+
+
+# ~# MISC SETTINGS #~
+add_newline = false
+command_timeout = 1000
+
+
+# ~# STYLE & FORMAT #~
+[username]
+show_always = true
+style_user = "italic dimmed white"
+style_root = "italic bold red"
+format = '[$user]($style)'
+
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+style = "dimmed bold bright-yellow"
+format = "[$path]($style)"
+
+[directory.substitutions]
+"Documents" = " "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Lab" = " " #󰙨
+"Games" = " "
+"Desktop/Biblioteca/local" = "󰥟   "
+"Desktop/Biblioteca/nube" = "󰥟   "
+"Biblioteca/local" = "  "
+"Biblioteca/nube" = "  "
+"Biblioteca" = " "
+"Desktop" = " "
+"plugin" = "󰚥"
+"test" = "󱓥"
+obsidian = "󰣏"
+
+[git_branch]
+symbol = " "
+style = "white inverted"
+format = '[([](white)$symbol$branch)]($style)'
+
+[git_status]
+conflicted = "emoji de conflicto?"
+#ahead = "🏎️💨×${count}"
+#behind = "🐢×${count}"
+#diverged = "🔱🏎️💨×${ahead_count}🐢×${behind_count}"
+untracked = "  ${count}"
+#stashed = "📦"
+modified = "  ${count}"
+staged = " 󰈈 ${count}"
+#renamed = "📛×${count}"
+deleted = "[󱚡](red bg:white)"
+style = "white inverted"
+format = '[( $all_status$ahead_behind)[](white)]($style)'
+
+# Languages
+[python]
+symbol = "[ ](#346B98)"
+style = "dimmed white underline"
+format = '[${symbol}${pyenv_prefix}(${version})( \($virtualenv\) )]($style)'
+
+[java]
+symbol = "[ ](#DF6B00)"
+style = "dimmed white underline"
+format = '[$symbol($version)]($style)'
+
+[lua]
+symbol = "[ ](#000078)"
+style = "dimmed white underline"
+format = '[$symbol($version)]($style)'
+
+[nodejs]
+symbol = "[ ](#74BB59)"
+style = "dimmed white underline"
+format = '[$symbol($version)]($style)'
+
+[c]
+symbol = "[ ](#6194CA)"
+style = "dimmed white underline"
+format = '[$symbol($version)]($style)'
+
+[cpp]
+disabled = false
+symbol = "[󰙲 ](#6194CA)"
+style = "dimmed white underline"
+format = '[$symbol($version)]($style)'
+
+[rust]
+symbol = "[ ](#EF4900)"
+style = "dimmed white underline"
+format = '[$symbol($version) ]($style)'
+
+[docker_context]
+symbol = "[ ](cyan)"
+style = "white"
+format = '[$symbol$context ]($style) $path'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:black white"
+format = '[$time]($style)'

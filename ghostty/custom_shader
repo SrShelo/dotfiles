@@ -1,0 +1,11 @@
+custom-shader-animation = true
+
+#custom-shader = shaders/bloom.glsl
+#custom-shader = shaders/glitchy.glsl
+#custom-shader = shaders/inside-the-matrix.glsl
+#custom-shader = shaders/matrix-hallway.glsl
+#custom-shader = shaders/negative.glsl
+#custom-shader = shaders/retro-terminal.glsl
+#custom-shader = shaders/starfield-colors.glsl
+#custom-shader = shaders/water.glsl
+

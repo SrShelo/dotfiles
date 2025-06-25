@@ -1,0 +1,4 @@
+! option = symbols
+  mykeys:mykeys  = +mykeys(mykeys)
+
+! include %S/evdev

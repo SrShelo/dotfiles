@@ -1,0 +1,43 @@
+# Ignore everything
+/*
+# ~~ Except... ~~
+!.gitignore
+!.gitmodules
+
+# Window Managers
+!hypr/
+!qtile/
+!awesome/
+!spectrwm/
+
+# Some nice programs
+!ghostty/
+!kitty/
+!alacritty/
+!sxhkd/
+!tofi/
+!rofi/
+!picom/
+!qutebrowser/
+!zathura/
+!mpv/
+
+# Terminal programs
+!fish/
+!ranger/
+!lf/
+!yazi/
+!cava/
+!htop/
+!btop/
+!vim/
+
+# Misc
+!xkb/
+!glow/
+!waybar/
+
+# And files
+!every-arch.md
+!starship.toml
+!libinput-gestures.conf

@@ -1,0 +1,126 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "height": 30,
+    // "width": 1200,
+    "spacing": 8,
+
+    "modules-left": [
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "idle_inhibitor",
+        "mpd",
+        "power-profiles-daemon",
+        "battery",
+        "battery#bat2",
+        "tray",
+        "clock"
+    ],
+    "hyprland/workspaces": {
+        "format": "⊰{icon}⊱",
+        "format-icons": {
+            "1": "󰬺",
+            "2": "󰬻",
+            "3": "󰬼",
+            "4": "󰬽",
+            "5": "󰬾",
+            "6": "󰬿",
+            //"focused": "▒",
+            //"default": "░A",
+            //"urgent": "",
+            //"urgent": "⊰⊱",
+            "urgent": "",
+            //"active": "",
+            //"default": "",
+        },
+        "all-outputs": true,
+        //"persistent-workspaces": {
+        //    "*": 3,
+        //},
+        "warp-on-scroll": true,
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1"
+    },
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "warp-on-scroll": false,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "hyprland/window": {
+        "max-length": 80,
+        "icon": true,
+        "icon-size": 15,
+        "format": "{title}",
+        "rewrite": {
+            "(.*) - qutebrowser": "Qutebrowser",
+            "Spotify Premium": "Spotify",
+            "(.*)(/home/shelo|~)/Desktop/Biblioteca(.*)": "$1📚️$3",
+            "(.*)/local(.*)": "$1/💿️$2",
+            "(.*)/nube(.*)": "$1/☁️$2",
+            "(.*)/ciencias formales/lógica(.*)": "$1/[p⇒q]$2",
+            "(.*)/ciencias formales/matemáticas(.*)": "$1/[1+2]$2",
+        },
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%d/%m/%Y}</big>",
+        "format-alt": "{:%H:%M %d/%m/%Y}"
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% C",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+}

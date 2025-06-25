@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xkbConfigRegistry SYSTEM "xkb.dtd">
+<xkbConfigRegistry version="1.1">
+  <layoutList>
+    <layout>
+      <configItem>
+        <name>mykeys</name>
+        <shortDescription>es</shortDescription>
+        <description>Latin American (custom)</description>
+        <countryList>
+          <iso3166Id>ES</iso3166Id>
+          <iso3166Id>US</iso3166Id>
+          <iso3166Id>CL</iso3166Id>
+        </countryList>
+        <languageList>
+          <iso639Id>eng</iso639Id>
+          <iso639Id>epo</iso639Id>
+          <iso639Id>spa</iso639Id>
+        </languageList>
+      </configItem>
+    </layout>
+  </layoutList>
+</xkbConfigRegistry>

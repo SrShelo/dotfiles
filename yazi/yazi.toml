@@ -1,0 +1,92 @@
+
+[plugin]
+prepend_preloaders = [
+    # Replace magick, image, video with mediainfo
+    { mime = "{audio,video,image}/*", run = "mediainfo" },
+    { mime = "application/subrip", run = "mediainfo" },
+  ]
+prepend_previewers = [
+ 	{ name = "*.md", run = "glow" },
+  { name = "*.csv", run = "rich-preview"}, # for csv files
+#   { name = "*.md", run = "rich-preview" }, # for markdown (.md) files
+  { name = "*.rst", run = "rich-preview"}, # for restructured text (.rst) files
+  { name = "*.ipynb", run = "rich-preview"}, # for jupyter notebooks (.ipynb)
+  { name = "*.json", run = "rich-preview"}, # for json (.json) files
+#    { name = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
+#	{ mime = "audio/*",   run = "exifaudio"},
+	{ mime = "{audio,video,image}/*", run = "mediainfo"},
+  { mime = "application/subrip", run = "mediainfo" },
+
+	# Archive previewer
+	{ mime = "application/*zip",            run = "ouch" },
+	{ mime = "application/x-tar",           run = "ouch" },
+	{ mime = "application/x-bzip2",         run = "ouch" },
+	{ mime = "application/x-7z-compressed", run = "ouch" },
+	{ mime = "application/x-rar",           run = "ouch" },
+	{ mime = "application/x-xz",            run = "ouch" },
+	{ mime = "application/xz",              run = "ouch" },
+	# Werid extensions
+  { name = "*.vim*", run = "code"},
+]
+
+append_previewers = [
+  { name = "*", run = "hexyl" },
+]
+
+[mgr]
+ratio = [1, 4, 4]
+sort_by = "natural"
+sort_dir_first = true
+sort_sensitive = false
+sort_reverse = false
+sort_translit = true
+linemode = "none"
+show_symlink = true
+scrolloff = 7
+
+[preview]
+wrap = "no"
+
+[opener]
+edit = [
+	{ run = 'vim "$@"', block = true, for = "unix" },
+]
+# Go into the folder when is opened
+dir = [
+	{ run = 'ya emit cd "$1"', for = "unix" },
+]
+read = [
+	{ run = 'nohup xdg-open "$@" &', for = "unix" }
+]
+
+[open]
+rules = [
+	# Folder (to open go into a folder when is opened)
+	{ mime = "inode/directory", use = [ "dir", "edit", "open", "reveal" ] },
+	{ name = "*/", use = [ "dir", "edit", "open", "reveal" ] },
+	# Text
+	{ mime = "text/*", use = [ "edit", "reveal" ] },
+	# Read
+	{ mime = "*/{pdf, epub}", use = [ "read", "reveal" ] },
+	{ mime = "application/epub+zip", use = [ "read", "reveal" ] },
+	# Image
+	{ mime = "image/*", use = [ "open", "reveal" ] },
+	# Media
+	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+	# Archive
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
+	# JSON
+	{ mime = "application/{json,ndjson}", use = [ "edit", "reveal" ] },
+	{ mime = "*/javascript", use = [ "edit", "reveal" ] },
+	# Empty file
+	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
+	# Fallback
+	{ name = "*.*", use = [ "edit", "open", "reveal" ] },
+	{ name = "*", use = [ "edit", "open", "reveal" ] },
+]
+
+extract = [
+	{ run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
+	{ run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
+]
+
