@@ -40,6 +40,8 @@ abbr gs "git status"
 abbr gd "git diff"
 abbr gm "git commit"
 abbr gmm "git commit --amend"
+abbr gpl "git pull origin"
+abbr gps "git push origin"
 
 ## Run StarShip promt ##
 starship init fish | source
