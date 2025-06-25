@@ -37,13 +37,9 @@ abbr gaa "git add ."
 abbr gc "git checkout"
 abbr gb "git branch"
 abbr gs "git status"
-<<<<<<< HEAD
-abbr gm "git commit"
-=======
 abbr gd "git diff"
 abbr gm "git commit"
 abbr gmm "git commit --amend"
->>>>>>> 0f63b09 (Initial commit)
 
 ## Run StarShip promt ##
 starship init fish | source
