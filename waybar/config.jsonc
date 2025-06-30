@@ -2,7 +2,7 @@
 {
     "layer": "bottom",
     "position": "bottom",
-    "height": 30,
+    "height": 20,
     // "width": 1200,
     "spacing": 8,
 
@@ -13,6 +13,7 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
+        "custom/open_terminal",
         "idle_inhibitor",
         "mpd",
         "power-profiles-daemon",
@@ -77,6 +78,11 @@
             "(.*)/ciencias formales/lógica(.*)": "$1/[p⇒q]$2",
             "(.*)/ciencias formales/matemáticas(.*)": "$1/[1+2]$2",
         },
+    },
+    "custom/open_terminal": {
+        "format": "_",
+        "tooltip-format": "Open new terminal",
+        "on-click": "ghostty",
     },
     "idle_inhibitor": {
         "format": "{icon}",

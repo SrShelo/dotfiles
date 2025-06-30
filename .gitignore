@@ -9,6 +9,7 @@
 !qtile/
 !awesome/
 !spectrwm/
+!wayfire.ini
 
 # Some nice programs
 !ghostty/

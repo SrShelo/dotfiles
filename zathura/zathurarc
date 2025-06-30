@@ -1,57 +1,72 @@
-# Colors
-set completion-group-fg				"#EBDBB2"
-set completion-group-bg				"#282828"
-set completion-fg							"#EBDBB2"
-set completion-bg							"#282828"
+# [[ THEME ]]
+## COLORS:
+set completion-group-fg			"#EBDBB2"
+set completion-group-bg			"#282828"
+set completion-fg				"#EBDBB2"
+set completion-bg				"#282828"
 set completion-highlight-fg		"#EBDBB2"
 set completion-highlight-bg		"#458588"
 
-set notification-error-fg			"#EBDBB2"
-set notification-error-bg			"#3C3836"
+set notification-error-fg		"#EBDBB2"
+set notification-error-bg		"#3C3836"
 set notification-warning-fg		"#EBDBB2"
 set notification-warning-bg		"#3C3836"
-set notification-fg						"#EBDBB2"
-set notification-bg						"#3C3836"
+set notification-fg				"#EBDBB2"
+set notification-bg				"#3C3836"
 
-set index-fg									"#EBDBB2"
-set index-bg									"#1D2021"
-set index-active-fg						"#EBDBB2"
-set index-active-bg						"#282828"
+set index-fg					"#EBDBB2"
+set index-bg					"#1D2021"
+set index-active-fg				"#EBDBB2"
+set index-active-bg				"#282828"
 
-set inputbar-fg								"#EBDBB2"
-set inputbar-bg								"#3C3836"
+set inputbar-fg					"#EBDBB2"
+set inputbar-bg					"#3C3836"
 
-set statusbar-fg							"#EBDBB2"
-set statusbar-bg							"#282828"
+set statusbar-fg				"#EBDBB2"
+set statusbar-bg				"#282828"
 
 #set highlight-transparency		0.5
-#set highlight-color						"#00BC00"
+#set highlight-color			"#00BC00"
 #set highlight-active-color		"#9FBC00"
 
-set default-fg								"#001512"
-set default-bg								"#1D2021"
-#set recolor-lightcolor				"#282828" 
-#set recolor-darkcolor					"#EBDBB2"
-set recolor-lightcolor				"#EBDBB2"
-set recolor-darkcolor					"#282828"
+set default-fg					"#001512"
+set default-bg					"#1D2021"
+#set recolor-lightcolor			"#282828" 
+#set recolor-darkcolor			"#EBDBB2"
+set recolor-lightcolor			"#EBDBB2"
+set recolor-darkcolor			"#282828"
 
-# Visuals
+## VISUALS:
 set page-padding 2
 set statusbar-h-padding 10
 set statusbar-v-padding 0
-set adjust-open best-fit
-set guioptions ""
-set set adjust-open true
 
-# Behavior
+# [[ BEHAVIOR ]]
+## OPEN:
+# Possible values (to contian):
+# s=statusbar, c=command line, v=vertical scroll bar, h=horizontal one
+set guioptions "s"
+# Possible values: width, best-fit
+set adjust-open width
+
+## MISC:
 set zoom-max 2000
-set zoom-min 5
-set zoom-step 5
+set zoom-min 10
+set zoom-step 10
+
 set scroll-step 75
 set scroll-hstep 75
+
+## STATUSBAR:
+set statusbar-home-tilde		true
+set statusbar-basename			false
+
+## SELECTION:
+# Posibble values: primary, clipboard
+set selection-clipboard primary
 set selection-notification false
 
-# Keys
+# [[ KEYS ]]
 map s scroll up
 map z scroll down
 map a scroll left
@@ -106,10 +121,9 @@ map v toggle_statusbar
 map h toggle_statusbar
 
 # For macro scripts
-# Toggle colors
+## TOGGLE COLORS:
 map ¡qq set "recolor-lightcolor '#EBDBB2'"
 map ¡qw set "recolor-darkcolor '#282828'"
 map ¡i recolor
 map ¡wq set "recolor-lightcolor '#282828'"
 map ¡ww set "recolor-darkcolor '#EBDBB2'"
-# Copy to clipboard
