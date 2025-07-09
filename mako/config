@@ -1,0 +1,43 @@
+# Take a look at the mako manpage with the command:
+#   man 5 mako
+# To view all configuration options.
+# Wiki: https://man.archlinux.org/man/mako.5.en
+
+font=Fira Sans 14
+text-color=#FFFFFF
+sort=-time
+layer=overlay
+anchor=top-center
+width=350
+height=110
+margin=15
+padding=0,5,10
+border-size=2
+border-radius=12
+icon-path=/usr/share/icons/custom/
+max-icon-size=64
+actions=1
+
+default-timeout=5000
+background-color=#141622
+
+[urgency=low]
+icon-path=/home/shelo/.local/share/icons/by-usr/
+border-color=#64677D
+text-color=#64677D
+
+[urgency=normal]
+icon-path=/home/shelo/.local/share/icons/by-usr/
+border-color=#A2CD75
+text-color=#A2CD75
+
+[urgency=critical]
+icon-path=/home/shelo/.local/share/icons/by-usr/
+border-color=#E1748A
+text-color=#E1748A
+ignore-timeout=1
+default-timeout=0
+
+[app-name=Spotify]
+border-color=#FFFFFF
+text-color=#FFFFFF

@@ -1,0 +1,7 @@
+mode=drun
+allow_images=true
+run-always_parse_args=true
+width=25%
+height=33%
+location=2
+normal_window=false

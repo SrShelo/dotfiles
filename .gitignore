@@ -6,10 +6,13 @@
 
 # Window Managers
 !hypr/
+!niri/
 !qtile/
 !awesome/
 !spectrwm/
 !wayfire.ini
+
+!common_scripts/
 
 # Some nice programs
 !ghostty/
@@ -18,6 +21,7 @@
 !sxhkd/
 !tofi/
 !rofi/
+!wofi/
 !picom/
 !qutebrowser/
 !zathura/
@@ -38,6 +42,8 @@
 !xkb/
 !glow/
 !waybar/
+!mako/
+!swaync/
 
 # And files
 README.md

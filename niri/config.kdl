@@ -1,0 +1,702 @@
+// [[ NIRI CONFIG (git version) ]]
+// KDL format wiki: https://kdl.dev
+// Niri config wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
+// Niri Arch wiki: https://wiki.archlinux.org/title/Niri#WASD-like_navigation
+// NOTE: nodes can be commented prefixing them with "/-"
+
+// [[ STARTUP ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-at-startup
+spawn-at-startup "~/.config/common_scripts/wallpapers.sh"
+spawn-at-startup "waybar"
+// sys tray
+spawn-at-startup "nm-applet"
+spawn-at-startup "mako" // mako or swaync
+spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+// blue light filter
+spawn-at-startup "wlsunset" "-t" "4000" "-T" "6500" "-S" "7:30" "-s" "23:30" "-d" "1800"
+// libinpunt gestures to run commands
+spawn-at-startup "libinput-gestures-setup stop desktop autostart start"
+spawn-at-startup "playerctld" "daemon"
+// Make X11 apps runnable
+// spawn-at-startup "xwayland-satellite"
+
+// [[ ENVIRONMENT ]]
+// Override environment variables for processes spawned by niri.
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
+environment {
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    // DISPLAY ":1"
+    myterm "ghostty"
+    mytxt_editor "nvim"
+    mybrowser "qutebrowser"
+    mytask_manager "btop"
+    myfile_manager "ghostty -e yazi"
+    mylock_screen "hyprlock" // Currently the script doesn't use this
+}
+
+// xwayland-satellite {
+//     off
+//     // path "xwayland-satellite"
+// }
+
+// [[ MISC (?) ]]
+// Some misc. config parameters: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#screenshot-path
+
+// screenshot-path wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#screenshot-path
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+    // hide-not-bound
+}
+
+// [[ ANIMATIONS ]]
+// Animation settings.
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
+animations {
+    // off
+
+    // Slow down all animations by this factor. Values below 1 speed them up instead.
+    // slowdown 3.0
+}
+
+// [[ CURSOR ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#cursor
+cursor {
+    // xcursor-theme "breeze_cursors"
+    // xcursor-size 48
+    hide-when-typing
+    hide-after-inactive-ms 2000
+}
+
+// [[ INPUT ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+input {
+    keyboard {
+        xkb {
+            layout "mykeys,us"
+            // variant ""
+            // See all available options with `cat /usr/share/X11/xkb/rules/base.lst`
+            // options "grp:alt_space_toggle,compose:rctrl,caps:escape"
+            options "grp:rctrl_ralt_toggle,compose:caps"
+            // model ""
+            // rules ""
+            // file ""
+        }
+
+        repeat-delay 300
+        repeat-rate 40
+        // Options: "window" or "global" to set layout per window or globally respectively
+        track-layout "global"
+        numlock
+    }
+    touchpad {
+        // off
+        disabled-on-external-mouse
+        // dwt // disable while typing
+        natural-scroll
+        scroll-factor 1.0
+        // Options: no-scroll, two-finger, edge, on-button-down
+        scroll-method "two-finger"
+        tap
+        tap-button-map "left-right-middle"
+        // click-method "clickfinger"
+        drag true
+        drag-lock
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-button 273
+        // scroll-button-lock
+        // left-handed
+        // middle-emulation
+
+        // See: https://wayland.freedesktop.org/libinput/doc/latest/device-configuration-via-udev.html
+        // calibration-matrix
+    }
+    mouse {
+        // off
+        // natural-scroll
+        accel-speed 0.1
+        accel-profile "flat"
+        scroll-factor 2.0
+        // scroll-method "no-scroll"
+        // scroll-button 273
+        // scroll-button-lock
+        // left-handed
+        // middle-emulation
+    }
+    trackpoint {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "on-button-down"
+        // scroll-button 273
+        // scroll-button-lock
+        // left-handed
+        // middle-emulation
+    }
+    trackball {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "on-button-down"
+        // scroll-button 273
+        // scroll-button-lock
+        // left-handed
+        // middle-emulation
+    }
+    tablet {
+        // off
+        map-to-output "eDP-1"
+        // left-handed
+        // calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0
+    }
+    touch {
+        // off
+        map-to-output "eDP-1"
+    }
+
+    // Manage power button behavior externally?
+    disable-power-key-handling
+    warp-mouse-to-focus mode="center-xy"
+    focus-follows-mouse
+    // Focus windows and outputs automatically when moving the mouse into them.
+    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
+    // focus-follows-mouse max-scroll-amount="0%"
+    // Going to the a workspace twice makes switch to the previous one.
+    // workspace-auto-back-and-forth
+
+    mod-key "Super"
+    // mod-key-nested "Alt"
+}
+
+
+// You can configure outputs by their name, which you can find
+// by running `niri msg outputs` while inside a niri instance.
+// The built-in laptop monitor is usually called "eDP-1".
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+output "eDP-1" {
+    // off
+
+    // mode "1920x1080@59.999"
+    variable-refresh-rate on-demand=true
+
+    // You can use integer or fractional scale, for example use 1.5 for 150% scale.
+    scale 1
+
+    // Transform allows to rotate the output counter-clockwise, valid values are:
+    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    transform "normal"
+
+    // Position of the output in the global coordinate space.
+    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
+    // The cursor can only move between directly adjacent outputs.
+    // Output scale and rotation has to be taken into account for positioning:
+    // outputs are sized in logical, or scaled, pixels.
+    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
+    // so to put another output directly adjacent to it on the right, set its x to 1920.
+    // If the position is unset or results in an overlap, the output is instead placed
+    // automatically.
+    // position x=1280 y=0
+}
+
+// [[ LAYOUT ]]
+// Windows and workspaces display, look and feel.
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+prefer-no-csd // wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#prefer-no-csd
+layout {
+    // Set gaps around windows in logical pixels.
+    gaps 0
+    // empty-workspace-above-first
+    always-center-single-column
+    // When to center a column when changing focus, options are:
+    // - "never", default behavior, focusing an off-screen column will keep at the left
+    //   or right edge of the screen.
+    // - "always", the focused column will always be centered.
+    // - "on-overflow", focusing a column will center it if it doesn't fit
+    //   together with the previously focused colualwayscenter-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.20
+        proportion 0.50
+        proportion 0.70
+        proportion 1.00
+    }
+    preset-window-heights {
+        proportion 0.20
+        proportion 0.50
+        proportion 0.70
+        proportion 1.00
+    }
+    // Options: normal, tabbed
+    default-column-display "normal"
+    default-column-width { proportion 0.5; }
+
+    // By default focus ring and border are rendered as a solid background rectangle
+    // behind windows. That is, they will show up through semitransparent windows.
+    // This is because windows using client-side decorations can have an arbitrary shape.
+    //
+    // If you don't like that, you should uncomment `prefer-no-csd` below.
+    // Niri will draw focus ring and border *around* windows that agree to omit their
+    // client-side decorations.
+    //
+    // Alternatively, you can override it with a window rule called
+    // `draw-border-with-background`.
+    focus-ring {
+        // off
+
+        // How many logical pixels the ring extends out from the windows.
+        width 4
+
+        // active-color "#7fc8ff"
+        active-gradient from="#705050" to="#c0b0b0" angle=45
+        // inactive-color "#505050"
+        inactive-gradient from="#505050" to="#b0b0b0" angle=45 relative-to="workspace-view"
+        urgent-gradient from="#702020" to="#f08080" angle=45
+    }
+
+    // You can also add a border. It's similar to the focus ring, but always visible.
+    border {
+        off
+        // width 4
+        // active-color "#ffc87f"
+        // inactive-color "#505050"
+        //
+        // urgent-color "#9b0000"
+    }
+    shadow {
+        // See: https://github.com/YaLTeR/niri/wiki/Configuration:-Layout#shadow
+        on
+        // draw-behind-window true
+        softness 40
+        spread 0
+        offset x=0 y=5
+        color "#100"
+        inactive-color "0000"
+    }
+
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        bottom 4
+    }
+
+    tab-indicator {
+        // See: https://github.com/YaLTeR/niri/wiki/Configuration:-Layout#tab-indicator
+        // off
+        hide-when-single-tab
+        place-within-column
+        position "right"
+        length total-proportion=1.0
+        // corner-radius 10
+        width 4
+        gap 0
+        gaps-between-tabs 0
+        active-color "#fff4"
+        inactive-color "#0004"
+    }
+}
+
+// [[ NAMED WORKSPACES ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Named-Workspaces
+// this is how workspaces work: https://github.com/YaLTeR/niri/wiki/Configuration:-Named-Workspaces
+
+// DECLARE & CONFIG some workspaces
+workspace "daily-apps" {
+    // open-on-output "eDP-1"
+}
+
+// [[ WINDOW RULES ]]
+// Window rules let you adjust behavior for individual windows.
+// Print window information by picking it with this command: niri msg pick-window
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+
+// Make tiled windows rectangular while using CSD.
+window-rule {
+    match is-floating=false
+
+    tiled-state true
+}
+window-rule {
+    match is-active=false
+    tab-indicator {
+        active-color "#ffff"
+        inactive-color "#000f"
+    }
+}
+
+window-rule {
+    // Well, it's much better wofi for wayland, so I'm using that
+    match app-id=r#"^Rofi$"#
+    open-floating true
+    open-focused true
+}
+
+window-rule {
+    match title=r#"^quick notes$"#
+    open-floating true
+    default-window-height { proportion 0.8; }
+    default-column-width { proportion 0.5; }
+}
+
+// DAILY APPS
+window-rule {
+    match app-id=r#"^org\.qutebrowser\.qutebrowser$"#
+    open-on-workspace "daily-apps"
+    open-focused false
+    open-maximized true
+    scroll-factor 0.5
+}
+window-rule {
+    match app-id=r#"^Spotify$"#
+    open-on-workspace "daily-apps"
+    open-focused false
+    open-maximized true
+}
+window-rule {
+    match app-id=r#"^discord$"#
+    open-on-workspace "daily-apps"
+    open-focused false
+    open-maximized true
+}
+window-rule {
+    match app-id=r#"^com.mitchellh.ghostty$"#
+    scroll-factor 0.5
+}
+
+
+// UTILITIES
+window-rule {
+    match app-id=r#"^it.mijorus.smile$"#
+    open-floating true
+    baba-is-float true
+    // shadow {
+    //     on
+    //     // off
+    //     softness 40
+    //     spread 5
+    //     offset x=5 y=5
+    //     draw-behind-window true
+    //     color "#00000064"
+    //     // inactive-color "#00000064"
+    // }
+    geometry-corner-radius 12
+    clip-to-geometry true
+
+}
+window-rule {
+    match app-id=r#"^nz.co.mega.megasync$"#
+    open-floating true
+}
+
+
+window-rule {
+// MPV
+    // See: https://mpv.io/manual/stable/#window
+    match app-id=r#"^mpv$"#
+    // open-maximized false
+    open-floating true
+    default-window-height { proportion 0.75; }
+    // default-column-width { proportion 0.75; }
+    variable-refresh-rate true
+    tiled-state false
+    default-floating-position x=0 y=0 relative-to="top-right"
+}
+window-rule {
+// Open the Firefox picture-in-picture player as floating by default.
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+// Example: block out two password managers from screen capture.
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Example: enable rounded corners for all windows.
+/-window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// [[ KEY BINDINGS ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+binds {
+    // Get full list of actions running `niri msg action`
+    // To filter that command run `niri msg action 2>| grep ...`
+    // To see options of an actions run `niri msg action <ACTION> --help`
+
+    // Closes niri
+    Super+Ctrl+Delete { quit; }
+    // shows a list of important hotkeys.
+    Super+F1 repeat=false { show-hotkey-overlay; }
+
+    // [[ ANY WM BASICS ]]
+    Super+BackSpace repeat=false hotkey-overlay-title="Open power menu" { spawn "~/.config/common_scripts/power_menu.sh"; }
+    Super+Return repeat=false hotkey-overlay-title="Open terminal: ghostty" { spawn "bash" "-c" "$myterm"; }
+    Super+e hotkey-overlay-title="Open file manager" { spawn "bash" "-c" "$myfile_manager"; }
+    Super+o repeat=false hotkey-overlay-title="Run apps: tofi" { spawn "tofi-drun" "--drun-launch=true"; }
+    Super+Shift+o repeat=false hotkey-overlay-title="Run apps: wofi" { spawn "wofi" "--show" "drun" "-i"; }
+    Super+p repeat=false hotkey-overlay-title="Run commands" { spawn "bash" "-c" "tofi-run | bash"; }
+    Ctrl+Shift+Escape hotkey-overlay-title="Open task manager" { spawn "bash" "-c" "$myterm -e $mytask_manager"; }
+    Super+Alt+l hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Super+b hotkey-overlay-title="Open browser" { spawn "bash" "-c" "$mybrowser"; }
+    Super+Shift+Return hotkey-overlay-title="Change to random wallpaper" { spawn "~/.config/common_scripts/wallpapers.sh"; }
+
+    // [[ QUALITY OF LIFE & UTILITIES ]]
+    // Quickly lock the session (useful when your cat is nearby)
+    Super+Escape hotkey-overlay-title="Lock session" { spawn "~/.config/common_scripts/power_menu.sh" "Lock Screen"; }
+    // Quick notes
+    Super+n hotkey-overlay-title="Opens quick notes" { spawn "bash" "-c" "$myterm --title='quick notes' -e $mytxt_editor ~/Documents/notas-rápidas.md"; }
+    // Clipboard manager
+    Super+Ctrl+c repeat=false { spawn "bash" "-c" "cliphist -preview-width 25 list | tofi | cliphist decode | wl-copy"; }
+    Super+Ctrl+v { spawn "bash" "-c" "cliphist -preview-width 25 list | tofi | cliphist decode | wl-copy && wtype -m ctrl -p v -m ctrl"; }
+    Super+Ctrl+d repeat=false { spawn "cliphist" "wipe"; }
+    // Emojis
+    Super+period repeat=false { spawn "it.mijorus.smile"; }
+    // Color picker
+    Super+Alt+p repeat=false { spawn "bash" "-c" "hyprpicker -a --quiet -r -f $(echo -e 'hex\nrgb\nhsv\nhsl\ncmyk' | tofi && sleep 0.5)"; }
+    // Screen shots (the path is defined in at the begining of the config, and it's possible to
+    //   block programs to screenshot some applications in window rules sections)..
+    Print repeat=false { screenshot; }
+    Shift+Print repeat=false { screenshot-screen; }
+    Alt+Print repeat=false { screenshot-window; }
+
+    // [[ AUDIO & PLAYBACK CONTROL ]]
+    // wpctl man page: https://linuxcommandlibrary.com/man/wpctl
+    // wpctl in arch wiki: https://wiki.archlinux.org/title/WirePlumber#Keyboard_volume_control
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "1%-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "1%+"; }
+    XF86AudioMute repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute repeat=false allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    // spotify volume
+    Alt+Shift+XF86AudioLowerVolume allow-when-locked=true { spawn "playerctl" "volume" "0.1-" "-p" "spotify"; }
+    Alt+Shift+XF86AudioRaiseVolume allow-when-locked=true { spawn "playerctl" "volume" "0.1+" "-p" "spotify"; }
+    // volume of others
+    Super+Shift+XF86AudioLowerVolume allow-when-locked=true { spawn "playerctl" "volume" "0.1-" "-i" "spotify"; }
+    Super+Shift+XF86AudioRaiseVolume allow-when-locked=true { spawn "playerctl" "volume" "0.1+" "-i" "spotify"; }
+    // playback control
+    XF86AudioPlay repeat=false allow-when-locked=true { spawn "playercctl" "play-pause"; }
+    XF86AudioPrev repeat=false allow-when-locked=true { spawn "playercctl" "previous"; }
+    XF86AudioNext repeat=false allow-when-locked=true { spawn "playercctl" "next"; }
+    // playback control without playback buttons (my keyboard doesn't have them or aren't at the left hand)
+    // spotify playback
+    Alt+XF86AudioMute repeat=false allow-when-locked=true { spawn "playerctl" "play-pause" "-p" "spotify"; }
+    Alt+XF86AudioLowerVolume repeat=false allow-when-locked=true { spawn "playerctl" "previous" "-p" "spotify"; }
+    Alt+XF86AudioRaiseVolume repeat=false allow-when-locked=true { spawn "playerctl" "next" "-p" "spotify"; }
+    // playback (no spotify)
+    Super+XF86AudioMute repeat=false allow-when-locked=true { spawn "playerctl" "play-pause" "-i" "spotify"; }
+    Super+XF86AudioLowerVolume repeat=false allow-when-locked=true { spawn "playerctl" "previous" "-i" "spotify"; }
+    Super+XF86AudioRaiseVolume repeat=false allow-when-locked=true { spawn "playerctl" "next" "-i" "spotify"; }
+
+    // [[ BRIGHTNESS & BLUE FILTER CONTROL ]]
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "1%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "1%+"; }
+    Alt+XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "1-"; }
+    Alt+XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "1+"; }
+    Shift+XF86MonBrightnessDown repeat=false allow-when-locked=true { spawn "brightnessctl" "set" "1"; }
+    // cycle blue filter through 3 modes (on, auto, off)
+    Super+XF86MonBrightnessDown repeat=false allow-when-locked=true { spawn "pkill" "wlsunset" "--signal" "sigusr1"; }
+
+
+
+
+    // [[ WINDOWs & COLUMNS MISC ]]
+    Super+Shift+c { close-window; }
+
+    Super+f       { toggle-window-floating; }
+    Super+Shift+v { switch-focus-between-floating-and-tiling; }
+
+    // [[ NAVIGATION BETWEEN WINDOWS ]]
+    Super+Left  { focus-column-left; }
+    Super+Up    { focus-window-up; }
+    Super+Down  { focus-window-down; }
+    Super+Right { focus-column-right; }
+    Super+a     { focus-column-left; }
+    Super+s     { focus-window-or-workspace-up; }
+    // Super+s     { focus-window-up; }
+    Super+z     { focus-window-or-workspace-down; }
+    // Super+z     { focus-window-down; }
+    Super+x     { focus-column-right; }
+
+    Super+Alt+a { focus-column-first; }
+    Super+Alt+x { focus-column-last; }
+
+    // [[ WINDOW & COLUMN PROPORTIONS ]]
+    F11 { fullscreen-window; }
+    Super+F11 { expand-column-to-available-width; }
+    Shift+F11 { maximize-column; }
+    // Super+w { switch-preset-column-width; }
+    // Super+Shift+w {
+    //     spawn "bash" "-c" "for i in {1..3}; do niri msg action switch-preset-column-width; done"
+    // }
+    Super+w { expand-column-to-available-width; }
+    // Super+q { switch-preset-window-height; }
+    // Super+Shift+q {
+    //     spawn "bash" "-c" "for i in {1..3}; do niri msg action switch-preset-window-height; done"
+    // }
+    Super+Ctrl+q { reset-window-height; }
+
+    Super+Ctrl+a { set-column-width "-10%"; }
+    Super+Ctrl+x { set-column-width "+10%"; }
+    Super+Ctrl+s { set-window-height "-10%"; }
+    Super+Ctrl+z { set-window-height "+10%"; }
+
+    // [[ MOVE WINDOWS & COLUMNS ]]
+    Super+Shift+Left  { move-column-left; }
+    Super+Shift+Up    { move-window-up; }
+    Super+Shift+Down  { move-window-down; }
+    Super+Shift+Right { move-column-right; }
+    Super+Shift+a     { move-column-left; }
+    // Super+Shift+a  { consume-or-expel-window-left; }
+    Super+Shift+s     { move-window-up-or-to-workspace-up; }
+    // Super+Shift+s     { move-window-up; }
+    Super+Shift+z     { move-window-down-or-to-workspace-down; }
+    // Super+Shift+z     { move-window-down; }
+    Super+Shift+x     { move-column-right; }
+    // Super+Shift+x { consume-or-expel-window-right; }
+
+    Super+Alt+Shift+a { move-column-to-first; }
+    Super+Alt+Shift+x  { move-column-to-last; }
+
+    Super+d  { consume-window-into-column; }
+    Super+Shift+d { expel-window-from-column; }
+    Super+Shift+Space { toggle-column-tabbed-display; }
+
+    Super+Ctrl+f { center-column; }
+    Super+Ctrl+Shift+C { center-visible-columns; }
+
+    // [[ MOVE WINDOWS & COLUMNS BETWEEN WORKSPACES ]]
+    Super+Shift+1 { move-column-to-workspace 1; }
+    Super+Shift+2 { move-column-to-workspace 2; }
+    Super+Shift+3 { move-column-to-workspace 3; }
+    Super+Shift+4 { move-column-to-workspace 4; }
+    Super+Shift+5 { move-column-to-workspace 5; }
+    Super+Shift+6 { move-column-to-workspace 6; }
+    Super+Shift+7 { move-column-to-workspace 7; }
+    Super+Shift+8 { move-column-to-workspace 8; }
+    Super+Shift+9 { move-column-to-workspace 9; }
+
+    Super+Shift+Page_Up   { move-column-to-workspace-up; }
+    Super+Shift+Page_Down { move-column-to-workspace-down; }
+
+    // [[ NAVIGATION BETWEEN WORKSPACES ]]
+    Super+Tab repeat=false { toggle-overview; }
+    Super+Space { focus-workspace-previous; }
+
+    Super+1 { focus-workspace 1; }
+    Super+2 { focus-workspace 2; }
+    Super+3 { focus-workspace 3; }
+    Super+4 { focus-workspace 4; }
+    Super+5 { focus-workspace 5; }
+    Super+6 { focus-workspace 6; }
+    Super+7 { focus-workspace 7; }
+    Super+8 { focus-workspace 8; }
+    Super+9 { focus-workspace 9; }
+
+    Super+Alt+s { focus-workspace-up; }
+    Super+Alt+z { focus-workspace-down; }
+
+    // [[ MOVE WORKSPACES (in one monitor) ]]
+    Super+Ctrl+Shift+Alt+1 { move-workspace-to-index 1; }
+    Super+Ctrl+Shift+Alt+2 { move-workspace-to-index 2; }
+    Super+Ctrl+Shift+Alt+3 { move-workspace-to-index 3; }
+    Super+Ctrl+Shift+Alt+4 { move-workspace-to-index 4; }
+    Super+Ctrl+Shift+Alt+5 { move-workspace-to-index 5; }
+    Super+Ctrl+Shift+Alt+6 { move-workspace-to-index 6; }
+    Super+Ctrl+Shift+Alt+7 { move-workspace-to-index 7; }
+    Super+Ctrl+Shift+Alt+8 { move-workspace-to-index 8; }
+    Super+Ctrl+Shift+Alt+9 { move-workspace-to-index 9; }
+
+    Super+Ctrl+Shift+Alt+s { move-workspace-up; }
+    Super+Ctrl+Shift+Alt+z { move-workspace-down; }
+
+
+    // [[ MONITORS ]]
+    // Powers off the monitors. To turn them back on, do any input like
+    // moving the mouse or pressing any other key.
+    // Mod+Shift+P { power-off-monitors; }
+
+    // Mod+Shift+Left  { focus-monitor-left; }
+    // Mod+Shift+Down  { focus-monitor-down; }
+    // Mod+Shift+Up    { focus-monitor-up; }
+    // Mod+Shift+Right { focus-monitor-right; }
+    // Mod+Shift+H     { focus-monitor-left; }
+    // Mod+Shift+J     { focus-monitor-down; }
+    // Mod+Shift+K     { focus-monitor-up; }
+    // Mod+Shift+L     { focus-monitor-right; }
+    //
+    // Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+    // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
+    // ...
+
+    // [[ MOUSE BINDINGS ]]
+    // Super+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    // Super+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    // Super+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    // Super+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    //
+    // Super+WheelScrollRight      { focus-column-right; }
+    // Super+WheelScrollLeft       { focus-column-left; }
+    // Super+Shift+WheelScrollRight { move-column-right; }
+    // Super+Shift+WheelScrollLeft  { move-column-left; }
+    //
+    // // Usually scrolling up and down with Shift in applications results in
+    // // horizontal scrolling; these binds replicate that.
+    // Mod+Shift+WheelScrollDown      { focus-column-right; }
+    // Mod+Shift+WheelScrollUp        { focus-column-left; }
+    // Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    // Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    // [[ TOUCHPAD BINDINGS ]]
+    // Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
+    // Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    // Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}
+
+// [[ GESTURES ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Gestures
+// gestures {
+//     dnd-edge-view-scroll {
+//         trigger-width 30
+//         delay-ms 100
+//         max-speed 1500
+//     }
+//
+//     dnd-edge-workspace-switch {
+//         trigger-height 50
+//         delay-ms 100
+//         max-speed 1500
+//     }
+//
+//     hot-corners {
+//         // off
+//     }
+// }

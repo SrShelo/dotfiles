@@ -64,7 +64,7 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
 -- Minimum number of lines to keep above and below the cursor.
-vim.o.scrolloff = 8
+vim.o.scrolloff = 5
 
 -- Should a dialog be raised to ask if the file should be saved when :q fails?
 vim.o.confirm = false
@@ -130,7 +130,7 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
--- PLUGINS
+-- [[ PLUGINS ]]
 require('lazy').setup({
   require 'external-plugins.autopairs', -- Autocomplete symbols with their pair (e.g. '{' with '}')
   require 'external-plugins.neo-tree', -- File explorer inside neovim
@@ -142,6 +142,7 @@ require('lazy').setup({
   require 'external-plugins.nvim-treesitter', -- Highlight, edit and navigate code
   require 'external-plugins.indent-line', -- See indentation guide lines
   require 'external-plugins.vimtex', -- LaTeX support
+  require 'external-plugins.quarto-nvim', -- Quarto plugin
 
   -- LSP Plugins
   require 'external-plugins.lazydev',

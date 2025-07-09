@@ -15,7 +15,7 @@ cursor-style-blink = true
 cursor-opacity = 1.0
 
 mouse-hide-while-typing = true
-# 0.5 for 1 step
+# 0.5 to scroll 1 line by step
 mouse-scroll-multiplier = 0.5
 
 background-opacity = 1.0

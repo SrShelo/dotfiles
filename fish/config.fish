@@ -27,6 +27,12 @@ function fish_user_key_bindings
 end
 
 export VISUAL=vim
+if test -d $HOME/.local/bin
+    export PATH="$PATH:$HOME/.local/bin"
+end
+if test -d $HOME/.bin
+    export PATH="$PATH:$HOME/.bin"
+end
 
 #alias dotfiles="git --git-dir $HOME/.dotfiles/ --work-tree $HOME"
 alias update="~/.config/fish/scripts/update-arch.sh"

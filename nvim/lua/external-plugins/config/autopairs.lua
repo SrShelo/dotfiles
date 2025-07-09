@@ -13,7 +13,19 @@ npairs.add_rules {
   end):set_end_pair_length(1),
 }
 npairs.add_rules {
-  Rule(' ', ' ', { '-markdown', '-text' }):with_pair(cond.before_regex '[{%[%(]'):with_pair(cond.after_regex '[{%[%(]'):with_del(cond.before_regex '[{%[%(]'),
+  Rule(' ', ' ', { '-markdown', '-text' })
+    :with_pair(cond.not_before_regex '[^{%(%[]$', 1)
+    :with_pair(cond.not_after_regex '^[^}%)%]]', 1)
+    :with_del(cond.before_regex '[%{%[%(]', 2)
+    :with_del(cond.after_regex '[%}%]%)]', 2),
+}
+npairs.add_rules {
+  Rule(':', '', { 'markdown', 'text' })
+    :with_pair(cond.after_regex('["\']', 1))
+    :replace_endpair(function()
+      return '<BS><Right>:'
+    end)
+    :set_end_pair_length(0),
 }
 
 -- LaTeX
@@ -68,9 +80,8 @@ npairs.add_rule(Rule('do', 'end', 'lua'):end_wise(function(opts)
   return string.match(opts.line, '^%s*for') or string.match(opts.line, '^%s*while') ~= nil
 end))
 
-npairs.add_rule(Rule(')', 'end', 'lua'):end_wise(function(opts)
-  return string.match(opts.line, 'function%s*%b()') ~= nil
-end))
+npairs.add_rule(Rule('function%s*%([^%(%)]*%)$', 'end', 'lua'):use_regex(true):with_pair(cond.not_after_text 'end'):with_del(cond.none()))
+npairs.add_rule(Rule('function%s*%([^%(%)]*%) ', ' ', 'lua'):use_regex(true):with_pair(cond.after_text 'end'):with_del(cond.none()))
 
 -- VIM
 npairs.add_rule(Rule('<', '>', { 'vim', 'lua', 'dosini' }))

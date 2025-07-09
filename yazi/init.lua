@@ -1,3 +1,6 @@
+require("git"):setup()
+
+-- require("starship"):setup()
 Header:children_add(function()
 	if ya.target_family() ~= "unix" then
 		return ""
@@ -11,10 +14,10 @@ Status:children_add(function()
 		return ""
 	end
 
-	return ui.Line {
+	return ui.Line({
 		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("darkgray"),
 		":",
 		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("darkgray"),
 		" ",
-	}
+	})
 end, 500, Status.RIGHT)

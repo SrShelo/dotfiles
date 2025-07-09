@@ -1,5 +1,5 @@
 # Every Arch
-
+# To quickly connect to internet use `iwctl`
 ## Drivers and functionalities
 ### Fonts
 - `sudo pacman -S noto-fonts` - To fix fonts problems
@@ -22,10 +22,11 @@ If modules for aic94xx, wd719x or xhci_pci are still missing execute:
 Respectively
 
 ## Tools
+- `sudo pacman -S cronie` - See: https://wiki.archlinux.org/title/Cron
 ### Sound
 - `sudo pacman -S pavucontrol` - Mixer
 ### File manager
-- `sudo pacman -S ranger` - Terminal file manager (The best I think)
+- `sudo pacman -S ranger` - A terminal file manager
 - `sudo pacman -S yazi` - Terminal file manager (The best I think)
 - `sudo pacman -S ueberzug` - Ranger images previews support at most terminals
 - `sudo pacman -S poppler` - Ranger PDFs previews support
@@ -38,7 +39,7 @@ Respectively
 `curl -sS https://starship.rs/install.sh | sh` - One very custom prompt for any shell
 - `sudo pacman -S fish`
 - `sudo chsh -s /usr/local/bin/fish` - Makes fish as default shell
-- `sudo pacman -S alacritty` - GPU acelereted term
+- `sudo pacman -S ghostty`
 - `sudo pacman -S kitty` - GPU based term
 - Install kitty-cat and change the default themes folder from /bin/kitty-cat and put "~/.config/kitty/themes"
 ```bash

@@ -7,10 +7,12 @@
     "spacing": 8,
 
     "modules-left": [
-        "hyprland/window"
+        "hyprland/window",
+        "niri/window",
     ],
     "modules-center": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "niri/workspaces",
     ],
     "modules-right": [
         "custom/open_terminal",
@@ -22,6 +24,18 @@
         "tray",
         "clock"
     ],
+    "niri/workspaces": {
+        // wiki: https://man.archlinux.org/man/extra/waybar/waybar-niri-workspaces.5.en
+        "format": "⊰{icon}⊱",
+        "format-icons": {
+            "daily-apps": "󰀻",
+            //"focused": "▒",
+            //"default": "░",
+            "urgent": "",
+            // "active": "",
+            "default": "󰾞",
+        },
+    },
     "hyprland/workspaces": {
         "format": "⊰{icon}⊱",
         "format-icons": {
@@ -64,6 +78,21 @@
     //         "default": ""
     //     }
     // },
+    "niri/window": {
+        "max-length": 80,
+        "icon": true,
+        "icon-size": 15,
+        "format": "{title}",
+        "rewrite": {
+            "(.*) - qutebrowser": "Qutebrowser",
+            "Spotify Premium": "Spotify",
+            "(.*)(/home/shelo|~)/Desktop/Biblioteca(.*)": "$1📚️$3",
+            "(.*)/local(.*)": "$1/💿️$2",
+            "(.*)/nube(.*)": "$1/☁️$2",
+            "(.*)/ciencias formales/lógica(.*)": "$1/[p⇒q]$2",
+            "(.*)/ciencias formales/matemáticas(.*)": "$1/[1+2]$2",
+        },
+    },
     "hyprland/window": {
         "max-length": 80,
         "icon": true,

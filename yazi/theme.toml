@@ -20,3 +20,6 @@ prepend_conds = [
 	{ if = "dir & hidden", text = "󱞞", fg = "yellow" },
 	{ if = "dir", text = "", fg = "yellow" },
 ]
+prepend_exts = [
+    { name = "qmd", text = "", fg = "#3D749B" },
+]
