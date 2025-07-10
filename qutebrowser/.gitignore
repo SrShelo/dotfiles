@@ -1,4 +1,5 @@
 /*
+!README.md
 !.gitignore
 !bookmarks/
 !themes/
@@ -6,3 +7,4 @@
 !config.py
 !quickmarks
 !theme.py.backup
+!settings/
