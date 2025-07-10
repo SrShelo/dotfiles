@@ -4,6 +4,8 @@ local Rule = require 'nvim-autopairs.rule'
 local npairs = require 'nvim-autopairs'
 local cond = require 'nvim-autopairs.conds'
 
+npairs.add_rule(Rule('"""', '"""'))
+
 npairs.add_rule(Rule('‘', '’'):with_pair(cond.not_filetypes { 'tex', 'latex', 'markdown', 'text' }))
 npairs.add_rule(Rule('“', '”', { 'tex', 'latex', 'malrdown', 'text' }))
 npairs.add_rule(Rule('«', '»'))
@@ -85,3 +87,6 @@ npairs.add_rule(Rule('function%s*%([^%(%)]*%) ', ' ', 'lua'):use_regex(true):wit
 
 -- VIM
 npairs.add_rule(Rule('<', '>', { 'vim', 'lua', 'dosini' }))
+
+-- KDL
+npairs.add_rule(Rule('#"', '"#', { 'kdl' }))

@@ -95,9 +95,13 @@ input {
     touchpad {
         // off
         disabled-on-external-mouse
-        // dwt // disable while typing
+        // dwt // (disable while typing)
+
+        accel-speed 0.2
+        accel-profile "flat"
+
+        scroll-factor 0.5
         natural-scroll
-        scroll-factor 1.0
         // Options: no-scroll, two-finger, edge, on-button-down
         scroll-method "two-finger"
         tap
@@ -105,8 +109,6 @@ input {
         // click-method "clickfinger"
         drag true
         drag-lock
-        // accel-speed 0.2
-        // accel-profile "flat"
         // scroll-button 273
         // scroll-button-lock
         // left-handed
@@ -313,8 +315,8 @@ workspace "daily-apps" {
 
 // [[ WINDOW RULES ]]
 // Window rules let you adjust behavior for individual windows.
-// Print window information by picking it with this command: niri msg pick-window
 // wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+// You can get info of a specific window by running `niri msg pick-window` and clicking on it. Alternatively, you can run `niri msg windows` to list all open windows.
 
 // Make tiled windows rectangular while using CSD.
 window-rule {
@@ -327,6 +329,13 @@ window-rule {
     tab-indicator {
         active-color "#ffff"
         inactive-color "#000f"
+    }
+}
+window-rule {
+    match is-floating=true
+
+    border {
+        on
     }
 }
 
@@ -357,6 +366,7 @@ window-rule {
     open-on-workspace "daily-apps"
     open-focused false
     open-maximized true
+    scroll-factor 0.5
 }
 window-rule {
     match app-id=r#"^discord$"#
@@ -366,7 +376,7 @@ window-rule {
 }
 window-rule {
     match app-id=r#"^com.mitchellh.ghostty$"#
-    scroll-factor 0.5
+    scroll-factor 1.0
 }
 
 
@@ -412,6 +422,7 @@ window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
 }
+
 // Example: block out two password managers from screen capture.
 /-window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
@@ -515,7 +526,7 @@ binds {
     Super+Shift+c { close-window; }
 
     Super+f       { toggle-window-floating; }
-    Super+Shift+v { switch-focus-between-floating-and-tiling; }
+    Super+v { switch-focus-between-floating-and-tiling; }
 
     // [[ NAVIGATION BETWEEN WINDOWS ]]
     Super+Left  { focus-column-left; }
@@ -557,14 +568,14 @@ binds {
     Super+Shift+Up    { move-window-up; }
     Super+Shift+Down  { move-window-down; }
     Super+Shift+Right { move-column-right; }
-    Super+Shift+a     { move-column-left; }
-    // Super+Shift+a  { consume-or-expel-window-left; }
+    // Super+Shift+a     { move-column-left; }
+    Super+Shift+a  { spawn "bash" "-c" "niri msg action consume-or-expel-window-left ; niri msg action move-floating-window -x -50"; }
     Super+Shift+s     { move-window-up-or-to-workspace-up; }
     // Super+Shift+s     { move-window-up; }
     Super+Shift+z     { move-window-down-or-to-workspace-down; }
     // Super+Shift+z     { move-window-down; }
-    Super+Shift+x     { move-column-right; }
-    // Super+Shift+x { consume-or-expel-window-right; }
+    // Super+Shift+x     { move-column-right; }
+    Super+Shift+x { spawn "bash" "-c" "niri msg action consume-or-expel-window-right ; niri msg action move-floating-window -x +50"; }
 
     Super+Alt+Shift+a { move-column-to-first; }
     Super+Alt+Shift+x  { move-column-to-last; }
@@ -587,8 +598,8 @@ binds {
     Super+Shift+8 { move-column-to-workspace 8; }
     Super+Shift+9 { move-column-to-workspace 9; }
 
-    Super+Shift+Page_Up   { move-column-to-workspace-up; }
-    Super+Shift+Page_Down { move-column-to-workspace-down; }
+    Super+Alt+Shift+s   { move-column-to-workspace-up; }
+    Super+Alt+Shift+z { move-column-to-workspace-down; }
 
     // [[ NAVIGATION BETWEEN WORKSPACES ]]
     Super+Tab repeat=false { toggle-overview; }

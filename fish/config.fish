@@ -36,7 +36,10 @@ end
 
 #alias dotfiles="git --git-dir $HOME/.dotfiles/ --work-tree $HOME"
 alias update="~/.config/fish/scripts/update-arch.sh"
+alias lss="ls"
 alias ls="exa --group-directories-first"
+alias la="exa --group-directories-first -Gghla"
+alias laa="exa -1a --group-directories-first"
 alias tre="exa -T"
 # Git aliases
 abbr gl "git log"

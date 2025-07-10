@@ -86,6 +86,7 @@ settings:
     https://www.replaypoker.com: true
     https://www.tiktok.com: false
     https://www.u-cursos.cl: true
+    https://www.windowscentral.com: false
     https://www.youtube.com: false
   content.pdfjs:
     global: true
