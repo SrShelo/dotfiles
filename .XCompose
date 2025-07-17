@@ -27,6 +27,7 @@ include "%L"
 <Multi_key> <minus> <minus> <minus> : "—" U2014
 #<Multi_key> <minus> <minus> <minus> : "―" U2015
 
+<Multi_key> <exclam> <equal> : "≠" U2260
 <Multi_key> <bar> <bar> : "\20026" U2016
 <Multi_key> <percent> <o> : ""
 <Multi_key> <percent> <0> <space> : "‰"

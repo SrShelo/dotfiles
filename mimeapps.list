@@ -1,4 +1,5 @@
 [Default Applications]
+text/plain=nvim-in-ghostty.desktop;
 image/jpeg=qimgv.desktop;
 image/png=qimgv.desktop;
 image/gif=qimgv.desktop;

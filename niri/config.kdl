@@ -9,7 +9,7 @@
 spawn-at-startup "~/.config/common_scripts/wallpapers.sh"
 spawn-at-startup "waybar"
 // sys tray
-spawn-at-startup "nm-applet"
+spawn-at-startup "iwgtk -i"
 spawn-at-startup "mako" // mako or swaync
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
@@ -20,11 +20,15 @@ spawn-at-startup "libinput-gestures-setup stop desktop autostart start"
 spawn-at-startup "playerctld" "daemon"
 // Make X11 apps runnable
 // spawn-at-startup "xwayland-satellite"
+// Make the notification appear once you log in, so it doesn't appear 5 minutes
+// after, which is kind of weird.
+spawn-at-startup "/home/shelo/.config/common_scripts/battery_notify.sh"
 
 // [[ ENVIRONMENT ]]
 // Override environment variables for processes spawned by niri.
 // wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
 environment {
+    XDG_CURRENT_DESKTOP "niri"
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "qt6ct"
     // DISPLAY ":1"
@@ -80,7 +84,7 @@ input {
             // variant ""
             // See all available options with `cat /usr/share/X11/xkb/rules/base.lst`
             // options "grp:alt_space_toggle,compose:rctrl,caps:escape"
-            options "grp:rctrl_ralt_toggle,compose:caps"
+            options "grp:rctrl_ralt_toggle"
             // model ""
             // rules ""
             // file ""
@@ -312,6 +316,9 @@ layout {
 workspace "daily-apps" {
     // open-on-output "eDP-1"
 }
+workspace "browser" {
+    // open-on-output "eDP-1"
+}
 
 // [[ WINDOW RULES ]]
 // Window rules let you adjust behavior for individual windows.
@@ -356,7 +363,7 @@ window-rule {
 // DAILY APPS
 window-rule {
     match app-id=r#"^org\.qutebrowser\.qutebrowser$"#
-    open-on-workspace "daily-apps"
+    open-on-workspace "browser"
     open-focused false
     open-maximized true
     scroll-factor 0.5
@@ -376,11 +383,20 @@ window-rule {
 }
 window-rule {
     match app-id=r#"^com.mitchellh.ghostty$"#
-    scroll-factor 1.0
+    scroll-factor 5.0
+}
+window-rule {
+    match app-id=r#"^steam$"#
+    scroll-factor 0.5
 }
 
 
 // UTILITIES
+window-rule {
+    match app-id=r#"^org.twosheds.iwgtk$"#
+
+    open-floating true
+}
 window-rule {
     match app-id=r#"^it.mijorus.smile$"#
     open-floating true
@@ -403,8 +419,6 @@ window-rule {
     match app-id=r#"^nz.co.mega.megasync$"#
     open-floating true
 }
-
-
 window-rule {
 // MPV
     // See: https://mpv.io/manual/stable/#window
@@ -456,9 +470,9 @@ binds {
     Super+BackSpace repeat=false hotkey-overlay-title="Open power menu" { spawn "~/.config/common_scripts/power_menu.sh"; }
     Super+Return repeat=false hotkey-overlay-title="Open terminal: ghostty" { spawn "bash" "-c" "$myterm"; }
     Super+e hotkey-overlay-title="Open file manager" { spawn "bash" "-c" "$myfile_manager"; }
-    Super+o repeat=false hotkey-overlay-title="Run apps: tofi" { spawn "tofi-drun" "--drun-launch=true"; }
+    Super+o repeat=false hotkey-overlay-title="Run apps: tofi" { spawn "tofi-drun" "--drun-launch=true" "--fuzzy-match=true"; }
     Super+Shift+o repeat=false hotkey-overlay-title="Run apps: wofi" { spawn "wofi" "--show" "drun" "-i"; }
-    Super+p repeat=false hotkey-overlay-title="Run commands" { spawn "bash" "-c" "tofi-run | bash"; }
+    Super+p repeat=false hotkey-overlay-title="Run commands" { spawn "bash" "-c" "tofi-run --fuzzy-match=true | bash"; }
     Ctrl+Shift+Escape hotkey-overlay-title="Open task manager" { spawn "bash" "-c" "$myterm -e $mytask_manager"; }
     Super+Alt+l hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
     Super+b hotkey-overlay-title="Open browser" { spawn "bash" "-c" "$mybrowser"; }

@@ -47,3 +47,11 @@ mkdir -p ~/installing || cd ~/installing
 git clone https://github.com/adi1090x/kitty-cat.git || bash ./kitty-cat/install
 ```
 
+- interesting commands:
+    - ncdu: manage disk space and see what's using more
+    - asciinema: record terminal and replay it inside terminal
+    - pyradio: terminal app to play radios from a configured playlist with their urls
+    - radioactive: terminal app to search and play radios
+
+
+- Comando interesante para conectarse al wifi `iwmenu --launcher custom --launcher-command "wofi --dmenu --password"`

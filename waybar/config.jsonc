@@ -29,6 +29,7 @@
         "format": "⊰{icon}⊱",
         "format-icons": {
             "daily-apps": "󰀻",
+            "browser": "",
             //"focused": "▒",
             //"default": "░",
             "urgent": "",
@@ -137,7 +138,7 @@
         },
         "format": "{capacity}% {icon}",
         "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% C",
+        "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module

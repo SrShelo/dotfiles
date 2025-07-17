@@ -1,12 +1,15 @@
-// ┌─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────────┐
-// │ ª   │ ! ¡ │ ? ¿ │ #   │ $   │ %   │ ^   │ &   │   ^ ̇│ (   │ )   │ _   │ =   │            │
-// │ ° ¬ │ 1 ¹ │ 2 ² │ 3 ³ │ 4   │ 5   │ 6   │ 7   │ 8   │ 9   │ 0   │ - < │ + > │ Backspace  │
+// Box drawing characters: https://www.webnots.com/alt-code-shortcuts-for-box-drawing-symbols/
+// ┏━━━━━━┓
+// ┃ Comp ┃
+// ┡━━━━━┯┹────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬────────────┐
+// │ ¬   │ ! ¡ │ ? ¿ │ #   │ $   │ %   │ ^   │ &   │   ^ ̇│ (   │ )   │ _   │ =   │            │
+// │ \ ª │ 1 ¹ │ 2 ² │ 3 ³ │ 4   │ 5   │ 6   │ 7   │ 8   │ 9   │ 0   │ - < │ + > │ Backspace  │
 // ├─────┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬─────────┤
 // │        │ Q   │ W   │ E   │ R   │ T   │ Y   │ U   │ I   │ O   │ P   │ ¨   │ }   │ ]       │
 // │ Tab    │ q   │ w   │ e € │ r   │ t   │ y   │ u   │ i   │ o   │ p * │ ´ ` │ {   │ [       │
 // ┢━━━━━━━━┷┱────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴┬────┴─────────┤
 // ┃         ┃ A   │ S   │ D   │ F   │ G   │ H   │ J   │ K   │ L   │ Ñ   │ "   │              │
-// ┃ Caps    ┃ a   │ s $ │ d   │ f   │ g   │ h   │ j   │ k   │ l   │ ñ ~ │ '   │ Enter        │
+// ┃ Esc     ┃ a   │ s $ │ d   │ f   │ g   │ h   │ j   │ k   │ l   │ ñ ~ │ '   │ Enter        │
 // ┣━━━━━━━━━┻━━┱──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┬──┴──┲━━┷━━━━━━━━━━━━━━┪
 // ┃            ┃ Z   │ X   │ C   │ V   │ B   │ N   │ M   │ ;   │ :   │ |   ┃                 ┃
 // ┃ Shift      ┃ z   │ x   │ c ¢ │ v   │ b   │ n   │ m   │ ,   │ .   │ / \ ┃ Shift           ┃
@@ -16,11 +19,23 @@
 // ┗━━━━━┻━━━━━━┻━━━━━┻━━━━━┹─────────────────────────────┺━━━━━┹─────┺━━━━━┩  ←  │  ↓  │  →  │
 //                                                                          └─────┴─────┴─────┘
 // ┌─────┐  _  = no modifier
-// │ s g │  s  = shift
-// │ _ G │  g  = alt_gr (level 3 shift)
+// │ s G │  s  = shift
+// │ _ g │  g  = alt_gr (level 3 shift)
 // └─────┘  G = shift + alt_gr
-//  ̇ = dead char, e.g. ^ = asccicircum, but ^ ̇ = dead_circumflex
-// Guide: https://www.x.org/archive/X11R7.5/doc/input/XKB-Config.html
+// <CHAR> ̇ = dead char, e.g. ^ = asccicircum, but ^ ̇ = dead_circumflex
+// NOTE: Escape -> Compose, Caps lock -> Escape
+
+// Oficial documentation https://www.x.org/releases/current/doc/kbproto/xkbproto.html
+// Interesting parts:
+// - https://www.x.org/releases/current/doc/kbproto/xkbproto.html#Notation_and_Terminology
+// Guide to setup layouts in Xorg: https://www.x.org/archive/X11R7.5/doc/input/XKB-Config.html
+// Find all default layouts and more here: /usr/share/X11/xkb/
+// Find key names here: /usr/share/X11/xkb/symbols/
+// Man pages:
+// man xkbcomp
+// man setxkbmap
+// man xkeyboard-config
+// man xkb_symbols
 
 default partial
 xkb_symbols "mykeys" {
@@ -28,7 +43,8 @@ xkb_symbols "mykeys" {
 
 	name[Group1]="personal QWERTY";
 
-	key <Esc> {[ Escape ]};
+	key <ESC> { type[Group1] = "TWO_LEVEL", [ Multi_key, Multi_key ] };
+    key <CAPS> { type[Group1] = "ONE_LEVEL", [ Escape ] };
 
 	key <TLDE> {[ backslash			, notsign				, ordfeminine]};
 	key <AE01> {[ 1					, exclam				, exclamdown			, onesuperior		]};

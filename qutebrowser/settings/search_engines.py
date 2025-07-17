@@ -1,7 +1,9 @@
 # ~# Search engines #~
 c.url.searchengines = {
-    'DEFAULT':          'https://google.com/search?q={}',
-    '.':                'https://google.com/search?q={}',
+    # 'DEFAULT':          'https://google.com/search?q={}',
+    'DEFAULT':                'https://duckduckgo.com/?t=h_&q={}&ia=web',
+    # '.':                'https://google.com/search?q={}',
+    '.':                'https://duckduckgo.com/?t=h_&q={}&ia=web',
     'd':                'https://duckduckgo.com/?t=h_&q={}&ia=web',
     'ddg':              'https://duckduckgo.com/?t=h_&q={}&ia=web',
     'g':                'https://google.com/search?q={}',

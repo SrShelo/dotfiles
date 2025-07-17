@@ -1,0 +1,25 @@
+keybind = clear
+
+keybind = ctrl+delete=quit
+keybind = ctrl+shift+delete=crash:main
+
+# keybind = ctrl+l=clear_screen
+# keybind = ctrl+shift+l=reset
+
+keybind = ctrl+comma=open_config
+keybind = ctrl+f5=reload_config
+
+# Navigation
+keybind = ctrl+page_up=scroll_page_fractional:-0.5
+keybind = ctrl+page_down=scroll_page_fractional:0.5
+
+# Clipboard
+# keybind = performable:ctrl+c=copy_to_clipboard
+keybind = performable:ctrl+shift+c=copy_to_clipboard
+# keybind = ctrl+v=paste_from_clipboard
+keybind = performable:ctrl+shift+v=paste_from_clipboard
+# keybind = performable:ctrl+alt+v=paste_from_clipboard
+
+# Appearance
+keybind = ctrl+shift+equal=increase_font_size:1
+keybind = ctrl+shift+minus=decrease_font_size:1

@@ -15,6 +15,7 @@
 !common_scripts/
 
 # Some nice programs
+!lemurs.toml
 !ghostty/
 !kitty/
 !alacritty/

@@ -131,7 +131,7 @@ settings:
   tabs.indicator.width:
     global: 2
   tabs.last_close:
-    global: ignore
+    global: close
   tabs.mousewheel_switching:
     global: false
   tabs.new_position.related:

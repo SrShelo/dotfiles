@@ -1,0 +1,8 @@
+# https://github.com/coastalwhite/lemurs
+[password_field]
+content_replacement_character = "+"
+
+[password_field.style]
+show_title = true
+title = "Le cambié la contraseeña jojojo"
+title_color = "white"

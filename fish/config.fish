@@ -2,6 +2,32 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# [[ Remapping FUNDAMENTAL console binds ]]
+stty quit '^T' # send quit signal
+stty intr '^G' # send interrumpt signal
+stty susp '^B' # suspend process
+# use `sasd` to see all actions with their bindings.
+
+# [[ Fish keybindings ]]
+# Erase some
+bind -e --preset ctrl-c
+bind -e --preset ctrl-v
+bind -e --preset ctrl-x
+
+# Bind some
+bind ctrl-c fish_clipboard_copy
+bind ctrl-v fish_clipboard_paste
+
+bind ctrl-z undo
+bind ctrl-shift-z redo
+
+bind ctrl-shift-l 'reset' clear-screen
+bind ctrl-g clear-commandline
+
+# Prepend commands
+bind alt-m 'fish_commandline_prepend man'
+bind alt-n 'fish_commandline_prepend nohup'
+
 function bind_bang
     switch (commandline -t)[-1]
         case "!"

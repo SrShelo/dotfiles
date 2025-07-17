@@ -15,6 +15,7 @@ prepend_globs = [
 	{ name = "**scripts/", text = "󰯂" },
 	{ name = "/home/*/Lab/", text = "󰂓" },
 	{ name = "/home/*/Games/", text = "󰊗" },
+	{ name = "/home/*/Media/", text = "" },
 ]
 prepend_conds = [
 	{ if = "dir & hidden", text = "󱞞", fg = "yellow" },

@@ -72,6 +72,86 @@ vim.o.confirm = false
 -- [[ BASIC KEYMAPS ]]
 --  See `:help vim.keymap.set()`
 
+-- Remmaping some
+-- NOTE: Actions wich are keybind are interpreted as default keybinds. E.g. if I bind 'u'to 'a', then '<C-z>' to 'u' (or vice versa), the action of '<C-z>' will be the same as ':undo' and not 'a'.
+--
+-- Scheme
+--                     # Direction(n)
+--   # Insert modes    aA       sS
+--   yY uU iI oO pP    zZ       xX
+--         |                |
+--         V                V
+--   cC aA iI oO rR    h^  k<PgUp>
+--                     j<PgDn>  l$
+-- - <C-c> & <C-v> -> copy & paste (n, v, i)
+-- - changed v to r for visual modes
+--
+--   qQ <-> bB
+--   rR  -> aA
+--   uU  -> rR
+--  C-r  ->
+
+-- Insert modes
+vim.keymap.set({ 'n', 'v' }, 'u', 'r')
+vim.keymap.set({ 'n', 'v' }, 'U', 'R')
+vim.keymap.set('n', 'r', 'a')
+vim.keymap.set('n', 'R', 'A')
+
+-- Custom DIRECTION and MOTION keys (just for normal mode)
+-- This comes from my filosofy of configs I use with WMs: ergonomics, and giving
+-- my left hand enough control to leave my right hand stable on the mouse so I
+-- can save myself the time of switching the right hand back and forth.
+-- Also this config will be very frendly with who lost right hand, and a little less
+-- with who lost left hand.
+-- now it's more confortable to me, navigate trhouth all my system
+vim.keymap.set('n', 'a', 'h')
+vim.keymap.set('n', 'A', '0')
+vim.keymap.set('n', 's', 'k', { silent = true })
+vim.keymap.set('n', 'S', '<PageUp>')
+vim.keymap.set('n', 'z', 'j')
+vim.keymap.set('n', 'Z', '<PageDown>')
+vim.keymap.set('n', 'x', 'l')
+vim.keymap.set('n', 'X', '$')
+-- Swap q <-> b
+vim.keymap.set('n', 'q', 'b')
+vim.keymap.set('n', 'Q', 'B')
+vim.keymap.set('n', 'b', 'q')
+vim.keymap.set('n', 'B', 'Q')
+
+-- Clipboard
+vim.keymap.set({ 'n', 'v' }, '<C-c>', 'y')
+vim.keymap.set({ 'n', 'v' }, '<C-S-c>', 'Y')
+vim.keymap.set('n', '<C-c><C-c>', 'yy')
+-- vim.keymap.set('n', 'y<C-c>', 'yy')
+-- vim.keymap.set({ 'n', 'v' }, '<C-v>', 'p')
+-- vim.keymap.set({ 'n', 'v' }, '<C-S-v>', 'P')
+vim.keymap.set('i', '<C-v>', '<C-r>+')
+vim.keymap.set('i', '<C-S-v>', '<C-r>+')
+vim.keymap.set('i', '<C-c>', '<Esc>v')
+vim.keymap.set('i', '<C-c><C-c>', 'yy')
+
+-- History
+vim.keymap.set('n', '<C-z>', 'u', { desc = 'Undo' })
+vim.keymap.set('n', '<C-S-z>', '<C-r>', { desc = 'Redo' })
+vim.keymap.set('i', '<C-z>', '<Esc>ui', { desc = 'Undo' })
+vim.keymap.set('i', '<C-S-z>', '<Esc><C-r>a', { desc = 'Redo' })
+
+-- Visual mode
+vim.keymap.set({ 'n', 'v' }, '<C-A-v>', '<C-v>')
+
+-- misc
+vim.keymap.set('n', '<C-s>', 'z')
+vim.keymap.set('n', '<C-S-s>', 'Z')
+vim.keymap.set('n', '<C-r>', '')
+vim.keymap.set('n', '<C-f>', '')
+vim.keymap.set('n', '<C-b>', '')
+
+-- Disabling arrow keys in normal and visual modes to learn vim really well...
+vim.keymap.set({ 'n', 'v' }, '<Left>', '')
+vim.keymap.set({ 'n', 'v' }, '<Up>', '')
+vim.keymap.set({ 'n', 'v' }, '<Down>', '')
+vim.keymap.set({ 'n', 'v' }, '<Right>', '')
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -85,21 +165,21 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use ALT+<aszx> to switch between windows (based on my qutebrowser config)
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<M-a>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<M-x>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<M-z>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<M-s>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<A-a>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<A-x>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<A-z>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<A-s>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
-vim.keymap.set('n', '<M-S-a>', '<C-w>H', { desc = 'Move window to the left' })
-vim.keymap.set('n', '<M-S-x>', '<C-w>L', { desc = 'Move window to the right' })
-vim.keymap.set('n', '<M-S-z>', '<C-w>J', { desc = 'Move window to the lower' })
-vim.keymap.set('n', '<M-S-s>', '<C-w>K', { desc = 'Move window to the upper' })
+vim.keymap.set('n', '<A-S-a>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<A-S-x>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<A-S-z>', '<C-w>J', { desc = 'Move window to the lower' })
+vim.keymap.set('n', '<A-S-s>', '<C-w>K', { desc = 'Move window to the upper' })
 
-vim.keymap.set('n', '<M-C-a>', '<C-w><', { desc = 'Decrease window width' })
-vim.keymap.set('n', '<M-C-x>', '<C-w>>', { desc = 'Increase window width' })
-vim.keymap.set('n', '<M-C-z>', '<C-w>-', { desc = 'Decrease window height' })
-vim.keymap.set('n', '<M-C-s>', '<C-w>+', { desc = 'Increase window height' })
+vim.keymap.set('n', '<A-C-a>', '<C-w><', { desc = 'Decrease window width' })
+vim.keymap.set('n', '<A-C-x>', '<C-w>>', { desc = 'Increase window width' })
+vim.keymap.set('n', '<A-C-z>', '<C-w>-', { desc = 'Decrease window height' })
+vim.keymap.set('n', '<A-C-s>', '<C-w>+', { desc = 'Increase window height' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -143,31 +223,13 @@ require('lazy').setup({
   require 'external-plugins.indent-line', -- See indentation guide lines
   require 'external-plugins.vimtex', -- LaTeX support
   require 'external-plugins.quarto-nvim', -- Quarto plugin
+  require 'external-plugins.yazi', -- Use yazi inside neovim
 
   -- LSP Plugins
   require 'external-plugins.lazydev',
   require 'external-plugins.nvim-lspconfig',
 
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
-  -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
-  --
-  -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
-  --
-
-  -- Alternatively, use `config = function() ... end` for full control over the configuration.
-  -- If you prefer to call `setup` explicitly, use:
-  --    {
-  --        'lewis6991/gitsigns.nvim',
-  --        config = function()
-  --            require('gitsigns').setup({
-  --                -- Your gitsigns configuration here
-  --            })
-  --        end,
-  --    }
-  --
 
   -- Themes
   require 'themes.neonord',
@@ -227,6 +289,7 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      -- https://github.com/echasnovski/mini.nvim/blob/main/doc/mini-surround.txt
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
