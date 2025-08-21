@@ -1,0 +1,508 @@
+" Suggestions to Vieb developers:
+" - Add p.middleClick or p.newtabAny
+"   (p.newtabVideo, p.newtab... are ridiculous.
+"   Just detect whatever it is)
+"   under the curso)
+" - Add something like p.moveToHorizontalCenter
+" SOLVED:
+" - Add p.downloadAny (same as above) just execute
+"   all available download commands
+
+" help page: vieb://help
+
+" TODO: check if with vieb://help#userstyle I can hidde the search bar in
+" youtube.
+
+" [[ OPTIONS ]]
+" # MISC
+set adblocker=off
+set vimcommand="ghostty -e nvim"
+set followchars=custom:qwerasdfzxcv
+set smartcase=true
+set searchpointeralignment="center"
+set searchscope="local"
+set historyperpage=50
+set commandhist=all
+"set windowtitle="%title - %app"
+" Spellchecker
+set spell=true
+set spelllang=["en","es","system"]
+
+
+" TODO: read this:
+" https://github.com/Jelmerro/Vieb/blob/master/FAQ.md#why-cant-i-open-multiple-browser-windows
+" to allow multiple windows to be opened safely (I want it to have one for
+" browsing, and another one to render markdown while editing it in nvim)
+
+" TODO: Check https://github.com/Jelmerro/Vieb/blob/master/Erwic.md for erwic
+" mode
+
+" # MOUSE
+" middle click on links will open new tabs but won't focus them.
+set nomousenewtabswitch
+
+" # SECURITY
+set downloadmethod=ask
+set redirecttohttp
+set resourcesallowed=[".*"]
+" ## Permissions
+set permissioncamera=ask
+set permissiondisplaycapture=ask
+set permissionmediadevices=allow
+set permissionmicrophone=ask
+set permissionpersistentstorage=allow
+set permissionclipboardread=ask
+set permissionclipboardwrite=allow
+" ## DATA
+set clearhistoryinterval="1month"
+set cache="clearonquit"
+set clearcookiesonquit=false
+
+set useragent=""
+"set useragent=%default
+"set useragent="%firefox/Electron"
+" What is a user agent? read this short article:
+" https://www.howtogeek.com/114937/htg-explains-whats-a-browser-user-agent/
+" Changing user agent to firefox prevent this browser from being declined by websites (like google services
+" https://support.google.com/accounts/answer/7675428).
+" Check your current useragent running in console
+" `console.log(navigator.userAgent)` or visit this site:
+" https://whatmyuseragent.com/
+
+" # GUI
+set nativetheme=dark
+colorscheme my-flipped
+
+set guifontsize=14
+set guinavbar=always
+set guitabbar=always
+" options: always,onmove,onscroll,never
+set guiscrollbar=always
+set guifullscreennavbar=oninput
+set guifullscreentabbar=onupdate
+set guihidetimeout=2500
+" options: hidden,scroll,wrap
+set taboverflow="wrap"
+set devtoolsposition=vsplit
+
+" options: none,spinner,line,all
+set loadingindicator="line"
+set notificationposition="bottomright"
+
+set mapsuggestposition=bottomleft
+set followlabelposition=insidebottomright
+set timeout=true
+set timeoutlen=30000
+
+" TABS
+set tabnewposition=right
+set closablepinnedtabs=false
+
+" [[ SEARCH WORDS ]]
+set searchwords={ "d": "https://duckduckgo.com/?t=h_&q=%s&ia=web", "ddg": "https://duckduckgo.com/?t=h_&q=%s&ia=web", "g": "https://google.com/search?q=%s", "google": "https://google.com/search?q=%s" }
+
+" [[ KEY BINDINGS ]]
+" # NORMAL MODE
+" help page: 
+nunmap u
+nunmap e
+nunmap E
+nunmap d
+nunmap t
+nunmap T
+nunmap zH
+nunmap zL
+nunmap zh
+nunmap zl
+nunmap zm
+nunmap zp
+
+" ## Misc
+nmap <C-h> <:set tabnewposition=end><:tabnew><:history><:set tabnewposition=right>
+nmap <C-S-i> <:devtools>
+
+" ## Page navigation
+" -- left hand --
+nmap a <scrollLeft>
+nmap s <scrollUp>
+nmap z <scrollDown>
+nmap x <scrollRight>
+" -- right hand --
+"  defaults are right handed
+" -- . --
+
+nmap gg <scrollTop>
+nmap G <scrollBottom>
+nmap A <scrollLeftMax>
+nmap S <scrollTop>
+nmap Z <scrollBottom>
+nmap X <scrollRightMax>
+
+nmap <PageUp> <scrollPageUpHalf>
+nmap <PageDown> <scrollPageDownHalf>
+
+" ## Tab navigation
+" -- left hand --
+nmap <A-a> <previousTab>
+nmap <A-x> <nextTab>
+" -- right hand --
+nmap J <previousTab>
+nmap K <nextTab>
+" -- . --
+
+nmap <C-S-s> <zoomIn>
+nmap <C-S-z> <zoomOut>
+nmap d<C-S-s> <zoomReset>
+nmap d<C-S-z> <zoomReset>
+
+" ## Tab control
+" -- left hand --
+nmap <A-S-c> <:close>
+nmap <A-S-r> <reopenTab>
+nmap d<A-r> <reopenTab>
+" -- right hand --
+" -- . --
+
+nmap <A-S-a> <moveTabBackward>
+nmap <A-S-x> <moveTabForward>
+
+" History
+" -- left hand --
+nmap <A-S-z> <backInHistory>
+nmap <A-S-s> <forwardInHistory>
+" -- right hand --
+" -- . --
+
+nmap dc <openNewTabWithCurrentUrl><useEnteredData>
+
+" ## More tab controls
+nmap <A-v> <:pin>
+nmap dv <:pin>
+
+nmap dm <:mute>
+
+nmap dr <refreshTab>
+nmap dR <refreshTabWithoutCache>
+
+nunmap <Esc>
+nunmap <C-[>
+nmap d<Space> <stopLoadingPage>
+
+" ## More bindings starting with d
+nmap dn <:notifications>
+nmap dN <:set tabnewposition=end><:notifications!><:set tabnewposition=right>
+nmap dd <:downloads>
+nmap dD <:set tabnewposition=end><:tabnew><:downloads><:set tabnewposition=end>
+nmap dC <:set tabnewposition=end><:cookies!><:set tabnewposition=right>
+
+" # INSERT MODE
+
+" Go into insert mode but disable <Esc> key binding to pass it to
+" websites which requires it.
+imap <S-Esc> <toNormalMode><:imap <Esc> <toNormalMode>>
+nmap <C-i> <:iunmap <Esc>><toInsertMode>
+
+" # SEARCH MODE
+" ## while normal mode...
+nmap <Esc> <emptySearch>
+nmap <Space> <clickOnSearch>
+
+" # EXPLORE MODE
+" help page: 
+nmap o <toExploreMode>
+nmap O <:emap <CR> <C-a><C-x><:tabnew><toExploreMode><C-v><useEnteredData><:emap <CR> <useEnteredData>>><toExploreMode>
+nmap e <toExploreMode>
+nmap E <:tabnew><toExploreMode>
+nmap dx <:emap <CR> <openNewTabWithCurrentUrl><:emap <CR> <useEnteredData>>><toExploreMode>
+
+emap <C-h>      <exploreHistoryPrevious>
+emap <C-l>      <exploreHistoryNext>
+emap <A-a>      <exploreHistoryPrevious>
+emap <A-x>      <exploreHistoryNext>
+emap <A-Left>   <exploreHistoryPrevious>
+emap <A-Right>  <exploreHistoryNext>
+
+emap <C-j>      <nextSuggestion>
+emap <C-k>      <prevSuggestion>
+emap <A-s>      <prevSuggestion>
+emap <A-z>      <nextSuggestion>
+emap <Tab>      <nextSuggestion>
+emap <S-Tab>    <prevSuggestion>
+emap <A-Up>     <prevSuggestion>
+emap <A-Down>   <nextSuggestion>
+
+
+" # COMMAND MODE
+cmap <C-h>      <commandHistoryPrevious>
+cmap <C-l>      <commandHistoryNext>
+cmap <A-a>      <commandHistoryPrevious>
+cmap <A-x>      <commandHistoryNext>
+cmap <Up>   <commandHistoryPrevious>
+cmap <Down>  <commandHistoryNext>
+
+cmap <C-j>      <nextSuggestion>
+cmap <C-k>      <prevSuggestion>
+cmap <A-s>      <prevSuggestion>
+cmap <A-z>      <nextSuggestion>
+cmap <Tab>      <nextSuggestion>
+cmap <S-Tab>    <prevSuggestion>
+
+" # MACROS (any mode)
+" help page: 
+" TODO: Make this work with b key instead of q
+nmap b<Esc> <nop>
+nmap b<C-[> <nop>
+
+"nmap b<Any> <startRecording>
+"nmap B <stopRecording>
+
+" # POINTER MODE
+" help page: vieb://help#pointer
+"
+" NOTE: It's logical to think if you are in
+" pointer or visual mode, your both hands
+" are on the keyboard, but... when I'm just
+" reading, I like to be able to navigate
+" just with the left hand.
+"
+punmap a<Any>
+vunmap a<Any>
+punmap z<Any>
+vunmap z<Any>
+
+punmap D
+punmap da
+punmap dd
+punmap df
+punmap dl
+punmap dv
+
+punmap b
+vunmap b
+punmap B
+vunmap B
+
+punmap zH
+punmap zL
+punmap zh
+punmap zl
+
+punmap xa
+punmap xf
+punmap xi
+punmap xl
+punmap xv
+punmap xx
+
+punmap SS
+punmap SA
+punmap SF
+punmap SI
+punmap SL
+punmap SV
+punmap Ss
+punmap Sa
+punmap Sf
+punmap Si
+punmap Sl
+punmap Sv
+
+punmap VA
+punmap VF
+punmap VI
+punmap VL
+punmap VS
+punmap VV
+punmap Vs
+punmap Va
+punmap Vf
+punmap Vi
+punmap Vl
+punmap Vv
+
+" -- left hand --
+pmap a <p.moveFastLeft>
+pmap s <p.moveFastUp>
+pmap z <p.moveFastDown>
+pmap x <p.moveFastRight>
+vmap a <p.moveFastLeft>
+vmap s <p.moveFastUp>
+vmap z <p.moveFastDown>
+vmap x <p.moveFastRight>
+
+pmap A <p.moveLeft>
+pmap S <p.moveUp>
+pmap Z <p.moveDown>
+pmap X <p.moveRight>
+vmap A <p.moveLeft>
+vmap S <p.moveUp>
+vmap Z <p.moveDown>
+vmap X <p.moveRight>
+
+pmap <A-S-a> <p.moveSlowLeft>
+pmap <A-S-s> <p.moveSlowUp>
+pmap <A-S-z> <p.moveSlowDown>
+pmap <A-S-x> <p.moveSlowRight>
+vmap <A-S-a> <p.moveSlowLeft>
+vmap <A-S-s> <p.moveSlowUp>
+vmap <A-S-z> <p.moveSlowDown>
+vmap <A-S-x> <p.moveSlowRight>
+
+pmap <A-a> <p.moveLeftMax>
+pmap <A-s> <p.startOfView>
+pmap <A-z> <p.endOfView>
+pmap <A-x> <p.moveRightMax>
+vmap <A-a> <p.moveLeftMax>
+vmap <A-s> <p.startOfView>
+vmap <A-z> <p.endOfView>
+vmap <A-x> <p.moveRightMax>
+
+pmap <C-a> <p.scrollLeft>
+pmap <C-s> <p.scrollUp>
+pmap <C-z> <p.scrollDown>
+pmap <C-x> <p.scrollRight>
+vmap <C-a> <p.scrollLeft>
+vmap <C-s> <p.scrollUp>
+vmap <C-z> <p.scrollDown>
+vmap <C-x> <p.scrollRight>
+
+" -- right hand --
+pmap h <p.moveFastLeft>
+pmap k <p.moveFastUp>
+pmap j <p.moveFastDown>
+pmap l <p.moveFastRight>
+vmap h <p.moveFastLeft>
+vmap k <p.moveFastUp>
+vmap j <p.moveFastDown>
+vmap l <p.moveFastRight>
+
+pmap H <p.moveLeft>
+pmap K <p.moveUp>
+pmap J <p.moveDown>
+pmap L <p.moveRight>
+vmap H <p.moveLeft>
+vmap K <p.moveUp>
+vmap J <p.moveDown>
+vmap L <p.moveRight>
+
+pmap <A-S-h> <p.moveSlowLeft>
+pmap <A-S-k> <p.moveSlowUp>
+pmap <A-S-j> <p.moveSlowDown>
+pmap <A-S-l> <p.moveSlowRight>
+vmap <A-S-h> <p.moveSlowLeft>
+vmap <A-S-k> <p.moveSlowUp>
+vmap <A-S-j> <p.moveSlowDown>
+vmap <A-S-l> <p.moveSlowRight>
+
+pmap <A-h> <p.moveLeftMax>
+pmap <A-k> <p.startOfView>
+pmap <A-j> <p.endOfView>
+pmap <A-l> <p.moveRightMax>
+vmap <A-h> <p.moveLeftMax>
+vmap <A-k> <p.startOfView>
+vmap <A-j> <p.endOfView>
+vmap <A-l> <p.moveRightMax>
+
+pmap <C-h> <p.scrollLeft>
+pmap <C-k> <p.scrollUp>
+pmap <C-j> <p.scrollDown>
+pmap <C-l> <p.scrollRight>
+vmap <C-h> <p.scrollLeft>
+vmap <C-k> <p.scrollUp>
+vmap <C-j> <p.scrollDown>
+vmap <C-l> <p.scrollRight>
+" -- . --
+
+pmap c <p.centerOfView>
+vmap c <p.centerOfView>
+
+pmap dd <p.moveToMouse>
+vmap dd <p.moveToMouse>
+pmap di <p.inspectElement>
+vmap di <p.inspectElement>
+
+pmap <CR> <p.leftClick>
+vmap <CR> <p.leftClick>
+pmap <Space> <p.leftClick>
+vmap <Space> <p.leftClick>
+
+pmap <S-CR> <p.rightClick>
+vmap <S-CR> <p.rightClick>
+pmap <S-Space> <p.rightClick>
+vmap <S-Space> <p.rightClick>
+
+pmap q <p.moveFastLeft>
+vmap q <p.moveFastLeft>
+pmap Q <p.moveFastLeft>
+vmap Q <p.moveFastLeft>
+
+" ## Open in the current tab
+pmap oo <p.openVideo><p.openImage><p.openAudio><p.openLink><p.openFrame>
+pmap oa <p.openAudio>
+pmap of <p.openFrame>
+pmap oi <p.openImage>
+pmap ol <p.openLink>
+pmap ov <p.openVideo>
+
+" ## Open in new tab
+pmap OO <p.newtabVideo><p.newtabImage><p.newtabAudio><p.newtabLink><p.newtabFrame>
+pmap Oa <p.newtabAudio>
+pmap Of <p.newtabFrame>
+pmap Oi <p.newtabImage>
+pmap Ol <p.newtabLink>
+pmap Ov <p.newtabVideo>
+
+" Open in a new split
+pmap <C-w>ss <p.splitVideo><p.splitImage><p.splitAudio><p.splitLink><p.splitFrame>
+pmap <C-w>sa <p.splitAudio>
+pmap <C-w>sf <p.splitFrame>
+pmap <C-w>si <p.splitImage>
+pmap <C-w>sl <p.splitLink>
+pmap <C-w>sv <p.splitVideo>
+
+" Open in a new vertical split
+pmap <C-w>vk <p.vsplitVideo><p.vsplitImage><p.vsplitAudio><p.vsplitLink><p.vsplitFrame>
+pmap <C-w>va <p.vsplitAudio>
+pmap <C-w>vf <p.vsplitFrame>
+pmap <C-w>vi <p.vsplitImage>
+pmap <C-w>vl <p.vsplitLink>
+pmap <C-w>vv <p.vsplitVideo>
+
+" ## Downloads
+pmap DD <p.downloadVideo><p.downloadImage><p.downloadAudio><p.downloadLink><p.downloadFrame>
+pmap Da <p.downloadAudio>
+pmap Df <p.downloadFrame>
+pmap Di <p.downloadImage>
+pmap Dl <p.downloadLink>
+pmap Dv <p.downloadVideo>
+
+" ## Open with external apps
+pmap ee <p.externalVideo><p.externalImage><p.externalAudio><p.externalLink><p.externalFrame>
+pmap ea <p.externalAudio>
+pmap ef <p.externalFrame>
+pmap ei <p.externalImage>
+pmap el <p.externalLink>
+pmap ev <p.externalVideo>
+
+" ## Media control
+" help page: vieb://help#media-related
+punmap mc
+punmap md
+punmap mf
+punmap ml
+punmap mm
+punmap mp
+punmap ms
+punmap mu
+
+pmap m<C-c> <p.toggleMediaControls>
+pmap m<Space> <p.toggleMediaPlay>
+pmap mj <p.mediaDown>
+pmap mk <p.mediaUp>
+pmap ml <p.toggleMediaLoop>
+pmap mm <p.toggleMediaMute>
+pmap mw <p.mediaSlower>
+pmap me <p.mediaFaster>
+
+" Viebrc generated by Vieb
+" vim: ft=vim

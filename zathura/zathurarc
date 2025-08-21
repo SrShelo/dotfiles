@@ -89,8 +89,8 @@ map <S-Right> navigate next
 
 map c zoom in
 map C zoom out
-map <C-s> zoom in
-map <C-z> zoom out
+map <C-S> zoom in
+map <C-Z> zoom out
 
 map r rotate rotate-cw
 map R rotate rotate-ccw
@@ -116,9 +116,9 @@ map fullscreen q abort
 map index q abort
 
 unmap v
-unmap h
+# unmap h
 map v toggle_statusbar
-map h toggle_statusbar
+map <C-h> toggle_statusbar
 
 # For macro scripts
 ## TOGGLE COLORS:

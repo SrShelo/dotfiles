@@ -1,3 +1,4 @@
+# first of all, run: ya pkg install
 
 [plugin]
 prepend_preloaders = [
@@ -40,6 +41,7 @@ prepend_fetchers = [
 ]
 
 [mgr]
+title_format="yazi - {cwd}"
 ratio = [1, 4, 4]
 sort_by = "natural"
 sort_dir_first = true

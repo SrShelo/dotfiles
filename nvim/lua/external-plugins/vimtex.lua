@@ -1,3 +1,4 @@
+local comb = '<Leader>l'
 return {
   'lervag/vimtex',
   lazy = false, -- we don't want to lazy load VimTeX
@@ -12,4 +13,54 @@ return {
     -- vim.g.maplocalleader = '\\'
     vim.g.maplocalleader = ','
   end,
+  keys = {
+    {
+      comb .. 'c',
+      ':VimtexCompile<Cr>',
+      mode = 'n',
+      desc = 'Compile current LaTex file and keep watching.',
+    },
+    {
+      comb .. 'v',
+      ':VimtexView<Cr>',
+      mode = 'n',
+      desc = 'View the hovered block.',
+    },
+    {
+      comb .. 'S',
+      ':VimtexStop<Cr>',
+      mode = 'n',
+      desc = 'Stop compiler watch changes.',
+    },
+    {
+      comb .. 'C',
+      ':VimtexClean<Cr>',
+      mode = 'n',
+      desc = 'Clean compiler.',
+    },
+    {
+      comb .. 't',
+      ':VimtexTocToggle<Cr>',
+      mode = 'n',
+      desc = 'Toggle TOC.',
+    },
+    {
+      comb .. 'e',
+      ':VimtexErrors<Cr>',
+      mode = 'n',
+      desc = 'Check any errors.',
+    },
+    {
+      comb .. 'i',
+      '<C-w>s:VimtexInfo<Cr>',
+      mode = 'n',
+      desc = 'Show info.',
+    },
+    {
+      comb .. 's',
+      ':VimtexStatus<Cr>',
+      mode = 'n',
+      desc = 'Show compiler status.',
+    },
+  },
 }

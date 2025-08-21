@@ -1,12 +1,12 @@
 keybind = clear
 
-keybind = ctrl+delete=quit
+keybind = ctrl+alt+delete=quit
 keybind = ctrl+shift+delete=crash:main
 
 # keybind = ctrl+l=clear_screen
 # keybind = ctrl+shift+l=reset
 
-keybind = ctrl+comma=open_config
+keybind = ctrl+alt+comma=open_config
 keybind = ctrl+f5=reload_config
 
 # Navigation
@@ -21,5 +21,5 @@ keybind = performable:ctrl+shift+v=paste_from_clipboard
 # keybind = performable:ctrl+alt+v=paste_from_clipboard
 
 # Appearance
-keybind = ctrl+shift+equal=increase_font_size:1
-keybind = ctrl+shift+minus=decrease_font_size:1
+keybind = ctrl+alt+minus=decrease_font_size:1
+keybind = ctrl+alt+plus=increase_font_size:1

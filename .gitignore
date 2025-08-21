@@ -15,7 +15,7 @@
 !common_scripts/
 
 # Some nice programs
-!lemurs.toml
+# !lemurs.toml # due to a login problem, I desided to move on ly display manager
 !ghostty/
 !kitty/
 !alacritty/
@@ -25,6 +25,7 @@
 !wofi/
 !picom/
 !qutebrowser/
+!Vieb/
 !zathura/
 !mpv/
 
@@ -40,6 +41,7 @@
 !nvim/
 
 # Misc
+!misc/
 !xkb/
 !glow/
 !waybar/

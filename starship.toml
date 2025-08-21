@@ -1,9 +1,10 @@
-# These could look good:                 
+# These could be usefull:                 
+# prompt ideas: 󰝗 󰙚 
 # ~# DISPLAY #~
 format = """
 [ ](white)\
 $username\
-[ 󰙚 ](bright-white)\
+[  ](bright-white)\
 $directory\
 [ ](white)\
 $git_branch\
@@ -22,8 +23,9 @@ $rust\
 $docker_context\
 [](white)
 [ ]()\
-[ 󰝗 ](bright-white)
+$character\
 """
+# [ ](bright-white)
 
 # Time
 right_format = """\
@@ -67,6 +69,18 @@ format = "[$path]($style)"
 "plugin" = "󰚥"
 "test" = "󱓥"
 obsidian = "󰣏"
+
+[character]
+format="$symbol"
+success_symbol='[ ](bold blue)[ ](bright-white)'
+error_symbol='[ ](bold blue)[ ](bright-white)'
+vimcmd_symbol='[ ](bold white)[ ](bright-white)'
+vimcmd_visual_symbol='[󰈈 ](bold green)[ ](bright-white)'
+vimcmd_replace_one_symbol='[󰹿  ](bold red)'
+vimcmd_replace_symbol='[󰹾  ](bold red)'
+# vimcmd_replace_one_symbol='[](bold red)[ ](bold red)[ ](bold red)'
+# vimcmd_replace_symbol='[](bold red)[ ](bg:red fg:bold black)[ ](bold red)'
+disabled=false
 
 [git_branch]
 symbol = " "

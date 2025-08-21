@@ -12,7 +12,7 @@ c.url.searchengines = {
     # | Second default. This is necessary when you search
     # something which casually begins whit a reserved word.
     'img':              'https://duckduckgo.com/?t=h_&q={}&iax=images&ia=images',
-    'gimg':              'https://google.com/search?q={}&tbm=isch',
+    'gimg':             'https://google.com/search?q={}&tbm=isch',
     'gif':              'https://google.com/search?q={}&tbm=isch&tbs=itp:animated',
     'rimg':             'https://google.com/search?q={}+site:reddit.com&tbm=isch',
     'rgif':             'https://google.com/search?q={}+site:reddit.com&tbm=isch&tbs=itp:animated',
@@ -42,8 +42,10 @@ c.url.searchengines = {
     'steam':            'https://store.steampowered.com/search/?term={}',
     'dailymotion':      'https://www.dailymotion.com/search/{}/videos',
     # TRADUCTOR
-    'en':               'https://translate.google.com/?hl=es&sl=en&tl=es&text={}&op=translate',
-    'es':               'https://translate.google.com/?hl=es&sl=es&tl=en&text={}&op=translate',
+    'gen':              'https://translate.google.com/?hl=es&sl=en&tl=es&text={}&op=translate',
+    'en':               'https://www.deepl.com/en/translator#en/es-419/{}',
+    'ges':              'https://translate.google.com/?hl=es&sl=es&tl=en&text={}&op=translate',
+    'es':               'https://www.deepl.com/en/translator#es/en-us/{}',
     'eo':               'https://translate.google.cl/?hl=es&sl=eo&tl=es&text={}&op=translate',
     'eo!':              'https://translate.google.cl/?hl=es&sl=es&tl=eo&text={}&op=translate',
     'la':               'https://translate.google.cl/?hl=es&sl=la&tl=es&text={}&op=translate',

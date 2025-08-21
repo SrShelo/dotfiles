@@ -1,6 +1,7 @@
-#!/usr/bin/env bash
+# !/usr/bin/env bash
 wallpaper_engine="swww"
 # options: hyprpaper, wpaperd, swww, mpvpaper
+# maybe we could find nice textures to use as wallpapers in https://texturelabs.org/
 
 function kill-all-engines() {
     pkill hyprpaper

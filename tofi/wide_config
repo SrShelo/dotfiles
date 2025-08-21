@@ -1,11 +1,13 @@
 # tofi: https://github.com/philj56/tofi
 # to see available options run: man 5 tofi
-prompt-text = ":"
+prompt-text = ": "
+placeholder-text = ""
+placeholder-color = "AAA3"
 width = 100%
 height = 100%
 border-width = 0
 outline-width = 0
-padding-left = 35%
+padding-left = 5%
 padding-top = 10%
 result-spacing = 25
 num-results = 10

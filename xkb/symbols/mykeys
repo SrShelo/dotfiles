@@ -43,8 +43,18 @@ xkb_symbols "mykeys" {
 
 	name[Group1]="personal QWERTY";
 
-	key <ESC> { type[Group1] = "TWO_LEVEL", [ Multi_key, Multi_key ] };
-    key <CAPS> { type[Group1] = "ONE_LEVEL", [ Escape ] };
+	replace key <ESC> {
+        type[Group1] = "TWO_LEVEL",
+        symbols[Group1] = [ Multi_key, Caps_Lock ],
+        actions[Group1] = [ NoAction(), LockMods(modifiers = Lock) ]
+    };
+    replace key <CAPS> { type[Group1] = "ONE_LEVEL", [ Escape ] };
+
+    // uncomment to swap win <-> alt
+    // replace key <LWIN> {[ Alt_L, Meta_L ]};
+    // replace key <LALT> {[ Super_L ]};
+    // replace modifier_map Mod4 { <LALT>};
+    // replace modifier_map Mod1 { <LWIN>};
 
 	key <TLDE> {[ backslash			, notsign				, ordfeminine]};
 	key <AE01> {[ 1					, exclam				, exclamdown			, onesuperior		]};

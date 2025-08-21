@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# !/usr/bin/env bash
 
 # TODO: Make a fallback for an unrecognized option
 
@@ -13,17 +13,20 @@ Soft Reboot
 Reboot
 Shut Down" | tofi)
 
-# Assuming wayland
-locker=hyprlock
+if [[ $MY_SCREEN_LOCKER == '' ]]; then
+    echo "WARNING: Assuming wayland server and hyprlock it's installed."
+    MY_SCREEN_LOCKER=hyprlock
+fi
+
 
 if [[ $option == "Suspend" ]]; then
-	$locker & sleep 0.5 && systemctl suspend
+	$MY_SCREEN_LOCKER & sleep 0.5 && systemctl suspend
 elif [[ $option == "Hybrid Sleep" ]]; then
-	$locker & sleep 0.5 && systemctl hybrid-sleep && hyprlock
+	$MY_SCREEN_LOCKER & sleep 0.5 && systemctl hybrid-sleep && hyprlock
 elif [[ $option == "Hibernate" ]]; then
-	$locker & sleep 0.5 && systemctl hibernate && hyprlock
+	$MY_SCREEN_LOCKER & sleep 0.5 && systemctl hibernate && hyprlock
 elif [[ $option == "Lock Screen" ]]; then
-	$locker
+	$MY_SCREEN_LOCKER
 elif [[ $option == "Close Session" ]]; then
     case $XDG_CURRENT_DESKTOP in
         niri)

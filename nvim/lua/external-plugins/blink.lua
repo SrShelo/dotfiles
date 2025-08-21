@@ -57,9 +57,10 @@ return {
       -- <c-k>: Toggle signature help
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
-      preset = 'default',
+      preset = 'none',
 
-      ['<Tab>'] = { 'select_and_accept', 'fallback' },
+      ['<S-CR>'] = { 'select_and_accept', 'fallback' },
+      ['<C-l>'] = { 'select_and_accept', 'fallback' },
       ['<C-k>'] = { 'select_prev', 'fallback' },
       ['<C-j>'] = { 'select_next', 'fallback' },
 

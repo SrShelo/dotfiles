@@ -14,18 +14,29 @@ npairs.add_rules {
     return '<BS><BS>«»'
   end):set_end_pair_length(1),
 }
+-- Add space between
 npairs.add_rules {
   Rule(' ', ' ', { '-markdown', '-text' })
-    :with_pair(cond.not_before_regex '[^{%(%[]$', 1)
-    :with_pair(cond.not_after_regex '^[^}%)%]]', 1)
-    :with_del(cond.before_regex '[%{%[%(]', 2)
-    :with_del(cond.after_regex '[%}%]%)]', 2),
+    :with_pair(cond.not_before_regex '[^{%(%[<]$', 1)
+    :with_pair(cond.not_after_regex '^[^}%)%]>]', 1)
+    :with_del(cond.before_regex '[%{%[%(<]', 2)
+    :with_del(cond.after_regex '[%}%]%)>]', 2),
 }
+-- Put the last colon outside
 npairs.add_rules {
   Rule(':', '', { 'markdown', 'text' })
     :with_pair(cond.after_regex('["\']', 1))
     :replace_endpair(function()
       return '<BS><Right>:'
+    end)
+    :set_end_pair_length(0),
+}
+-- Put the last comma outside
+npairs.add_rules {
+  Rule(',', '', { 'markdown', 'text', 'lua' })
+    :with_pair(cond.after_regex('["\']', 1))
+    :replace_endpair(function()
+      return '<BS><Right>,'
     end)
     :set_end_pair_length(0),
 }
@@ -86,7 +97,7 @@ npairs.add_rule(Rule('function%s*%([^%(%)]*%)$', 'end', 'lua'):use_regex(true):w
 npairs.add_rule(Rule('function%s*%([^%(%)]*%) ', ' ', 'lua'):use_regex(true):with_pair(cond.after_text 'end'):with_del(cond.none()))
 
 -- VIM
-npairs.add_rule(Rule('<', '>', { 'vim', 'lua', 'dosini' }))
+npairs.add_rule(Rule('<', '>', { 'vim', 'lua', 'dosini', 'toml', 'quarto' }))
 
 -- KDL
 npairs.add_rule(Rule('#"', '"#', { 'kdl' }))

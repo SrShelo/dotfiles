@@ -23,3 +23,7 @@ background-blur = false
 
 working-directory = inherit
 
+class = ghostty
+x11-instance-name = ghostty
+
+font-feature = -calt

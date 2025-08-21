@@ -6,9 +6,9 @@ config.source('settings/bindings.py')
 config.source('settings/search_engines.py')
 
 # ~# MISC #~
-# config.set('fileselect.handler', 'external')
-# config.set('fileselect.single_file.command', ['kitty', '--class', 'ranger,ranger', '-e', 'yazi', '--chooser-file', '{}'])
-# config.set('fileselect.multiple_files.command', ['kitty', '--class', 'ranger,ranger', '-e', 'yazi', '--chooser-file', '{}'])
+config.set('fileselect.handler', 'external')
+config.set('fileselect.single_file.command', ['ghostty', '--title=terminal-file-picker', '-e', 'yazi', '--chooser-file', '{}'])
+config.set('fileselect.multiple_files.command', ['ghostty', '--title=terminal-file-picker', '-e', 'yazi', '--chooser-file', '{}'])
 
 # Default selectors:
 # SELECTORS = {
@@ -28,7 +28,6 @@ config.source('settings/search_engines.py')
 config.set('hints.selectors', {
     **c.hints.selectors,
     'test':         ['[onclick], [onmousedown]'],
-    'links':        ['a, a[href], area[href], link[href], [role=link][href]'],
     'buttons':      ['button, [role=button]'],
     'media':        ['img, animation, gif, .html5-video-player'],
     'yt':           ['ytd-rich-item-renderer'], # ...'ytd-rich-grid-media', 'ytd-rich-grid-slim-media'],

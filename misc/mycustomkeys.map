@@ -1,0 +1,116 @@
+#   Custom tty layout by SrShelo based on ../xkb/symbols/mykeys.
+#
+#   WARNING: if you make this file the default keymap, make sure it's only
+# editable by root. Aditionally, git will change owner and group after a
+# `git checkout`: then revert it.
+#
+#   It's possible to set this as "default" by following the instructions
+# in ./load-custom-tty-keymap.service
+#
+#   To make a new custom tty, could be a good idea to check
+# /usr/share/kbd/keymaps/i386/qwerty/us.map.gz for us layout and
+# /usr/share/kbd/keymaps/i386/qwerty/la-latin1.map.gz for latinamerican
+# layout. Remember to uncompress them.
+#
+keymaps 0-2,4-6,8-10,12-14
+alt_is_meta
+include "qwerty-layout"
+	altgr   keycode  16 = at
+	altgr   keycode  25 = asterisk
+include "linux-with-alt-and-altgr"
+strings as usual
+
+keycode   1 = nul              Caps_Lock
+keycode   2 = one              exclam           exclamdown
+keycode   3 = two              question         questiondown
+keycode   4 = three            numbersign
+keycode   5 = four             dollar
+keycode   6 = five             percent
+keycode   7 = six              asciicircum
+keycode   8 = seven            ampersand        dead_circumflex
+keycode   9 = eight            degree
+keycode  10 = nine             parenleft
+keycode  11 = zero             parenright
+keycode  12 = minus            underscore       less
+keycode  13 = plus             equal            greater
+keycode  14 = Delete
+keycode  15 = Tab
+	shift	keycode  15 = Meta_Tab
+keycode  26 = dead_acute       dead_diaeresis   dead_grave
+keycode  27 = braceleft        braceright
+keycode  28 = Return
+	alt	keycode  28 = Meta_Control_m
+keycode  29 = Control
+keycode  39 = ntilde           Ntilde           asciitilde
+keycode  40 = apostrophe       quotedbl
+keycode  41 = backslash        notsign          degree
+keycode  42 = Shift
+keycode  43 = bracketleft      bracketright     dead_grave
+# There is nothing like Control_Shift_..., so here is a way to diferenciate
+# ctrl+z and ctrl+shift+z. Usually undo and redo bindings in some aplications.
+    shift control keycode 44 = Control_y
+keycode  51 = comma            semicolon
+keycode  52 = period           colon
+keycode  53 = slash            bar              backslash
+	shift	control	keycode  53 = Control_underscore
+keycode  54 = Shift
+# Alt key
+keycode  56 = Alt
+keycode  57 = space
+	control	keycode  57 = nul
+keycode  58 = Escape
+keycode  86 = less             greater           bar
+keycode  97 = Control
+
+# Win key
+keycode 125 = nul
+
+compose '\'' 'a' to aacute
+compose '\'' 'e' to eacute
+compose '\'' 'i' to iacute
+compose '\'' 'o' to oacute
+compose '\'' 'u' to uacute
+compose '\'' 'y' to yacute
+compose '\'' 'A' to Aacute
+compose '\'' 'E' to Eacute
+compose '\'' 'I' to Iacute
+compose '\'' 'O' to Oacute
+compose '\'' 'U' to Uacute
+compose '\'' 'Y' to Yacute
+
+compose '"' 'a' to adiaeresis
+compose '"' 'e' to ediaeresis
+compose '"' 'i' to idiaeresis
+compose '"' 'o' to odiaeresis
+compose '"' 'u' to udiaeresis
+compose '"' 'y' to ydiaeresis
+compose '"' 'A' to Adiaeresis
+compose '"' 'E' to Ediaeresis
+compose '"' 'I' to Idiaeresis
+compose '"' 'O' to Odiaeresis
+compose '"' 'U' to Udiaeresis
+compose '"' 'Y' to Ydiaeresis
+
+compose '`' 'a' to agrave
+compose '`' 'e' to egrave
+compose '`' 'i' to igrave
+compose '`' 'o' to ograve
+compose '`' 'u' to ugrave
+compose '`' 'A' to Agrave
+compose '`' 'E' to Egrave
+compose '`' 'I' to Igrave
+compose '`' 'O' to Ograve
+compose '`' 'U' to Ugrave
+compose '`' ' ' to grave
+
+compose '^' 'a' to acircumflex
+compose '^' 'e' to ecircumflex
+compose '^' 'i' to icircumflex
+compose '^' 'o' to ocircumflex
+compose '^' 'u' to ucircumflex
+compose '^' 'A' to Acircumflex
+compose '^' 'E' to Ecircumflex
+compose '^' 'I' to Icircumflex
+compose '^' 'O' to Ocircumflex
+compose '^' 'U' to Ucircumflex
+compose '^' ' ' to asciicircum

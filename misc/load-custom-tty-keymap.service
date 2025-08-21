@@ -1,0 +1,44 @@
+#   This is a service to set my tty custom keymap defined in ./mycustomkeys.map (from
+# SrShelo/dotfiles repo.). Maybe this service wouldn't be necesarry if I didn't want
+# to have a file 
+#
+#   NOTE: This service will wait to the file system to be mounted, so the keymap file
+#   could be potentially anywhere.
+#
+# To set the mentioned keymap as deault (or your own .map) follow the
+# next instructions as super user and replace SERVICE with a name of choice:
+#
+#   0. Don't disable the default service which manage the keyboard layout of your device,
+# so if this one fails, that one will be the fallback. This file assumes
+# systemd-vconsole-setup.service is that default service (like a regular Arch
+# installation), but change it (below) to your needs if necessary.
+#
+#   1. Make a copy (a link won't work) of this file to /etc/systemd/system/SERVICE.service:
+# ```
+# cp ./mycustomkeys.map /etc/systemd/system/SERVICE.service
+# ```.
+#
+#   2. For security reasons, make sure the copy has root as owner and group, and the
+# permissions are 644 (readable for everyone, but only editable by root).
+#
+#   3. Make systemd recognize this file by running `systemctl daemon-reexec`.
+#
+#   4. Enable the service by running `systemctl enable SERVICE.service`.
+#
+#   5. To see if it worked, reboot the sistem.
+#
+#   NOTE: Disabling this service, maybe would delete the file, so leave a handy copy
+#   somewhere.
+#
+[Unit]
+Description=Load custom keymap from /etc/vconsole.keymap
+DefaultDependencies=no
+After=local-fs.target systemd-vconsole-setup.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/loadkeys /etc/vconsole.keymap
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

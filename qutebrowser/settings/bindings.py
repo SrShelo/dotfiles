@@ -2,8 +2,8 @@
 
 # * Unbind
 config.unbind('d')
-config.unbind('u')
 config.unbind('f')
+config.unbind('u')
 config.unbind('F')
 config.unbind('J')
 config.unbind('K')
@@ -25,6 +25,7 @@ config.unbind('Pp')
 config.unbind('PP')
 config.unbind('v')
 config.unbind('<Alt+9>')
+config.unbind('<Ctrl+w>')
 
 config.unbind('.')
 
@@ -67,13 +68,15 @@ config.bind('k', 'scroll-px 0 -50')
 config.bind('l', 'scroll-px 50 0')
 config.bind('<Alt+k>', 'scroll top')
 config.bind('<Alt+j>', 'scroll bottom')
+config.bind('<PgUp>',   'scroll-page 0 -0.5')
+config.bind('<PgDown>', 'scroll-page 0 0.5')
 
 # Tab controls
 ## Misc
-config.bind('<Ctrl+w>', 'tab-close')
-config.bind('<Ctrl+w>', 'tab-close', mode = 'insert')
-config.bind('<Alt+w>', 'tab-close')
-config.bind('<Alt+w>', 'tab-close', mode = 'insert')
+# config.bind('<Ctrl+w>', 'tab-close')
+# config.bind('<Ctrl+w>', 'tab-close', mode = 'insert')
+config.bind('<Alt+Shift+c>', 'tab-close')
+config.bind('<Alt+Shift+c>', 'tab-close', mode = 'insert')
 config.bind('<Alt+m>', 'tab-mute')
 config.bind('<Alt+v>', 'tab-pin')
 config.bind('<Alt+Shift+r>', 'undo')
@@ -91,7 +94,7 @@ config.bind('<Alt+<Right>', 'forward') ## Alt + Right arrow
 config.bind('<Alt+<Right>', 'forward', mode = 'insert')
 config.bind('<Shift+<Left>', 'back')
 config.bind('<Shift+<Right>', 'forward')
-## Navigation
+## Tab navigation
 config.bind('<Alt+1>', 'tab-focus 1', mode = 'insert')
 config.bind('<Alt+2>', 'tab-focus 2', mode = 'insert')
 config.bind('<Alt+3>', 'tab-focus 3', mode = 'insert')
@@ -104,16 +107,22 @@ config.bind('<Alt+9>', 'tab-focus 9')
 config.bind('<Alt+9>', 'tab-focus 9', mode = 'insert')
 config.bind('<Alt+0>', 'tab-focus -1')
 config.bind('<Alt+0>', 'tab-focus -1', mode = 'insert')
+
 config.bind('<Alt+a>', 'tab-prev')
 config.bind('<Alt+a>', 'tab-prev', mode = 'insert')
 config.bind('<Alt+x>', 'tab-next')
 config.bind('<Alt+x>', 'tab-next', mode = 'insert')
+
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
+
 config.bind('<Alt+<Tab>', 'tab-focus last')
 config.bind('<Alt+<Tab>', 'tab-focus last', mode = 'insert')
+
 config.bind('<Ctrl+Shift+s>', 'zoom-in')
 config.bind('<Ctrl+Shift+z>', 'zoom-out')
+config.bind('<Ctrl+Alt++>', 'zoom-in')
+config.bind('<Ctrl+Alt+->', 'zoom-out')
 ## Swap tabs
 config.bind('<Alt+Shift+a>', 'tab-move -')
 config.bind('<Alt+Shift+a>', 'tab-move -', mode = 'insert')
@@ -123,8 +132,6 @@ config.bind('<Alt+Shift+x>', 'tab-move +', mode = 'insert')
 # Basics
 config.bind('d', 'hint buttons')
 config.bind('D', 'hint links tab-bg')
-config.bind('fp', 'open -- {clipboard}')
-config.bind('fP', 'open -t -- {clipboard}')
 ## Extended Hints
 config.bind('<Alt+d>i', 'hint inputs')
 config.bind('<Alt+d>a', 'hint all')
@@ -159,7 +166,9 @@ config.bind('<Ctrl+c>', 'yank selection')
 # config.bind('n', 'search-next ;; clear-messages ;; message-info "number n "')
 # config.bind('N', 'search-prev ;; clear-messages ;; message-info "number N"')
 
-## F functions
+## f functions
+config.bind('fp', 'open -- {clipboard}')
+config.bind('fP', 'open -t -- {clipboard}')
 config.bind('fw', 'tab-give')
 config.bind('fW', 'undo -w')
 config.bind('fr', 'reload')
@@ -211,11 +220,16 @@ config.bind('q', 'forward-5s')
 config.bind('<Alt+q>', 'forward-1s')
 config.bind('r', 'fake-key f')
 config.bind('<Alt+r>', 'fake-key i')
+config.bind('<Alt+Shift+w>', 'last-playback-rate')
 config.bind('w', 'last-playback-rate')
-config.bind('E', 'increase-ff-by-5')
-config.bind('<Alt+Shift+e>', 'increase-ff-by-1')
 config.bind('W', 'decree-ff-by-5')
 config.bind('<Alt+Shift+w>', 'decree-ff-by-1')
+config.bind('E', 'increase-ff-by-5')
+config.bind('<Alt+Shift+e>', 'increase-ff-by-1')
+# config.bind('w', 'decree-ff-by-5')
+# config.bind('W', 'decree-ff-by-1')
+# config.bind('e', 'increase-ff-by-5')
+# config.bind('E', 'increase-ff-by-1')
 # 'V' bindings
 config.bind('vr', 'reset-fast-forward')
 config.bind('vq', 'decree-ff-by-5')

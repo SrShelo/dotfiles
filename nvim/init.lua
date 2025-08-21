@@ -5,6 +5,9 @@ vim.g.maplocalleader = ' '
 -- [[ OPTIONS ]]
 -- See all options with :help option-list
 
+-- Let neovim set the terminal title
+vim.o.title = true
+
 -- tabs and space behavior
 vim.o.smarttab = true
 vim.o.tabstop = 4
@@ -64,25 +67,26 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
 -- Minimum number of lines to keep above and below the cursor.
-vim.o.scrolloff = 5
+vim.o.scrolloff = 3
 
 -- Should a dialog be raised to ask if the file should be saved when :q fails?
 vim.o.confirm = false
 
 -- [[ BASIC KEYMAPS ]]
 --  See `:help vim.keymap.set()`
+--  Consider that tty doesn't detect <C-S-...> combinations, just <C-...>
 
 -- Remmaping some
 -- NOTE: Actions wich are keybind are interpreted as default keybinds. E.g. if I bind 'u'to 'a', then '<C-z>' to 'u' (or vice versa), the action of '<C-z>' will be the same as ':undo' and not 'a'.
 --
 -- Scheme
---                     # Direction(n)
---   # Insert modes    aA       sS
---   yY uU iI oO pP    zZ       xX
---         |                |
---         V                V
---   cC aA iI oO rR    h^  k<PgUp>
---                     j<PgDn>  l$
+--
+--  # Insert modes
+--   yY uU iI oO
+--        |
+--        V
+--   cC rR iI oO
+--
 -- - <C-c> & <C-v> -> copy & paste (n, v, i)
 -- - changed v to r for visual modes
 --
@@ -94,8 +98,8 @@ vim.o.confirm = false
 -- Insert modes
 vim.keymap.set({ 'n', 'v' }, 'u', 'r')
 vim.keymap.set({ 'n', 'v' }, 'U', 'R')
-vim.keymap.set('n', 'r', 'a')
-vim.keymap.set('n', 'R', 'A')
+vim.keymap.set({ 'n', 'v' }, 'r', '<Nop>')
+vim.keymap.set({ 'n', 'v' }, 'R', '<Nop>')
 
 -- Custom DIRECTION and MOTION keys (just for normal mode)
 -- This comes from my filosofy of configs I use with WMs: ergonomics, and giving
@@ -104,19 +108,19 @@ vim.keymap.set('n', 'R', 'A')
 -- Also this config will be very frendly with who lost right hand, and a little less
 -- with who lost left hand.
 -- now it's more confortable to me, navigate trhouth all my system
-vim.keymap.set('n', 'a', 'h')
-vim.keymap.set('n', 'A', '0')
-vim.keymap.set('n', 's', 'k', { silent = true })
-vim.keymap.set('n', 'S', '<PageUp>')
-vim.keymap.set('n', 'z', 'j')
-vim.keymap.set('n', 'Z', '<PageDown>')
-vim.keymap.set('n', 'x', 'l')
-vim.keymap.set('n', 'X', '$')
+-- vim.keymap.set('n', 'a', 'h')
+-- vim.keymap.set('n', 'A', '0')
+-- vim.keymap.set('n', 's', 'k', { silent = true })
+-- vim.keymap.set('n', 'S', '<PageUp>')
+-- vim.keymap.set('n', 'z', 'j')
+-- vim.keymap.set('n', 'Z', '<PageDown>')
+-- vim.keymap.set('n', 'x', 'l')
+-- vim.keymap.set('n', 'X', '$')
 -- Swap q <-> b
-vim.keymap.set('n', 'q', 'b')
-vim.keymap.set('n', 'Q', 'B')
-vim.keymap.set('n', 'b', 'q')
-vim.keymap.set('n', 'B', 'Q')
+vim.keymap.set({ 'n', 'v' }, 'q', 'b')
+vim.keymap.set({ 'n', 'v' }, 'Q', 'B')
+vim.keymap.set({ 'n', 'v' }, 'b', 'q')
+vim.keymap.set({ 'n', 'v' }, 'B', 'Q')
 
 -- Clipboard
 vim.keymap.set({ 'n', 'v' }, '<C-c>', 'y')
@@ -133,31 +137,47 @@ vim.keymap.set('i', '<C-c><C-c>', 'yy')
 -- History
 vim.keymap.set('n', '<C-z>', 'u', { desc = 'Undo' })
 vim.keymap.set('n', '<C-S-z>', '<C-r>', { desc = 'Redo' })
+vim.keymap.set('n', '<C-y>', '<C-r>', { desc = 'Redo' })
 vim.keymap.set('i', '<C-z>', '<Esc>ui', { desc = 'Undo' })
 vim.keymap.set('i', '<C-S-z>', '<Esc><C-r>a', { desc = 'Redo' })
+vim.keymap.set('i', '<C-y>', '<Esc><C-r>a', { desc = 'Redo' })
+vim.keymap.set('v', '<C-z>', '<Nop>')
 
 -- Visual mode
 vim.keymap.set({ 'n', 'v' }, '<C-A-v>', '<C-v>')
 
 -- misc
-vim.keymap.set('n', '<C-s>', 'z')
-vim.keymap.set('n', '<C-S-s>', 'Z')
+vim.keymap.set('n', '<C-s>', ':w<Cr>')
+vim.keymap.set('v', '<C-s>', ':w')
+vim.keymap.set('i', '<C-s>', '<Esc>:w<Cr>a')
+-- vim.keymap.set('n', '<C-s>', 'z')
+-- vim.keymap.set('n', '<C-S-s>', 'Z')
 vim.keymap.set('n', '<C-r>', '')
 vim.keymap.set('n', '<C-f>', '')
 vim.keymap.set('n', '<C-b>', '')
 
+-- Scroll with ctrl + J and K
+vim.keymap.set({ 'n', 'v' }, '<A-j>', '<C-e>')
+vim.keymap.set({ 'n', 'v' }, '<A-k>', '<C-y>')
+
 -- Disabling arrow keys in normal and visual modes to learn vim really well...
-vim.keymap.set({ 'n', 'v' }, '<Left>', '')
-vim.keymap.set({ 'n', 'v' }, '<Up>', '')
-vim.keymap.set({ 'n', 'v' }, '<Down>', '')
-vim.keymap.set({ 'n', 'v' }, '<Right>', '')
+-- vim.keymap.set({ 'n', 'v' }, '<Left>', '')
+-- vim.keymap.set({ 'n', 'v' }, '<Up>', '')
+-- vim.keymap.set({ 'n', 'v' }, '<Down>', '')
+-- vim.keymap.set({ 'n', 'v' }, '<Right>', '')
+
+-- Add description to these commands
+vim.keymap.set('n', 'ZZ', ':x<Cr>', { desc = 'Save and quit' })
+vim.keymap.set('n', 'ZQ', ':q!<Cr>', { desc = 'Quit whitout saving' })
+-- Add quick exiting but it is canceled if changes are not saved
+vim.keymap.set('n', 'Zq', ':q<Cr>', { desc = 'Quit only if changes are saved' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -165,21 +185,28 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use ALT+<aszx> to switch between windows (based on my qutebrowser config)
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<A-a>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<A-x>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<A-z>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<A-s>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- vim.keymap.set('n', '<A-a>', '<C-w>h', { desc = 'Move focus to the left window' })
+-- vim.keymap.set('n', '<A-x>', '<C-w>l', { desc = 'Move focus to the right window' })
+-- vim.keymap.set('n', '<A-z>', '<C-w>j', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<A-s>', '<C-w>k', { desc = 'Move focus to the upper window' })
 
--- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
-vim.keymap.set('n', '<A-S-a>', '<C-w>H', { desc = 'Move window to the left' })
-vim.keymap.set('n', '<A-S-x>', '<C-w>L', { desc = 'Move window to the right' })
-vim.keymap.set('n', '<A-S-z>', '<C-w>J', { desc = 'Move window to the lower' })
-vim.keymap.set('n', '<A-S-s>', '<C-w>K', { desc = 'Move window to the upper' })
+-- vim.keymap.set('n', '<A-S-a>', '<C-w>H', { desc = 'Move window to the left' })
+-- vim.keymap.set('n', '<A-S-x>', '<C-w>L', { desc = 'Move window to the right' })
+-- vim.keymap.set('n', '<A-S-z>', '<C-w>J', { desc = 'Move window to the lower' })
+-- vim.keymap.set('n', '<A-S-s>', '<C-w>K', { desc = 'Move window to the upper' })
 
 vim.keymap.set('n', '<A-C-a>', '<C-w><', { desc = 'Decrease window width' })
 vim.keymap.set('n', '<A-C-x>', '<C-w>>', { desc = 'Increase window width' })
 vim.keymap.set('n', '<A-C-z>', '<C-w>-', { desc = 'Decrease window height' })
 vim.keymap.set('n', '<A-C-s>', '<C-w>+', { desc = 'Increase window height' })
+
+vim.keymap.set('n', '<A-S-c>', '<C-w>c', { desc = 'Close window' })
+vim.keymap.set('n', '<C-w>t', '<C-w>s<C-w>T', { desc = 'Open new tab' })
+vim.keymap.set('n', '<C-w><CR>', '<C-w>s<C-w>T<cmd>terminal<CR>', { desc = 'Open new tab with terminal' })
+vim.keymap.set({ 'n', 'i' }, '<A-a>', '<Esc>gT', { desc = 'Go to previous tab page' })
+vim.keymap.set({ 'n', 'i' }, '<A-x>', '<Esc>gt', { desc = 'Go to next tab page' })
+vim.keymap.set({ 'n', 'i' }, '<A-S-a>', '<Esc>:tabm -1<Cr>', { desc = 'Swap with left tab' })
+vim.keymap.set({ 'n', 'i' }, '<A-S-x>', '<Esc>:tabm +1<Cr>', { desc = 'Swap with right tab' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -189,7 +216,7 @@ vim.keymap.set('n', '<A-C-s>', '<C-w>+', { desc = 'Increase window height' })
 --  See `:help vim.hl.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
   end,
@@ -224,6 +251,11 @@ require('lazy').setup({
   require 'external-plugins.vimtex', -- LaTeX support
   require 'external-plugins.quarto-nvim', -- Quarto plugin
   require 'external-plugins.yazi', -- Use yazi inside neovim
+  -- require 'external-plugins.multiple-cursors',
+  require 'external-plugins.multicursors',
+  -- require 'external-plugins.markview',
+  require 'external-plugins.render-markdown',
+  require 'external-plugins.nvim-toggler',
 
   -- LSP Plugins
   require 'external-plugins.lazydev',

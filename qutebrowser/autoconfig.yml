@@ -111,7 +111,7 @@ settings:
   qt.workarounds.disable_accelerated_2d_canvas:
     global: never
   scrolling.smooth:
-    global: true
+    global: false
   statusbar.padding:
     global:
       bottom: 1

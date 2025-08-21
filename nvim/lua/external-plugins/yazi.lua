@@ -14,6 +14,12 @@ return {
       desc = 'Open yazi at the current file',
     },
     {
+      '<leader>Y',
+      mode = { 'n', 'v' },
+      '<C-w>s<C-w>T<cmd>Yazi<cr>',
+      desc = 'Open yazi in a new tab',
+    },
+    {
       -- Open in the current working directory
       '<leader>cw',
       '<cmd>Yazi cwd<cr>',
