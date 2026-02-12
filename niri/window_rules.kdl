@@ -1,0 +1,160 @@
+// [[ WINDOW RULES ]]
+// Window rules let you adjust behavior for individual windows.
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+// You can get info of a specific window by running `niri msg pick-window` and clicking on it. Alternatively, you can run `niri msg windows` to list all open windows.
+
+// Make tiled windows rectangular while using CSD.
+window-rule {
+    match is-floating=false
+
+    tiled-state true
+}
+window-rule {
+    match is-active=false
+    tab-indicator {
+        active-color "#ffff"
+        inactive-color "#000f"
+    }
+}
+window-rule {
+    match is-floating=true
+
+    border {
+        on
+    }
+}
+
+window-rule {
+    // Well, it's much better wofi for wayland, so I'm using that
+    match app-id=r#"^Rofi$"#
+    open-floating true
+    open-focused true
+}
+
+window-rule {
+    match title=r#"^quick notes$"#
+    open-floating true
+    default-window-height { proportion 0.8; }
+    default-column-width { proportion 0.5; }
+}
+
+// DAILY APPS
+window-rule {
+    match app-id=r#"^org\.qutebrowser\.qutebrowser$"#
+    open-on-workspace "browser"
+    open-focused false
+    open-maximized true
+    scroll-factor 0.75
+}
+window-rule {
+    match app-id=r#"^Vieb$"#
+    open-on-workspace "browser"
+    open-focused false
+    open-maximized true
+    scroll-factor 0.5
+}
+window-rule {
+    match app-id=r#"^firefox$"#
+    open-on-workspace "browser"
+    open-focused false
+    open-maximized true
+    scroll-factor 1.5
+}
+window-rule {
+    match title=r#"^terminal-file-picker$"#
+
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^Spotify$"#
+    open-on-workspace "daily-apps"
+    open-focused false
+    open-maximized true
+    scroll-factor 0.5
+}
+window-rule {
+    match app-id=r#"^com.mastermindzh.tidal-hifi$"#
+    open-on-workspace "daily-apps"
+    open-focused false
+    open-maximized true
+    scroll-factor 0.5
+}
+window-rule {
+    match app-id=r#"^discord$"#
+    open-on-workspace "daily-apps"
+    open-focused false
+    open-maximized true
+}
+window-rule {
+    match app-id=r#"^com.mitchellh.ghostty$"#
+    scroll-factor 5.0
+}
+window-rule {
+    match app-id=r#"^steam$"#
+    scroll-factor 0.5
+}
+
+
+// UTILITIES
+window-rule {
+    match app-id=r#"^org.twosheds.iwgtk$"#
+
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^it.mijorus.smile$"#
+    open-floating true
+    baba-is-float true
+    // shadow {
+    //     on
+    //     // off
+    //     softness 40
+    //     spread 5
+    //     offset x=5 y=5
+    //     draw-behind-window true
+    //     color "#00000064"
+    //     // inactive-color "#00000064"
+    // }
+    geometry-corner-radius 12
+    clip-to-geometry true
+
+}
+window-rule {
+    match app-id=r#"^nz.co.mega.megasync$"#
+    open-floating true
+}
+window-rule {
+// MPV
+    // See: https://mpv.io/manual/stable/#window
+    match app-id=r#"^mpv$"#
+    // open-maximized false
+    open-floating true
+    default-window-height { proportion 0.75; }
+    // default-column-width { proportion 0.75; }
+    variable-refresh-rate true
+    tiled-state false
+    default-floating-position x=0 y=0 relative-to="top-right"
+}
+window-rule {
+// Open the Firefox picture-in-picture player as floating by default.
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Example: block out two password managers from screen capture.
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Example: enable rounded corners for all windows.
+/-window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+

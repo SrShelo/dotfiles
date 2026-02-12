@@ -10,8 +10,12 @@ keybind = ctrl+alt+comma=open_config
 keybind = ctrl+f5=reload_config
 
 # Navigation
-keybind = ctrl+page_up=scroll_page_fractional:-0.5
-keybind = ctrl+page_down=scroll_page_fractional:0.5
+keybind = ctrl+alt+page_up=scroll_page_fractional:-0.5
+keybind = ctrl+alt+page_down=scroll_page_fractional:0.5
+keybind = ctrl+alt+s=scroll_page_fractional:-0.1
+keybind = ctrl+alt+z=scroll_page_fractional:0.1
+keybind = ctrl+alt+j=scroll_page_fractional:0.1
+keybind = ctrl+alt+k=scroll_page_fractional:-0.1
 
 # Clipboard
 # keybind = performable:ctrl+c=copy_to_clipboard

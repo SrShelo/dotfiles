@@ -7,8 +7,8 @@ config.source('settings/search_engines.py')
 
 # ~# MISC #~
 config.set('fileselect.handler', 'external')
-config.set('fileselect.single_file.command', ['ghostty', '--title=terminal-file-picker', '-e', 'yazi', '--chooser-file', '{}'])
-config.set('fileselect.multiple_files.command', ['ghostty', '--title=terminal-file-picker', '-e', 'yazi', '--chooser-file', '{}'])
+config.set('fileselect.single_file.command', ['kitty', '--title=terminal-file-picker', '-e', 'yazi', '--chooser-file', '{}'])
+config.set('fileselect.multiple_files.command', ['kitty', '--title=terminal-file-picker', '-e', 'yazi', '--chooser-file', '{}'])
 
 # Default selectors:
 # SELECTORS = {

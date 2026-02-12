@@ -13,6 +13,21 @@ include "%L"
 
 <Multi_key> <question> <exclam> : "‽"
 <Multi_key> <exclam> <question> : "‽"
+<Multi_key> <bar> <greater> : "‣"
+<Multi_key> <asterisk> <asterisk> : "⁂"
+<Multi_key> <E> <bracketleft> : "⁅"
+<Multi_key> <E> <bracketright> : "⁆"
+<Multi_key> <D> <less> : "⁌"
+<Multi_key> <D> <greater> : "⁍"
+<Multi_key> <colon> <colon> : "∷"
+<Multi_key> <1> <period> : "‧"
+<Multi_key> <2> <period> : "⁚"
+<Multi_key> <3> <period> : "⁖"
+<Multi_key> <4> <period> : "⁘"
+<Multi_key> <5> <period> : "⁙"
+
+<Multi_key> <3> <colon> : "⁝"
+<Multi_key> <4> <colon> : "⁞"
 
 <Multi_key> <comma> <comma> : "\20013" U200B
 <Multi_key> <space> <period> : "\20011" U2009
@@ -26,6 +41,16 @@ include "%L"
 <Multi_key> <minus> <minus> <space> : "–" U2013
 <Multi_key> <minus> <minus> <minus> : "—" U2014
 #<Multi_key> <minus> <minus> <minus> : "―" U2015
+
+<Multi_key> <asciicirum> <minus> : "¯"
+<Multi_key> <asciicirum> <n> : "ⁿ"
+
+<Multi_key> <underscore> <degree> : "ₒ"
+<Multi_key> <underscore> <a> : "ₐ"
+<Multi_key> <underscore> <e> : "ₑ"
+<Multi_key> <underscore> <o> : "ₒ"
+<Multi_key> <underscore> <x> : "ₓ"
+<Multi_key> <underscore> <asterisk : "⁎"
 
 <Multi_key> <exclam> <equal> : "≠" U2260
 <Multi_key> <bar> <bar> : "\20026" U2016

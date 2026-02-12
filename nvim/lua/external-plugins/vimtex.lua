@@ -1,3 +1,5 @@
+-- VimTeX is a modern Vim and Neovim filetype and syntax plugin for LaTeX files.
+-- https://github.com/lervag/vimtex
 local comb = '<Leader>l'
 return {
   'lervag/vimtex',

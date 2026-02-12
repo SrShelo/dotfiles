@@ -1,0 +1,333 @@
+// [[ KEY BINDINGS ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+binds {
+    // Get full list of actions running `niri msg action`
+    // To filter that command run `niri msg action 2>| grep ...`
+    // To see options of an actions run `niri msg action <ACTION> --help`
+
+    // Closes niri
+    Super+Ctrl+Delete { quit; }
+    // shows a list of important hotkeys.
+    Super+F1 repeat=false { show-hotkey-overlay; }
+
+    // [[ ANY WM BASICS ]]
+    Super+BackSpace repeat=false hotkey-overlay-title="Open power menu" { spawn "~/.config/common_scripts/power_menu.sh"; }
+    Super+Return repeat=false hotkey-overlay-title="Open terminal: kitty" { spawn "bash" "-c" "$myterm"; }
+    Super+e hotkey-overlay-title="Open file manager" { spawn "bash" "-c" "$myfile_manager"; }
+    Super+o repeat=false hotkey-overlay-title="Run apps: tofi" { spawn "bash" "-c" "tofi-drun --drun-launch=true --config=$HOME/.config/tofi/drun_config"; }
+    Super+Shift+o repeat=false hotkey-overlay-title="Focus window by ID" { spawn "~/.config/niri/scripts/go_to_window_id.sh"; }
+    Super+Ctrl+o repeat=false hotkey-overlay-title="Run apps: wofi" { spawn "wofi" "--show" "drun" "-i"; }
+    Super+p repeat=false hotkey-overlay-title="Run commands" { spawn "bash" "-c" "tofi-run --config=$HOME/.config/tofi/command_config | bash"; }
+    Ctrl+Shift+Escape hotkey-overlay-title="Open task manager" { spawn "bash" "-c" "$myterm -e $mytask_manager"; }
+    Super+b hotkey-overlay-title="Open browser" { spawn "bash" "-c" "$mybrowser"; }
+    Super+Shift+Return hotkey-overlay-title="Change to random wallpaper" { spawn "~/.config/common_scripts/wallpapers.sh"; }
+
+    // [[ QUALITY OF LIFE & UTILITIES ]]
+    // Quickly lock the session (useful when your cat is nearby)
+    Super+Escape hotkey-overlay-title="Lock session" { spawn "~/.config/common_scripts/power_menu.sh" "Lock Screen"; }
+    Super+Shift+Escape hotkey-overlay-title="Lock session" { spawn "~/.config/common_scripts/power_menu.sh" "Suspend"; }
+    // Quick notes
+    Super+n hotkey-overlay-title="Opens quick notes" { spawn "bash" "-c" "$myterm --title='quick notes' -e $mytxt_editor ~/Desktop/notas/notas-rápidas.md"; }
+    // Clipboard manager
+    Super+Ctrl+c repeat=false { spawn "bash" "-c" "cliphist -preview-width 25 list | tofi | cliphist decode | wl-copy"; }
+    Super+Ctrl+v { spawn "bash" "-c" "cliphist -preview-width 25 list | tofi | cliphist decode | wl-copy && wtype -m ctrl -p v -m ctrl"; }
+    Super+Ctrl+d repeat=false { spawn "cliphist" "wipe"; }
+    // Emojis
+    Super+period repeat=false { spawn "flatpak" "run" "it.mijorus.smile"; }
+    // Color picker
+    Super+Alt+p repeat=false { spawn "bash" "-c" "hyprpicker -a --quiet -r -f $(echo -e 'hex\nrgb\nhsv\nhsl\ncmyk' | tofi && sleep 0.5)"; }
+    // Screen shots (the path is defined in at the begining of the config, and it's possible to
+    //   block programs to screenshot some applications in window rules sections)..
+    Print repeat=false { screenshot; }
+    Shift+Print repeat=false { screenshot-screen; }
+    Alt+Print repeat=false { screenshot-window; }
+
+    // [[ AUDIO & PLAYBACK CONTROL ]]
+    // wpctl man page: https://linuxcommandlibrary.com/man/wpctl
+    // wpctl in arch wiki: https://wiki.archlinux.org/title/WirePlumber#Keyboard_volume_control
+    XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh 1%-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh 1%+"; }
+    XF86AudioMute repeat=false allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh toggle-mute"; }
+    XF86AudioMicMute repeat=false allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh toggle-mute-source"; }
+    // spotify volume
+    Alt+Shift+XF86AudioLowerVolume allow-when-locked=true { spawn "playerctl" "volume" "0.1-" "-p" "chromium.instance2"; }
+    Alt+Shift+XF86AudioRaiseVolume allow-when-locked=true { spawn "playerctl" "volume" "0.1+" "-p" "chromium.instance2"; }
+    // volume of others
+    Super+Shift+XF86AudioLowerVolume allow-when-locked=true { spawn "playerctl" "volume" "0.1-" "-i" "chromium.instance2"; }
+    Super+Shift+XF86AudioRaiseVolume allow-when-locked=true { spawn "playerctl" "volume" "0.1+" "-i" "chromium.instance2"; }
+    // playback control
+    XF86AudioPlay repeat=false allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPrev repeat=false allow-when-locked=true { spawn "playerctl" "previous"; }
+    XF86AudioNext repeat=false allow-when-locked=true { spawn "playerctl" "next"; }
+    // playback control without playback buttons (my keyboard doesn't have them or aren't at the left hand)
+    // Tidal playback
+    Alt+XF86AudioMute repeat=false allow-when-locked=true { spawn "playerctl" "play-pause" "-p" "chromium.instance2"; }
+    Alt+XF86AudioLowerVolume repeat=false allow-when-locked=true { spawn "playerctl" "previous" "-p" "chromium.instance2"; }
+    Alt+XF86AudioRaiseVolume repeat=false allow-when-locked=true { spawn "playerctl" "next" "-p" "chromium.instance2"; }
+    // playback (no tidal)
+    Super+XF86AudioMute repeat=false allow-when-locked=true { spawn "playerctl" "play-pause" "-i" "chromium.instance2"; }
+    Super+XF86AudioLowerVolume repeat=false allow-when-locked=true { spawn "playerctl" "previous" "-i" "chromium.instance2"; }
+    Super+XF86AudioRaiseVolume repeat=false allow-when-locked=true { spawn "playerctl" "next" "-i" "chromium.instance2"; }
+
+    // [[ BRIGHTNESS & BLUE FILTER CONTROL ]]
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "1%-"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "1%+"; }
+    Alt+XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "1-"; }
+    Alt+XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "1+"; }
+    Shift+XF86MonBrightnessDown repeat=false allow-when-locked=true { spawn "brightnessctl" "set" "1"; }
+    // cycle blue filter through 3 modes (on, auto, off)
+    Super+XF86MonBrightnessDown repeat=false allow-when-locked=true { spawn "pkill" "wlsunset" "--signal" "sigusr1"; }
+
+
+
+
+    // [[ WINDOWs & COLUMNS MISC ]]
+    Super+Shift+c { close-window; }
+
+    Super+f { toggle-window-floating; }
+    Super+v { switch-focus-between-floating-and-tiling; }
+
+    // [[ NAVIGATION BETWEEN WINDOWS ]]
+    Super+Left  { focus-column-left; }
+    // Super+Up    { focus-window-up; }
+    Super+Up    { focus-window-or-workspace-up; }
+    // Super+Down  { focus-window-down; }
+    Super+Down  { focus-window-or-workspace-down; }
+    Super+Right { focus-column-right; }
+
+    Super+h     { focus-column-left; }
+    // Super+k     { focus-window-up; }
+    Super+k     { focus-window-or-workspace-up; }
+    // Super+j     { focus-window-down; }
+    Super+j     { focus-window-or-workspace-down; }
+    Super+l     { focus-column-right; }
+
+    Super+a     { focus-column-left; }
+    // Super+s     { focus-window-up; }
+    Super+s     { focus-window-or-workspace-up; }
+    // Super+z     { focus-window-down; }
+    Super+z     { focus-window-or-workspace-down; }
+    Super+x     { focus-column-right; }
+
+    Super+Alt+Left  { focus-column-first; }
+    Super+Alt+Right { focus-column-last; }
+
+    Super+Alt+h     { focus-column-first; }
+    Super+Alt+l     { focus-column-last; }
+
+    Super+Alt+a     { focus-column-first; }
+    Super+Alt+x     { focus-column-last; }
+
+    // [[ WINDOW & COLUMN PROPORTIONS ]]
+    Super+F11 { fullscreen-window; }
+    Super+w { expand-column-to-available-width; }
+    Super+Shift+w { maximize-column; }
+    // Super+Shift+w {
+    //     spawn "bash" "-c" "for i in {1..3}; do niri msg action switch-preset-column-width; done"
+    // }
+    // Super+Shift+q {
+    //     spawn "bash" "-c" "for i in {1..3}; do niri msg action switch-preset-window-height; done"
+    // }
+    Super+Ctrl+q { reset-window-height; }
+
+    Super+Ctrl+Left { set-column-width "-10%"; }
+    Super+Ctrl+Right { set-column-width "+10%"; }
+    Super+Ctrl+Up { set-window-height "-10%"; }
+    Super+Ctrl+Down { set-window-height "+10%"; }
+
+    Super+Ctrl+h { set-column-width "-10%"; }
+    Super+Ctrl+l { set-column-width "+10%"; }
+    Super+Ctrl+k { set-window-height "-10%"; }
+    Super+Ctrl+j { set-window-height "+10%"; }
+
+    Super+Ctrl+a { set-column-width "-10%"; }
+    Super+Ctrl+x { set-column-width "+10%"; }
+    Super+Ctrl+s { set-window-height "-10%"; }
+    Super+Ctrl+z { set-window-height "+10%"; }
+
+    // [[ MOVE WINDOWS & COLUMNS ]]
+    Super+Shift+Left  { spawn "bash" "-c" "niri msg action consume-or-expel-window-left ; niri msg action move-floating-window -x -50"; }
+    // Super+Shift+Left  { move-column-left; }
+    // Super+Shift+Up    { move-window-up; }
+    Super+Shift+Up    { move-window-up-or-to-workspace-up; }
+    // Super+Shift+Down  { move-window-down; }
+    Super+Shift+Down  { move-window-down-or-to-workspace-down; }
+    Super+Shift+Right { spawn "bash" "-c" "niri msg action consume-or-expel-window-right ; niri msg action move-floating-window -x +50"; }
+    // Super+Shift+Right { move-column-right; }
+
+    // Super+Shift+h     { move-column-left; }
+    Super+Shift+h  { spawn "bash" "-c" "niri msg action consume-or-expel-window-left ; niri msg action move-floating-window -x -50"; }
+    // Super+Shift+k     { move-window-up; }
+    Super+Shift+k     { move-window-up-or-to-workspace-up; }
+    // Super+Shift+j     { move-window-down; }
+    Super+Shift+j     { move-window-down-or-to-workspace-down; }
+    // Super+Shift+l     { move-column-right; }
+    Super+Shift+l { spawn "bash" "-c" "niri msg action consume-or-expel-window-right ; niri msg action move-floating-window -x +50"; }
+
+    // Super+Shift+a     { move-column-left; }
+    Super+Shift+a  { spawn "bash" "-c" "niri msg action consume-or-expel-window-left ; niri msg action move-floating-window -x -50"; }
+    // Super+Shift+s     { move-window-up; }
+    Super+Shift+s     { move-window-up-or-to-workspace-up; }
+    // Super+Shift+z     { move-window-down; }
+    Super+Shift+z     { move-window-down-or-to-workspace-down; }
+    // Super+Shift+x     { move-column-right; }
+    Super+Shift+x { spawn "bash" "-c" "niri msg action consume-or-expel-window-right ; niri msg action move-floating-window -x +50"; }
+
+    Super+Shift+q { move-window-to-workspace-up; }
+    Super+Shift+d { move-window-to-workspace-down; }
+
+    Super+Alt+Shift+Left   { move-column-to-first; }
+    Super+Alt+Shift+Right  { move-column-to-last; }
+
+    Super+Alt+Shift+h      { move-column-to-first; }
+    Super+Alt+Shift+l      { move-column-to-last; }
+
+    Super+Alt+Shift+a      { move-column-to-first; }
+    Super+Alt+Shift+x      { move-column-to-last; }
+
+    // [[ COLUMNS CONTROL ]]
+    Super+r  { consume-window-into-column; }
+    Super+Shift+r { expel-window-from-column; }
+    Super+Shift+Space { toggle-column-tabbed-display; }
+
+    // Super+Ctrl+f { center-column; }
+    Super+c { center-column; }
+    Super+Shift+f { center-visible-columns; }
+
+    // [[ MOVE WINDOWS & COLUMNS BETWEEN WORKSPACES ]]
+    Super+Shift+1 { move-column-to-workspace focus=false 1; }
+    Super+Shift+2 { move-column-to-workspace focus=false 2; }
+    Super+Shift+3 { move-column-to-workspace focus=false 3; }
+    Super+Shift+4 { move-column-to-workspace focus=false 4; }
+    Super+Shift+5 { move-column-to-workspace focus=false 5; }
+    Super+Shift+6 { move-column-to-workspace focus=false 6; }
+    Super+Shift+7 { move-column-to-workspace focus=false 7; }
+    Super+Shift+8 { move-column-to-workspace focus=false 8; }
+    Super+Shift+9 { move-column-to-workspace focus=false 9; }
+    Super+Shift+0 { move-column-to-workspace focus=false 10; }
+
+    Super+Alt+Shift+Up   { move-column-to-workspace-up; }
+    Super+Alt+Shift+Down { move-column-to-workspace-down; }
+
+    Super+Alt+Shift+s    { move-column-to-workspace-up; }
+    Super+Alt+Shift+z    { move-column-to-workspace-down; }
+
+    Super+Alt+Shift+k    { move-column-to-workspace-up; }
+    Super+Alt+Shift+j    { move-column-to-workspace-down; }
+
+    // [[ NAVIGATION BETWEEN WORKSPACES ]]
+    Super+Tab repeat=false { toggle-overview; }
+    Super+Space { focus-workspace-previous; }
+
+    Super+1 { focus-workspace 1; }
+    Super+2 { focus-workspace 2; }
+    Super+3 { focus-workspace 3; }
+    Super+4 { focus-workspace 4; }
+    Super+5 { focus-workspace 5; }
+    Super+6 { focus-workspace 6; }
+    Super+7 { focus-workspace 7; }
+    Super+8 { focus-workspace 8; }
+    Super+9 { focus-workspace 9; }
+    Super+0 { focus-workspace 10; }
+
+    Super+Prior { focus-workspace-up; }
+    Super+Next  { focus-workspace-down; }
+
+    Super+Alt+s { focus-workspace-up; }
+    Super+Alt+z { focus-workspace-down; }
+
+    Super+q     { focus-workspace-up; }
+    Super+d     { focus-workspace-down; }
+
+    // Super+Alt+Up   { focus-workspace-up; }
+    // Super+Alt+Down { focus-workspace-down; }
+    //
+    // Super+Alt+s    { focus-workspace-up; }
+    // Super+Alt+z    { focus-workspace-down; }
+    //
+    // Super+Alt+k    { focus-workspace-up; }
+    // Super+Alt+j    { focus-workspace-down; }
+
+    // [[ MOVE WORKSPACES (across one monitor) ]]
+    Super+Ctrl+Alt+Shift+1 { move-workspace-to-index 1; }
+    Super+Ctrl+Alt+Shift+2 { move-workspace-to-index 2; }
+    Super+Ctrl+Alt+Shift+3 { move-workspace-to-index 3; }
+    Super+Ctrl+Alt+Shift+4 { move-workspace-to-index 4; }
+    Super+Ctrl+Alt+Shift+5 { move-workspace-to-index 5; }
+    Super+Ctrl+Alt+Shift+6 { move-workspace-to-index 6; }
+    Super+Ctrl+Alt+Shift+7 { move-workspace-to-index 7; }
+    Super+Ctrl+Alt+Shift+8 { move-workspace-to-index 8; }
+    Super+Ctrl+Alt+Shift+9 { move-workspace-to-index 9; }
+    Super+Ctrl+Alt+Shift+0 { move-workspace-to-index 10; }
+
+    Super+Ctrl+Alt+Shift+s { move-workspace-up; }
+    Super+Ctrl+Alt+Shift+z { move-workspace-down; }
+
+    // Super+Ctrl+Shift+Alt+Up   { move-workspace-up; }
+    // Super+Ctrl+Shift+Alt+Down { move-workspace-down; }
+    //
+    // Super+Ctrl+Shift+Alt+s    { move-workspace-up; }
+    // Super+Ctrl+Shift+Alt+z    { move-workspace-down; }
+    //
+    // Super+Ctrl+Shift+Alt+k    { move-workspace-up; }
+    // Super+Ctrl+Shift+Alt+j    { move-workspace-down; }
+
+    // [[ MONITORS ]]
+    // Powers off the monitors. To turn them back on, do any input like
+    // moving the mouse or pressing any other key.
+    // Mod+Shift+P { power-off-monitors; }
+
+    // Mod+Shift+Left  { focus-monitor-left; }
+    // Mod+Shift+Down  { focus-monitor-down; }
+    // Mod+Shift+Up    { focus-monitor-up; }
+    // Mod+Shift+Right { focus-monitor-right; }
+    // Mod+Shift+H     { focus-monitor-left; }
+    // Mod+Shift+J     { focus-monitor-down; }
+    // Mod+Shift+K     { focus-monitor-up; }
+    // Mod+Shift+L     { focus-monitor-right; }
+    //
+    // Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    // Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
+    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+
+    // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
+    // ...
+
+    // [[ MOUSE BINDINGS ]]
+    // Super+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    // Super+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    // Super+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    // Super+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    //
+    // Super+WheelScrollRight      { focus-column-right; }
+    // Super+WheelScrollLeft       { focus-column-left; }
+    // Super+Shift+WheelScrollRight { move-column-right; }
+    // Super+Shift+WheelScrollLeft  { move-column-left; }
+    //
+    // // Usually scrolling up and down with Shift in applications results in
+    // // horizontal scrolling; these binds replicate that.
+    // Mod+Shift+WheelScrollDown      { focus-column-right; }
+    // Mod+Shift+WheelScrollUp        { focus-column-left; }
+    // Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    // Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    // [[ TOUCHPAD BINDINGS ]]
+    // Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
+    // Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    // Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}
+

@@ -5,23 +5,44 @@ light = "kanagawa-lotus"
 [mgr]
 hovered = { reversed = true }
 
+[filetype]
+rules = [
+    # Video
+    # { mime = "video/*", fg = "#fc5508" },
+    # Files fallback
+    { url = "*", fg = "white" },
+    # Dirs fallback
+    { url = "*/", fg = "yellow" },
+]
+
 [icon]
-prepend_globs = [
-	{ name = "/home/*/Desktop/", text = "󰥟" },
-	{ name = "/home/*/Desktop/Mi Wiki/", text = "󰧑" },
-	{ name = "/home/*/Desktop/Biblioteca/", text = "" },
-	{ name = "/home/*/Desktop/Biblioteca/local/", text = "" },
-	{ name = "/home/*/Desktop/Biblioteca/nube/", text = "" },
-	{ name = "/home/*/MEGA/", text = "󰅢" },
-	{ name = "**scripts/", text = "󰯂" },
-	{ name = "/home/*/Lab/", text = "󰂓" },
-	{ name = "/home/*/Games/", text = "󰊗" },
-	{ name = "/home/*/Media/", text = "" },
+globs = [
+    { url = "/home/*/Desktop/", text = "󰥟", fg = "#A3ACC2" },
+    { url = "/home/*/Documents/", text = "󱔗", fg = "white" },
+    { url = "/home/*/Music/", text = "", fg = "lightblue" },
+    { url = "/home/*/Pictures/", text = "", fg = "white" },
+    { url = "/home/*/Videos/", text = "󰴘", fg = "darkgray" },
+    { url = "/home/*/Public/", text = "", fg = "lightblue" },
+    { url = "/home/*/Desktop/notas/", text = "󱞁", fg = "lightyellow" },
+    { url = "/home/*/Desktop/Mi Wiki/", text = "󰧑", fg = "magenta" },
+    { url = "/home/*/Desktop/Biblioteca/", text = "", fg = "#BA9D7B" },
+    { url = "/home/*/Desktop/Biblioteca/local/", text = "", fg = "gray" },
+    { url = "/home/*/Desktop/Biblioteca/nube/", text = "", fg = "white" },
+    { url = "/home/*/MEGA/", text = "󰅢", fg = "lightred" },
+    { url = "/home/*/Lab/", text = "󰂓", fg = "lightblue" },
+    { url = "/home/*/Games/", text = "󰊗", fg = "yellow" },
+    { url = "/home/*/Media/", text = "", fg = "yellow" },
+]
+prepend_dirs = [
+    { name = "Downloads", text = "", fg = "#17AFF6" },
+    { name = "scripts", text = "󰯂", fg = "white" },
+    { name = "notas", text = "󱞁", fg = "yellow" },
 ]
 prepend_conds = [
-	{ if = "dir & hidden", text = "󱞞", fg = "yellow" },
-	{ if = "dir", text = "", fg = "yellow" },
+    { if = "dir & hidden", text = "󱞞", fg = "yellow" },
+    { if = "dir", text = "", fg = "yellow" },
 ]
 prepend_exts = [
     { name = "qmd", text = "", fg = "#3D749B" },
+    { name = "video/*", text = "", fg = "#fc5508" }
 ]

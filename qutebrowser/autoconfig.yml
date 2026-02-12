@@ -78,8 +78,12 @@ settings:
     https://thowhoas.top: false
     https://tinder.com: true
     https://uploadhaven.com: false
+    https://us.gabufuum.click: false
     https://web.telegram.org: true
+    https://www.betsala11.com: false
+    https://www.binance.com: true
     https://www.facebook.com: false
+    https://www.ign.com: false
     https://www.laborum.cl: false
     https://www.netflix.com: true
     https://www.reddit.com: false
@@ -151,8 +155,8 @@ settings:
   tabs.show:
     global: always
   url.default_page:
-    global: file:///home/shelo/Pictures/Wallpapers/pixel_city1.gif
+    global: file:///home/shelo/Pictures/Wallpapers/gifs/pixel_art/room1.gif
   url.start_pages:
-    global: file:///home/shelo/Pictures/Wallpapers/pixel_city1.gif
+    global: file:///home/shelo/Pictures/Wallpapers/gifs/pixel_art/room1.gif
   zoom.default:
     global: '125'

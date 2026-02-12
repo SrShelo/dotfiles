@@ -15,7 +15,13 @@ return {
     },
   },
   opts = {
-    notify_on_error = false,
+    notify_on_error = true,
+    formatters = {
+      stylua = {
+        -- go to ~/.local/share/nvim/mason/bin and run `./stylua --help` to see options.
+        prepend_args = { '--indent-type', 'Spaces', '--indent-width', '2' }
+      }
+    },
     format_on_save = function(bufnr)
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style. You can add additional

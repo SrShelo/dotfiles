@@ -64,7 +64,7 @@ set statusbar-basename			false
 ## SELECTION:
 # Posibble values: primary, clipboard
 set selection-clipboard primary
-set selection-notification false
+set selection-notification true
 
 # [[ KEYS ]]
 map s scroll up
@@ -74,13 +74,21 @@ map x scroll right
 
 map S scroll half-up
 map Z scroll half-down
-map A navigate previous
-map X navigate next
+map A scroll half-left
+map X scroll half-right
+map <A-s> navigate previous
+map <A-z> navigate next
+map <A-a> scroll full-left
+map <A-x> scroll full-right
 
 map K scroll half-up
 map J scroll half-down
-map H navigate previous
-map L navigate next
+map H scroll half-left
+map L scroll half-right
+map <A-k> navigate previous
+map <A-j> navigate next
+map <A-h> scroll full-left
+map <A-l> scroll full-right
 
 map <S-Up> scroll half-up
 map <S-Down> scroll half-down
@@ -127,3 +135,5 @@ map ¡qw set "recolor-darkcolor '#282828'"
 map ¡i recolor
 map ¡wq set "recolor-lightcolor '#282828'"
 map ¡ww set "recolor-darkcolor '#EBDBB2'"
+
+## To toggle dual-page mode, press d and D to switch pages

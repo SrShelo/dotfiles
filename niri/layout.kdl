@@ -1,0 +1,98 @@
+// [[ LAYOUT ]]
+// Windows and workspaces display, look and feel.
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+prefer-no-csd // wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#prefer-no-csd
+layout {
+    // Set gaps around windows in logical pixels.
+    gaps 0
+    // empty-workspace-above-first
+    always-center-single-column
+    // When to center a column when changing focus, options are:
+    // - "never", default behavior, focusing an off-screen column will keep at the left
+    //   or right edge of the screen.
+    // - "always", the focused column will always be centered.
+    // - "on-overflow", focusing a column will center it if it doesn't fit
+    //   together with the previously focused colualwayscenter-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.20
+        proportion 0.50
+        proportion 0.70
+        proportion 1.00
+    }
+    preset-window-heights {
+        proportion 0.20
+        proportion 0.50
+        proportion 0.70
+        proportion 1.00
+    }
+    // Options: normal, tabbed
+    default-column-display "normal"
+    default-column-width { proportion 0.5; }
+
+    // By default focus ring and border are rendered as a solid background rectangle
+    // behind windows. That is, they will show up through semitransparent windows.
+    // This is because windows using client-side decorations can have an arbitrary shape.
+    //
+    // If you don't like that, you should uncomment `prefer-no-csd` below.
+    // Niri will draw focus ring and border *around* windows that agree to omit their
+    // client-side decorations.
+    //
+    // Alternatively, you can override it with a window rule called
+    // `draw-border-with-background`.
+    focus-ring {
+        // off
+
+        // How many logical pixels the ring extends out from the windows.
+        width 5
+
+        // active-color "#7fc8ff"
+        active-gradient from="#705050" to="#c0b0b0" angle=45
+        // inactive-color "#505050"
+        inactive-gradient from="#505050" to="#b0b0b0" angle=45 relative-to="workspace-view"
+        urgent-gradient from="#702020" to="#f08080" angle=45
+    }
+
+    // You can also add a border. It's similar to the focus ring, but always visible.
+    border {
+        off
+        // width 4
+        // active-color "#ffc87f"
+        // inactive-color "#505050"
+        //
+        // urgent-color "#9b0000"
+    }
+    shadow {
+        // See: https://github.com/YaLTeR/niri/wiki/Configuration:-Layout#shadow
+        on
+        // draw-behind-window true
+        softness 40
+        spread 0
+        offset x=0 y=-5
+        color "#100"
+        inactive-color "0000"
+    }
+
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        bottom 4
+    }
+
+    tab-indicator {
+        // See: https://github.com/YaLTeR/niri/wiki/Configuration:-Layout#tab-indicator
+        // off
+        hide-when-single-tab
+        place-within-column
+        position "right"
+        length total-proportion=1.0
+        // corner-radius 10
+        width 4
+        gap 0
+        gaps-between-tabs 0
+        active-color "#fff4"
+        inactive-color "#0004"
+    }
+}
+

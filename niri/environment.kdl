@@ -1,0 +1,22 @@
+// [[ ENVIRONMENT ]]
+// Override environment variables for processes spawned by niri.
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
+environment {
+    XDG_CURRENT_DESKTOP "niri"
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    // DISPLAY ":1"
+    myterm "kitty"
+    mytxt_editor "nvim"
+    // mybrowser "vieb --enable-features=UseOzonePlatform --ozone-platform-hint=auto --no-sandbox"
+    mybrowser "qutebrowser"
+    mytask_manager "btop"
+    myfile_manager "kitty -e yazi"
+    MY_SCREEN_LOCKER "hyprlock" // Currently the script doesn't use this
+}
+
+// xwayland-satellite {
+//     off
+//     // path "xwayland-satellite"
+// }
+

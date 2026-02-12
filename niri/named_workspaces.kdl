@@ -1,0 +1,12 @@
+// [[ NAMED WORKSPACES ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Named-Workspaces
+// this is how workspaces work: https://github.com/YaLTeR/niri/wiki/Configuration:-Named-Workspaces
+
+// DECLARE & CONFIG some workspaces
+workspace "daily-apps" {
+    // open-on-output "eDP-1"
+}
+workspace "browser" {
+    // open-on-output "eDP-1"
+}
+

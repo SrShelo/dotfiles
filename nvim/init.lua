@@ -36,6 +36,12 @@ vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
 
+-- vim.filetype.add {
+--   extension = {
+--     qmd = 'markdown',
+--   },
+-- }
+
 vim.o.breakindent = true
 
 -- Save undo history
@@ -155,6 +161,7 @@ vim.keymap.set('i', '<C-s>', '<Esc>:w<Cr>a')
 vim.keymap.set('n', '<C-r>', '')
 vim.keymap.set('n', '<C-f>', '')
 vim.keymap.set('n', '<C-b>', '')
+vim.keymap.set('i', '<C-BS>', '<C-w>')
 
 -- Scroll with ctrl + J and K
 vim.keymap.set({ 'n', 'v' }, '<A-j>', '<C-e>')
@@ -201,7 +208,7 @@ vim.keymap.set('n', '<A-C-z>', '<C-w>-', { desc = 'Decrease window height' })
 vim.keymap.set('n', '<A-C-s>', '<C-w>+', { desc = 'Increase window height' })
 
 vim.keymap.set('n', '<A-S-c>', '<C-w>c', { desc = 'Close window' })
-vim.keymap.set('n', '<C-w>t', '<C-w>s<C-w>T', { desc = 'Open new tab' })
+vim.keymap.set('n', '<C-w>t', '<C-w>n<C-w>T', { desc = 'Open new tab' })
 vim.keymap.set('n', '<C-w><CR>', '<C-w>s<C-w>T<cmd>terminal<CR>', { desc = 'Open new tab with terminal' })
 vim.keymap.set({ 'n', 'i' }, '<A-a>', '<Esc>gT', { desc = 'Go to previous tab page' })
 vim.keymap.set({ 'n', 'i' }, '<A-x>', '<Esc>gt', { desc = 'Go to next tab page' })
@@ -239,14 +246,19 @@ rtp:prepend(lazypath)
 
 -- [[ PLUGINS ]]
 require('lazy').setup({
+  {
+    -- https://github.com/lambdalisue/vim-suda
+    'lambdalisue/suda.vim',
+  },
+
   require 'external-plugins.autopairs', -- Autocomplete symbols with their pair (e.g. '{' with '}')
   require 'external-plugins.neo-tree', -- File explorer inside neovim
   require 'external-plugins.which-key', -- Suggest keys for combinations
   require 'external-plugins.gitsigns', -- Git functionalitty
   require 'external-plugins.telescope', -- Fuzzy finder
   require 'external-plugins.conform',
-  require 'external-plugins.blink', -- Autocompletion
   require 'external-plugins.nvim-treesitter', -- Highlight, edit and navigate code
+  require 'external-plugins.blink', -- Autocompletion
   require 'external-plugins.indent-line', -- See indentation guide lines
   require 'external-plugins.vimtex', -- LaTeX support
   require 'external-plugins.quarto-nvim', -- Quarto plugin
@@ -305,10 +317,10 @@ require('lazy').setup({
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
+    -- https://github.com/nvim-mini/mini.nvim
     'echasnovski/mini.nvim',
     config = function()
       -- Better Around/Inside textobjects
-      --
       -- Examples:
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
@@ -316,12 +328,12 @@ require('lazy').setup({
       require('mini.ai').setup { n_lines = 500 }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
+      -- Examples:
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
       -- https://github.com/echasnovski/mini.nvim/blob/main/doc/mini-surround.txt
+      require('mini.surround').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,

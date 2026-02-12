@@ -9,6 +9,8 @@ alias ls="exa --group-directories-first"
 alias la="exa --group-directories-first -Gghla --time-style=long-iso"
 alias laa="exa -1a --group-directories-first"
 alias tre="exa -T"
+alias please="sudo"
+
 # Git aliases
 abbr gl "git log"
 abbr gaa "git add ."
@@ -87,12 +89,13 @@ bind alt-backspace backward-kill-path-component
 bind alt-backspace -M insert backward-kill-path-component
 
 bind ctrl-g clear-commandline
-bind ctrl-shift-l 'reset' clear-screen
+bind ctrl-l 'reset' clear-screen
 bind -M insert ctrl-g clear-commandline
-bind -M insert ctrl-shift-l 'reset' clear-screen
+# bind -M insert ctrl-shift-l 'reset' clear-screen
 
 # bind ctrl-comma "cd $HOME/.config/fish && pwd && la && echo && fish_prompt"
 bind ctrl-comma "cd $HOME/.config/fish" clear-screen
+bind -M insert ctrl-comma "cd $HOME/.config/fish" clear-screen
 
 # Prepend commands
 bind alt-m 'fish_commandline_prepend man'
@@ -131,6 +134,7 @@ end
 if test -d $HOME/.bin
     export PATH="$PATH:$HOME/.bin"
 end
+export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 
 ## Run StarShip promt ##
 starship init fish | source

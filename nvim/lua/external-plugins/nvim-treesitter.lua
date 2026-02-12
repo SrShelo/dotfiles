@@ -19,6 +19,12 @@ return {
     },
     indent = { enable = true, disable = { 'ruby' } },
   },
+  config = function(_, opts)
+    require('nvim-treesitter.configs').setup(opts)
+    -- Make quarto files highlight like markdown
+    local ts = require 'vim.treesitter.language'
+    ts.register('markdown', 'quarto')
+  end,
   -- There are additional nvim-treesitter modules that you can use to interact
   -- with nvim-treesitter. You should go explore a few and see what interests you:
   --

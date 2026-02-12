@@ -1,0 +1,21 @@
+// [[ STARTUP ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-at-startup
+spawn-at-startup "~/.config/common_scripts/wallpapers.sh"
+spawn-at-startup "waybar"
+// sys tray
+spawn-at-startup "iwgtk -i"
+spawn-at-startup "mako" // mako or swaync
+spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+// blue light filter
+spawn-at-startup "wlsunset" "-t" "4000" "-T" "6500" "-S" "7:30" "-s" "23:30" "-d" "1800"
+// libinpunt gestures to run commands
+spawn-at-startup "libinput-gestures-setup stop desktop autostart start"
+spawn-at-startup "playerctld" "daemon"
+// Make X11 apps runnable
+// spawn-at-startup "xwayland-satellite"
+// Make the notification appear once you log in, so it doesn't appear 5 minutes
+// after, which is kind of weird.
+spawn-at-startup "/home/shelo/.config/common_scripts/battery_notify.sh"
+// spawn-at-startup "alarm-clock-applet"
+

@@ -1,0 +1,9 @@
+// [[ CURSOR ]]
+// wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#cursor
+cursor {
+    // xcursor-theme "breeze_cursors"
+    // xcursor-size 48
+    hide-when-typing
+    hide-after-inactive-ms 2000
+}
+

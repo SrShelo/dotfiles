@@ -25,6 +25,9 @@ c.url.searchengines = {
     # Info
     'wiki':             'https://en.wikipedia.org/wiki/{}',
     'rae':              'https://dle.rae.es/{}',
+    'dicc':             'https://www.diccionarios.com/diccionario/espanol/{}',
+    'oxf':              'https://www.oxfordlearnersdictionaries.com/us/definition/english/{}',
+    'hoogle':           'https://hoogle.haskell.org/?hoogle={}',
     #AI
     'paper':            'https://semanticscholar.org/search?q={}&sort=relevance',
     'semanticscholar'  :'https://semanticscholar.org/search?q={}&sort=relevance',
@@ -36,33 +39,65 @@ c.url.searchengines = {
     'amazon':           'https://www.amazon.com/s?k={}',
     # Misc
     'pocket':           'https://getpocket.com/saves/tags/{}',
+    'reddit':           'https://reddit.com/search?q={}',
     'r':                'https://reddit.com/search?q={}',
     'curse':            'https://curseforge.com/minecraft/mc-mods/search?search={}',
     'shop':             'https://google.com/search?q={}&tbm=shop',
     'steam':            'https://store.steampowered.com/search/?term={}',
+    'steamdb':          'https://steamdb.info/search/?a=all&q={}',
     'dailymotion':      'https://www.dailymotion.com/search/{}/videos',
-    # TRADUCTOR
-    'gen':              'https://translate.google.com/?hl=es&sl=en&tl=es&text={}&op=translate',
-    'en':               'https://www.deepl.com/en/translator#en/es-419/{}',
-    'ges':              'https://translate.google.com/?hl=es&sl=es&tl=en&text={}&op=translate',
-    'es':               'https://www.deepl.com/en/translator#es/en-us/{}',
-    'eo':               'https://translate.google.cl/?hl=es&sl=eo&tl=es&text={}&op=translate',
-    'eo!':              'https://translate.google.cl/?hl=es&sl=es&tl=eo&text={}&op=translate',
-    'la':               'https://translate.google.cl/?hl=es&sl=la&tl=es&text={}&op=translate',
-    'la!':              'https://translate.google.cl/?hl=es&sl=es&tl=la&text={}&op=translate',
+
+    # TRANSLATORS
+    'en':               'https://translate.google.com/?hl=es&sl=en&tl=es&text={}&op=translate',
+    'Gen':              'https://translate.google.com/?hl=es&sl=en&tl=es&text={}&op=translate',
+    '.en':              'https://www.deepl.com/en/translator#en/es-419/{}',
+
+    'es':               'https://translate.google.com/?hl=es&sl=es&tl=en&text={}&op=translate',
+    'Ges':              'https://translate.google.com/?hl=es&sl=es&tl=en&text={}&op=translate',
+    '.es':              'https://www.deepl.com/en/translator#es/en-us/{}',
+
     'fr':               'https://translate.google.com/?sl=fr&tl=es&text={}&op=translate',
+    'Gfr':              'https://translate.google.com/?sl=fr&tl=es&text={}&op=translate',
+    '.fr':              'https://www.deepl.com/en/translator#fr/es-419/{}',
     'fr!':              'https://translate.google.com/?sl=es&tl=fr&text={}&op=translate',
+    'Gfr!':             'https://translate.google.com/?sl=es&tl=fr&text={}&op=translate',
+    '.fr!':             'https://www.deepl.com/en/translator#es/fr/{}',
+
     'it':               'https://translate.google.com/?sl=it&tl=es&text={}&op=translate',
+    'Git':              'https://translate.google.com/?sl=it&tl=es&text={}&op=translate',
+    '.it':              'https://www.deepl.com/en/translator#it/es-419/{}',
     'it!':              'https://translate.google.com/?sl=es&tl=it&text={}&op=translate',
+    'Git!':             'https://translate.google.com/?sl=es&tl=it&text={}&op=translate',
+    '.it!':             'https://www.deepl.com/en/translator#es/it/{}',
+
     'pt':               'https://translate.google.com/?hl=es&sl=pt&tl=es&text={}',
+    'Gpt':              'https://translate.google.com/?hl=es&sl=pt&tl=es&text={}',
+    '.pt':              'https://www.deepl.com/en/translator#pt/es-419/{}',
     'pt!':              'https://translate.google.com/?hl=es&sl=es&tl=pt&text={}',
+    'Gpt!':             'https://translate.google.com/?hl=es&sl=es&tl=pt&text={}',
+    '.pt!':             'https://www.deepl.com/en/translator#es/pt/{}',
+
+    'de':               'https://translate.google.com/?sl=de&tl=es&text={}&op=translate',
+    'Gde':              'https://translate.google.com/?sl=de&tl=es&text={}&op=translate',
+    '.de':              'https://www.deepl.com/en/translator#de/es-419/{}',
+    'de!':              'https://translate.google.com/?sl=es&tl=de&text={}&op=translate',
+    'Gde!':             'https://translate.google.com/?sl=es&tl=de&text={}&op=translate',
+    '.de!':             'https://www.deepl.com/en/translator#es/de/{}',
+
+    'eo':               'https://translate.google.com/?hl=es&sl=eo&tl=es&text={}&op=translate',
+    'eo!':              'https://translate.google.com/?hl=es&sl=es&tl=eo&text={}&op=translate',
+
+    'la':               'https://translate.google.com/?hl=es&sl=la&tl=es&text={}&op=translate',
+    'la!':              'https://translate.google.com/?hl=es&sl=es&tl=la&text={}&op=translate',
     'latin':            'https://translate.google.com/?sl=la&tl=es&text={}&op=translate',
     'latin!':           'https://translate.google.com/?sl=es&tl=la&text={}&op=translate',
-    'dct':              'https://translate.google.com/?sl=auto&tl=es&text={}&op=translate',
-    'dcten':            'https://translate.google.com/?sl=auto&tl=en&text={}&op=translate',
-    # Biblioteca
-    'anna':             'https://annas-archive.org/search?index=&page=1&q={}&display=&ext=pdf&ext=mobi&ext=fb2&ext=cbr&sort=',
-    'annas':            'https://annas-archive.org/search?q={}',
-    'libgen':           'https://libgen.is/search.php?req={}',
-    'zlib':             'https://singlelogin.re/s/{}'
+
+    'dtc':              'https://translate.google.com/?sl=auto&tl=es&text={}&op=translate',
+    'dtcen':            'https://translate.google.com/?sl=auto&tl=en&text={}&op=translate',
+
+    # Bibliotecas
+    'books':            'https://ravebooksearch.com/#gsc.tab=0&gsc.q={}&gsc.sort=',
+    'anna':             'https://annas-archive.li/search?index=&page=1&q={}&display=&ext=pdf&ext=mobi&ext=fb2&ext=cbr&sort=',
+    'annas':            'https://annas-archive.li/search?q={}',
+    'libgen':           'https://libgen.is/search.php?req={}'
 }

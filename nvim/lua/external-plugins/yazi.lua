@@ -1,3 +1,4 @@
+-- Run yazi inside nvim
 -- github: https://github.com/mikavilpas/yazi.nvim
 return {
   'mikavilpas/yazi.nvim',
