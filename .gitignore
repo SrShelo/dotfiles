@@ -14,8 +14,11 @@
 
 !common_scripts/
 
-# Some nice programs
+# Display managers
 # !lemurs.toml # due to a login problem, I desided to move on ly display manager
+!ly/
+
+# Some nice programs
 !ghostty/
 !kitty/
 !alacritty/
@@ -49,7 +52,7 @@
 !swaync/
 
 # And files
-README.md
+!README.md
 !every-arch.md
 !starship.toml
 !libinput-gestures.conf

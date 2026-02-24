@@ -1,5 +1,10 @@
 # Every Arch
-# To quickly connect to internet use `iwctl`
+> To quickly connect to internet use `iwctl`
+
+## Desktop
+- `sudo pacman -S niri` - Desktop environment
+- `sudo pacman -S ly` - TUI display manager
+
 ## Drivers and functionalities
 ### Fonts
 - `sudo pacman -S noto-fonts` - To fix fonts problems
@@ -33,7 +38,7 @@ Respectively
 ### Screen
 `sudo pacman -S arandr` - Generates a command for your own screens configurations
 - `sudo pacman -S redshift libnotify notification-daemon cbatticon network-manager-applet` - For blue light suppression
-- `sudo pacman -S vlc` - Media player
+- `sudo pacman -S mpv vlc` - Media players
 
 ## Personalization
 `curl -sS https://starship.rs/install.sh | sh` - One very custom prompt for any shell

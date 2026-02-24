@@ -37,6 +37,7 @@ c.url.searchengines = {
     'trends':           'https://trends.google.es/trends/explore?date=now%201-d&geo=CL&q={}&hl=es',
     # Shop
     'amazon':           'https://www.amazon.com/s?k={}',
+    'solotodo':         'https://www.solotodo.cl/search?search={}',
     # Misc
     'pocket':           'https://getpocket.com/saves/tags/{}',
     'reddit':           'https://reddit.com/search?q={}',
