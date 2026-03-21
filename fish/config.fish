@@ -36,7 +36,7 @@ stty susp '^B' # suspend process
 # FISH KEY BINDGINS
 # help: file:///usr/share/doc/fish/cmds/bind.html
 
-# Using vi-like keybindings
+# using vi-like keybindings
 set -g fish_key_bindings fish_vi_key_bindings
 set fish_cursor_default block
 set fish_cursor_insert line
@@ -46,7 +46,7 @@ set fish_cursor_external line
 set fish_cursor_visual block
 # help: file:///usr/share/doc/fish/cmds/fish_vi_key_bindings.html
 
-# Erase some presets
+## ~:ERASE SOME PRESETS:~
 bind --erase --preset ctrl-c
 bind --erase --preset ctrl-v
 bind --erase --preset ctrl-x
@@ -61,8 +61,8 @@ bind --erase --preset -M insert ctrl-j
 bind --erase --preset -M replace ctrl-j
 bind --erase --preset -M replace_one ctrl-j
 
-# Bind some
-# make it like my neovim config
+## ~:BIND SOME:~
+### MAKE IT LIKE MY NEOVIM CONFIG
 bind --erase --preset b
 bind --erase --preset -M visual b
 bind q backward-word
@@ -73,6 +73,11 @@ bind ctrl-v fish_clipboard_paste
 bind -M insert ctrl-c fish_clipboard_copy
 bind -M insert ctrl-v fish_clipboard_paste
 
+# search in history
+bind -M insert ctrl-alt-s pager-toggle-search
+bind -M insert ctrl-s history-pager
+
+# undo-redo
 bind ctrl-z undo
 bind ctrl-y redo
 bind ctrl-shift-z redo
@@ -80,14 +85,16 @@ bind -M insert ctrl-z undo
 bind -M insert ctrl-y redo
 bind -M insert ctrl-shift-z redo
 
+# delete any sequence of letters delimited with spaces
 bind ctrl-w 'commandline -rt ""'
 bind ctrl-w -M insert 'commandline -rt ""'
-
+# delete words
 bind ctrl-backspace backward-kill-path-component
 bind ctrl-backspace -M insert backward-kill-path-component
 bind alt-backspace backward-kill-path-component
 bind alt-backspace -M insert backward-kill-path-component
 
+# visual clearance
 bind ctrl-g clear-commandline
 bind ctrl-l 'reset' clear-screen
 bind -M insert ctrl-g clear-commandline
@@ -97,7 +104,7 @@ bind -M insert ctrl-g clear-commandline
 bind ctrl-comma "cd $HOME/.config/fish" clear-screen
 bind -M insert ctrl-comma "cd $HOME/.config/fish" clear-screen
 
-# Prepend commands
+### PREPEND COMMANDS
 bind alt-m 'fish_commandline_prepend man'
 bind alt-n 'fish_commandline_prepend nohup'
 bind -M insert alt-m 'fish_commandline_prepend man'
@@ -123,8 +130,8 @@ function bind_dollar
 end
 
 function fish_user_key_bindings
-    bind ! bind_bang
-    bind '$' bind_dollar
+    # bind ! bind_bang
+    # bind '$' bind_dollar
 end
 
 export VISUAL=vim

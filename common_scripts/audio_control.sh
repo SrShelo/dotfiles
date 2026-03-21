@@ -12,7 +12,7 @@
 should_notify_mic_mute=false
 
 notif_time=1000 #(ms)
-vol_threshold=0.5 # (1 = 100%)
+vol_threshold=0 # (1 = 100%)
 
 last_notif_id_file='/tmp/last_vol_notif_id'
 last_source_notif_id_file='/tmp/last_source_vol_notif_id'

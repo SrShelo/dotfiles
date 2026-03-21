@@ -13,19 +13,24 @@
 # systemd-vconsole-setup.service is that default service (like a regular Arch
 # installation), but change it (below) to your needs if necessary.
 #
-#   1. Make a copy (a link won't work) of this file to /etc/systemd/system/SERVICE.service:
+#   1. Make a copy or link to ./mycustomkeys.map from /etc/vconsole.keymap
 # ```
-# cp ./mycustomkeys.map /etc/systemd/system/SERVICE.service
+# ln -sf ./mycustomkeys.map /etc/vconsole.keymap
+# ```
+#
+#   2. Make a copy (a link won't work) of this file to /etc/systemd/system/SERVICE.service:
+# ```
+# cp ./load-custom-tty-keymap.service /etc/systemd/system/SERVICE.service
 # ```.
 #
-#   2. For security reasons, make sure the copy has root as owner and group, and the
+#   3. For security reasons, make sure the copies has root as owner and group, and the
 # permissions are 644 (readable for everyone, but only editable by root).
 #
-#   3. Make systemd recognize this file by running `systemctl daemon-reexec`.
+#   4. Make systemd recognize this file by running `systemctl daemon-reexec`.
 #
-#   4. Enable the service by running `systemctl enable SERVICE.service`.
+#   5. Enable the service by running `systemctl enable SERVICE.service`.
 #
-#   5. To see if it worked, reboot the sistem.
+#   6. To see if it worked, reboot the sistem.
 #
 #   NOTE: Disabling this service, maybe would delete the file, so leave a handy copy
 #   somewhere.

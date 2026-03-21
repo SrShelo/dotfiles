@@ -51,6 +51,7 @@ keymap = [
 	{ on = [ "g", "h" ],				run = "cd ~",             				desc = "Go home" },
 	{ on = [ "g", "c" ],				run = "cd ~/.config",     				desc = "Go ~/.config" },
 	{ on = [ "g", "v" ],				run = "cd ~/Videos/",     				desc = "Go ~/Videos" },
+	{ on = [ "g", "m" ],				run = "cd ~/Music/",     				desc = "Go ~/Music" },
 	{ on = [ "g", "n" ],				run = "cd ~/Desktop/notas",     				desc = "Go ~/Desktop/notas" },
 	{ on = [ "g", "e" ],				run = "cd ~/Desktop",     				desc = "Go ~/Desktop" },
 	{ on = [ "g", "d" ],				run = "cd ~/Downloads",   				desc = "Go ~/Downloads" },

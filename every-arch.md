@@ -24,7 +24,16 @@ If modules for aic94xx, wd719x or xhci_pci are still missing execute:
 - `yay -S wd719x-firmware`
 - `yay -S upd72020x-fw`
 
-Respectively
+## TUI tools
+### pacman:
+- neovim - my current text editor
+- yazi - file explorer
+- wiremix - audio settings
+- impala - wifi
+- rmpc - music player (need mpd package https://wiki.archlinux.org/title/Music_Player_Daemon enable it with: `systemctl enable --now mpd`)
+### aur:
+- walker - wayland app runner
+
 
 ## Tools
 - `sudo pacman -S cronie` - See: https://wiki.archlinux.org/title/Cron

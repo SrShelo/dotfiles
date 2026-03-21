@@ -25,7 +25,8 @@ c.url.searchengines = {
     # Info
     'wiki':             'https://en.wikipedia.org/wiki/{}',
     'rae':              'https://dle.rae.es/{}',
-    'dicc':             'https://www.diccionarios.com/diccionario/espanol/{}',
+    'dic':              'https://www.diccionarios.com/diccionario/espanol/{}',
+    'dcc':              'https://www.diccionarios.com/diccionario/espanol/{}',
     'oxf':              'https://www.oxfordlearnersdictionaries.com/us/definition/english/{}',
     'hoogle':           'https://hoogle.haskell.org/?hoogle={}',
     #AI
@@ -98,7 +99,7 @@ c.url.searchengines = {
 
     # Bibliotecas
     'books':            'https://ravebooksearch.com/#gsc.tab=0&gsc.q={}&gsc.sort=',
-    'anna':             'https://annas-archive.li/search?index=&page=1&q={}&display=&ext=pdf&ext=mobi&ext=fb2&ext=cbr&sort=',
-    'annas':            'https://annas-archive.li/search?q={}',
+    'anna':             'https://annas-archive.gl/search?index=&page=1&q={}&display=&ext=pdf&ext=mobi&ext=fb2&ext=cbr&sort=',
+    'annas':            'https://annas-archive.gl/search?q={}',
     'libgen':           'https://libgen.is/search.php?req={}'
 }
