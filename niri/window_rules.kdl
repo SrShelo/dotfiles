@@ -73,6 +73,13 @@ window-rule {
     scroll-factor 0.5
 }
 window-rule {
+    match app-id=r#"^qobuz-linux$"#
+    open-on-workspace "daily-apps"
+    open-focused false
+    open-maximized true
+    scroll-factor 1
+}
+window-rule {
     match app-id=r#"^com.mastermindzh.tidal-hifi$"#
     open-on-workspace "daily-apps"
     open-focused false

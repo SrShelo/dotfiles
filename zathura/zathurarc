@@ -132,7 +132,7 @@ map <C-h> toggle_statusbar
 ## TOGGLE COLORS:
 map ¡qq set "recolor-lightcolor '#EBDBB2'"
 map ¡qw set "recolor-darkcolor '#282828'"
-map ¡i recolor
+map i recolor
 map ¡wq set "recolor-lightcolor '#282828'"
 map ¡ww set "recolor-darkcolor '#EBDBB2'"
 

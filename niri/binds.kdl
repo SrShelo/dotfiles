@@ -45,8 +45,8 @@ binds {
     // [[ AUDIO & PLAYBACK CONTROL ]]
     // wpctl man page: https://linuxcommandlibrary.com/man/wpctl
     // wpctl in arch wiki: https://wiki.archlinux.org/title/WirePlumber#Keyboard_volume_control
-    XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh 1%-"; }
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh 1%+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh -0.01"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh 0.01"; }
     XF86AudioMute repeat=false allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh toggle-mute"; }
     XF86AudioMicMute repeat=false allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh toggle-mute-source"; }
     // spotify volume

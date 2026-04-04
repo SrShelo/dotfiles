@@ -4,7 +4,8 @@ input {
     keyboard {
         xkb {
             // mykeys is defined in ~/.config/xkb/symbols/
-            layout "mykeys,us"
+            // to toggle latam keyboard press lalt + ralt + rctrl
+            layout "mykeys,us,latam"
             // variant ""
             // See all available options with `cat /usr/share/X11/xkb/rules/base.lst`
             // options "grp:alt_space_toggle,compose:rctrl,caps:escape"
