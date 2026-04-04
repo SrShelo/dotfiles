@@ -12,7 +12,7 @@
 should_notify_mic_mute=false
 
 notif_time=1000 #(ms)
-vol_threshold=0 # (1 = 100%)
+vol_threshold=0 # (1.00 = 100%)
 
 last_notif_id_file='/tmp/last_vol_notif_id'
 last_source_notif_id_file='/tmp/last_source_vol_notif_id'
@@ -59,12 +59,12 @@ if [[ $1 != '' ]]; then
         last_notif_id=$(notify-send "VOL: $vol$state" -u low -a volume-control -t $notif_time -r $last_notif_id -p)
         echo $last_notif_id > $last_notif_id_file
     else
-        wpctl set-volume '@DEFAULT_AUDIO_SINK@' $1
+        vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')
+        wpctl set-volume '@DEFAULT_AUDIO_SINK@' $(bc <<< "$vol + $1")
 
         if [[ $last_notif_id == '' ]]; then
             last_notif_id=0
         fi
-        vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')
         if [[ $(bc <<< "$vol >= $vol_threshold") == 1 ]]; then
             vol=$(bc <<< "$vol * 100" | sed '/\./,//s/0*$//' | sed 's/\.$//')
             last_notif_id=$(notify-send 'VOL: '$vol'%' -u low -a volume-control -t $notif_time -r $last_notif_id -p)
@@ -72,5 +72,4 @@ if [[ $1 != '' ]]; then
         fi
     fi
 fi
-
 

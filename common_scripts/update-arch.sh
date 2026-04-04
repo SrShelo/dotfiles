@@ -19,44 +19,61 @@ Usage:
 
 # PACKAGE MANAGER FUNCTIONS
 function func_pacman
-    sudo echo "pacman: " | lolcat --seed=-25
-    sudo pacman -Syyu --noconfirm && set pacman $NICE
+    sudo echo "pacman:" | lolcat --seed=-25
+    sudo pacman -Syyu --noconfirm
 end
 
 function func_yay
-    echo "yay: " | lolcat --seed=-15
-    yay -Syyu --noconfirm && set yay $NICE
+    echo "yay:" | lolcat --seed=-15
+    yay -Syyu --noconfirm
 end
 
 function func_snap
-    echo "snap: " | lolcat --seed=8
-    sudo snap refresh && set snap $NICE
+    echo "snap:" | lolcat --seed=8
+    sudo snap refresh
 end
 
 function func_flatpak
-    echo "flatpak" | lolcat --seed=90
-    flatpak update --noninteractive && set flatpak $NICE
+    echo "flatpak:" | lolcat --seed=90
+    flatpak update --noninteractive
 end
 ###
 
-function print_summary
-    echo ''
-    echo "Exit status summary:" | lolcat
-    for the_command in $argv
-        echo "$the_command: $$the_command"
+function check_internet
+    echo -n 'Checking internet connection... '
+    if ping -c2 archlinux.org > /dev/null
+        echo 'OK' | lolcat -S -10
+    else
+        echo 'BAD' | lolcat -S 80
+        exit 1
     end
 end
 
+function print_summary
+    echo "System update status summary:" | lolcat
+    set summary ''
+    for the_command in $argv
+        set summary "$summary\n$the_command: $$the_command"
+    end
+    set summary $(echo $summary | sed 's/\\\n//')
+    string unescape $summary
+    notify-send -t 10000 'System update status summary' "$summary" -u low
+end
+
 if test -z $argv[1]
+    # Case: update without specifying pkg managers
+    check_internet
     sudo echo 'Starting to update the system... ' | lolcat
     for pkgman in $PKG_MANAGERS
         if command -s $pkgman > /dev/null
             set $pkgman $BAD
-            func_$pkgman
+            func_$pkgman && set $pkgman $NICE
         end
     end
+    echo
     print_summary $PKG_MANAGERS
 else
+    # Check if the arguments are subcommands
     switch $argv[1]
         case -l --list
             for pkgman in $PKG_MANAGERS
@@ -67,7 +84,8 @@ else
             echo -n $HELP_PAGE
             exit 0
     end
-    # Check if the specifies pkg managers are registered and
+    # If not, they must be pkg managers in the list
+    # Check if the specified pkg managers are registered and
     # their commands are installed.
     for arg in $argv
         if contains $arg $PKG_MANAGERS
@@ -83,12 +101,14 @@ else
             exit 1
         end
     end
+    check_internet
     echo 'Starting to update specified pkg managers...' | lolcat
     for a_command in $argv
         set $a_command $BAD
-        func_$a_command
+        func_$a_command && set $a_command $NICE
     end
     # Update specified pkg managers
+    echo
     print_summary $argv
 end
 

@@ -12,8 +12,8 @@
 WALLPAPERS_PATH=~/Pictures/Wallpapers/
 
 # wallapaper engine options:
-# swww, mpvpaper, hyprpaper, wpaperd
-WALLPAPER_ENGINE="swww"
+# awww, mpvpaper, hyprpaper, wpaperd
+WALLPAPER_ENGINE="awww"
 
 FILE_LAST_ENGINE='/tmp/last_wallpaper_engine_used'
 last_engine=$(cat $FILE_LAST_ENGINE)
@@ -25,7 +25,7 @@ if [[ $WALLPAPER_ENGINE != $last_engine ]]; then
     pkill hyprpaper
     pkill mpvpaper
     pkill wpaperd
-    swww kill
+    awww kill
 fi
 
 # NOTE: Select which type of wallpaper you want to allow:
@@ -36,9 +36,9 @@ VIDEOS_ALLOWED=false
 
 # Specific engine config:
 ####
-## swww
+## awww
 # options: none, random
-SWWW_TRANSITION_TYPE='none'
+AWWW_TRANSITION_TYPE='none'
 
 ## mpvpaper
 # options: loop, playlist
@@ -103,10 +103,10 @@ if [ "$WALLPAPER_ENGINE" == "hyprpaper" ]; then
 elif [ "$wallpaper_engine" == "wpaperd" ]; then
     echo ":: using wpaperd"
     wpaperd -d
-elif [ "$WALLPAPER_ENGINE" == "swww" ]; then
-    echo ":: using swww"
-    swww-daemon -f xrgb 2> /dev/null &
-    swww img "$RANDOM_FILE" --transition-type="$SWWW_TRANSITION_TYPE"
+elif [ "$WALLPAPER_ENGINE" == "awww" ]; then
+    echo ":: using awww"
+    awww-daemon -f xrgb 2> /dev/null &
+    awww img "$RANDOM_FILE" --transition-type="$AWWW_TRANSITION_TYPE"
 elif [ "$WALLPAPER_ENGINE" == "mpvpaper" ]; then
     echo "::using mpvpaper"
     if [ ! $MPV_AUDIO ]; then
