@@ -13,7 +13,7 @@ ALT_TERM='kitty -e --app-id=quick-notes'
 # change title or app-id to make window rules in your
 # desktop environment or compositor.
 
-USE_NEW='yes' # create new files writing new or not
+USE_NEW='no' # create new files writing new or not
 
 QUICK_NOTES_PATH="$HOME/Desktop/notas/quick-notes/"
 
@@ -76,14 +76,14 @@ else
     if echo "$note_list" | grep -Fx "$selection" > /dev/null ; then
         echo $TERMINAL
         echo '+======================+'
-        open_note
+        open_note "$selection"
     elif [ "$selection" ]; then
         echo cómo llegué aquí
         selection2=$(echo -e "no\nyes" | eval $(dmenu_command 'do u wanna create this file?'))
         if [ "$selection2" = 'yes' ]; then
             echo "Creating new note \"$selection\"..."
             touch "$QUICK_NOTES_PATH/$selection"
-            open_note $selection
+            open_note "$selection"
         fi
     fi
 fi
