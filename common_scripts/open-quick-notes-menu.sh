@@ -13,10 +13,17 @@ ALT_TERM='kitty -e --app-id=quick-notes'
 # change title or app-id to make window rules in your
 # desktop environment or compositor.
 
+USE_NEW='no' # create new files writing new or not
+
 QUICK_NOTES_PATH="$HOME/Desktop/notas/quick-notes/"
 
 DMENU_COMMAND=(fuzzel -d --mesg=Notes --placeholder="file name" --prompt=" ")
 # DMENU_COMMAND="wofi --dmenu -H50%"
+
+dmenu_command () {
+    text=(fuzzel -d --mesg=Notes --placeholder=\"$1\" --prompt=\" \")
+    echo "${text[@]}"
+}
 
 
 if [ ! -d $QUICK_NOTES_PATH ]; then
@@ -42,22 +49,41 @@ fi
 
 note_list=$(ls $QUICK_NOTES_PATH)
 
-selection=$(echo "$note_list" | "${DMENU_COMMAND[@]}")
+selection=$(echo "$note_list" | eval $(dmenu_command 'file name'))
 
 open_note () {
-    $TERMINAL $EDITOR "$QUICK_NOTES_PATH/$selection"
+    $TERMINAL $EDITOR "$QUICK_NOTES_PATH/$1"
 }
 
-if echo "$note_list" | grep -Fx "$selection" > /dev/null ; then
-    echo $TERMINAL
-    echo '+======================+'
-    open_note
-elif [ "$selection" ]; then
-    echo cómo llegué aquí
-    selection2=$(echo -e "no\nyes" | "${DMENU_COMMAND[@]}")
-    if [ "$selection2" = 'yes' ]; then
-        echo "Creating new note \"$selection\"..."
-        touch "$QUICK_NOTES_PATH/$selection"
+if [ $USE_NEW == 'yes' ]; then
+    if [[ "$selection" != "new" && "$selection" ]]; then
+        if echo "$note_list" | grep -Fx "$selection" > /dev/null ; then
+            echo $TERMINAL
+            echo '+======================+'
+            open_note $selection
+        fi
+    elif [ "$selection" ]; then
+        echo cómo llegué aquí
+        selection2=$(eval $(dmenu_command 'name for new file'))
+        selection3=$(echo -e "no\nyes" | eval $(dmenu_command "sure u wanna create $selection2?"))
+        if [ "$selection3" = 'yes' ]; then
+            echo "Creating new note \"$selection\"..."
+            touch "$QUICK_NOTES_PATH/$selection2"
+            open_note $selection2
+        fi
+    fi
+else
+    if echo "$note_list" | grep -Fx "$selection" > /dev/null ; then
+        echo $TERMINAL
+        echo '+======================+'
         open_note
+    elif [ "$selection" ]; then
+        echo cómo llegué aquí
+        selection2=$(echo -e "no\nyes" | eval $(dmenu_command 'do u wanna create this file?'))
+        if [ "$selection2" = 'yes' ]; then
+            echo "Creating new note \"$selection\"..."
+            touch "$QUICK_NOTES_PATH/$selection"
+            open_note $selection
+        fi
     fi
 fi
