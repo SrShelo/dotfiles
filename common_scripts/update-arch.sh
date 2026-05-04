@@ -16,6 +16,7 @@ Usage:
     -l, --list              list all pkg managers available
     -c, --checkinternet     check internet connection before updating
     -C, --checkcommands     just check if all commands are installed
+    -s, --silent            only print summary (errors won't be printed)
 "
 
 declare -a OPTIONS
@@ -24,6 +25,7 @@ OPTIONS[0]='help;h;?'
 OPTIONS[1]='list;l'
 OPTIONS[2]='checkinternet;c'
 OPTIONS[3]='checkcommands;C'
+OPTIONS[4]='silent;s'
 
 # FUNCTIONS FOR PKG MANAGER:
 func_pacman () {
@@ -132,18 +134,18 @@ set_options () {
 set_options "$@"
 
 before_update () {
-    if [ $(get_options | grep 'help') ]; then
+    if [ $(get_options | grep '^help$') ]; then
         print_help
         exit 0
     fi
-    if [ $(get_options | grep 'list') ]; then
+    if [ $(get_options | grep '^list$') ]; then
         list_pkg_managers
         exit 0
     fi
-    if [ $(get_options | grep 'checkcommands') ]; then
+    if [ $(get_options | grep '^checkcommands$') ]; then
         check_commands
     fi
-    if [ $(get_options | grep 'checkinternet') ]; then
+    if [ $(get_options | grep '^checkinternet$') ]; then
         check_internet
     fi
 }
@@ -193,15 +195,26 @@ do
 done
 
 # Update
-sudo printf 'Starting to update the system...\n' | lolcat
-for pkgman in "${pkg_managers[@]}"
-do
-    if [ $(command -v $pkgman) ]; then
-        eval $pkgman=$BAD
-        func_$pkgman && eval $pkgman=$NICE
-    fi
-done
-printf '\n'
-print_summary "${PKG_MANAGERS[@]}"
+if [ ! $(get_options | grep '^silent$') ]; then
+    sudo printf 'Starting to update the system...\n' | lolcat
+    for pkgman in "${pkg_managers[@]}"
+    do
+        if [ $(command -v $pkgman) ]; then
+            eval $pkgman=$BAD
+            func_$pkgman && eval $pkgman=$NICE
+        fi
+    done
+    printf '\n'
+else
+    sudo printf ''
+    for pkgman in "${pkg_managers[@]}"
+    do
+        if [ $(command -v $pkgman) ]; then
+            eval $pkgman=$BAD
+            func_$pkgman > /dev/null 2> /dev/null && eval $pkgman=$NICE
+        fi
+    done
+fi
+print_summary
 
 exit 0
