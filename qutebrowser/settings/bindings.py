@@ -167,7 +167,9 @@ config.bind('<Esc>', 'mode-enter normal ;; clear-messages ;; message-info "-- No
 config.bind('<Ctrl+Shift+i>', 'devtools', mode='normal')
 config.bind('<Ctrl+Shift+i>', 'devtools', mode='insert')
 config.bind('<Esc>', 'fake-key <Esc>', mode='normal')
-config.bind('<Ctrl+c>', 'yank selection')
+config.bind('<Ctrl+c>', 'yank selection', mode='normal')
+config.bind('<Ctrl+Shift+c>', 'yank selection', mode='normal')
+config.bind('<Ctrl+Shift+c>', 'yank selection', mode='insert')
 # /match
 # from qutebrowser.browser import browsertab
 

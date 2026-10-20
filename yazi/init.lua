@@ -2,6 +2,7 @@ require("git"):setup()
 require("smart-enter"):setup({
 	open_multi = true,
 })
+require("close-and-restore-tab"):setup()
 require("projects"):setup({
 	save = {
 		method = "yazi", -- yazi | lua

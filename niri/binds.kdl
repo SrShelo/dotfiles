@@ -27,7 +27,8 @@ binds {
     Super+Escape hotkey-overlay-title="Lock session" { spawn "~/.config/common_scripts/power_menu.sh" "Lock Screen"; }
     Super+Shift+Escape hotkey-overlay-title="Lock session" { spawn "~/.config/common_scripts/power_menu.sh" "Suspend"; }
     // Quick notes
-    Super+n hotkey-overlay-title="Opens quick notes" { spawn "bash" "-c" "$myterm --title='quick notes' -e $mytxt_editor ~/Desktop/notas/notas-rápidas.md"; }
+    Super+n hotkey-overlay-title="Opens default quick-notes" { spawn "bash" "-c" "$myterm --app-id='quick-notes' -e $mytxt_editor ~/Desktop/notas/notas-rápidas.md"; }
+    Super+Shift+n hotkey-overlay-title="Opens quick-notes-menu" { spawn "bash" "-c" "~/.config/common_scripts/open-quick-notes-menu.sh"; }
     // Clipboard manager
     Super+Ctrl+c repeat=false { spawn "bash" "-c" "cliphist -preview-width 25 list | tofi | cliphist decode | wl-copy"; }
     Super+Ctrl+v { spawn "bash" "-c" "cliphist -preview-width 25 list | tofi | cliphist decode | wl-copy && wtype -m ctrl -p v -m ctrl"; }
@@ -45,8 +46,8 @@ binds {
     // [[ AUDIO & PLAYBACK CONTROL ]]
     // wpctl man page: https://linuxcommandlibrary.com/man/wpctl
     // wpctl in arch wiki: https://wiki.archlinux.org/title/WirePlumber#Keyboard_volume_control
-    XF86AudioLowerVolume allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh -0.01"; }
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh 0.01"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "zsh" "-c" "$HOME/.config/common_scripts/audio_control.sh -0.01"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "zsh" "-c" "$HOME/.config/common_scripts/audio_control.sh 0.01"; }
     XF86AudioMute repeat=false allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh toggle-mute"; }
     XF86AudioMicMute repeat=false allow-when-locked=true { spawn "bash" "-c" "$HOME/.config/common_scripts/audio_control.sh toggle-mute-source"; }
     // spotify volume

@@ -104,8 +104,8 @@ vim.o.confirm = false
 -- Insert modes
 vim.keymap.set({ 'n', 'v' }, 'u', 'r')
 vim.keymap.set({ 'n', 'v' }, 'U', 'R')
-vim.keymap.set({ 'n', 'v' }, 'r', '<Nop>')
-vim.keymap.set({ 'n', 'v' }, 'R', '<Nop>')
+-- vim.keymap.set({ 'n', 'v' }, 'r', '<Nop>')
+-- vim.keymap.set({ 'n', 'v' }, 'R', '<Nop>')
 
 -- Custom DIRECTION and MOTION keys (just for normal mode)
 -- This comes from my filosofy of configs I use with WMs: ergonomics, and giving
@@ -268,10 +268,15 @@ require('lazy').setup({
   -- require 'external-plugins.markview',
   require 'external-plugins.render-markdown',
   require 'external-plugins.nvim-toggler',
+  require 'external-plugins.nvim-toggler',
+  {
+    -- https://github.com/riddlew/asciitree.nvim
+    'riddlew/asciitree.nvim'
+  },
 
   -- LSP Plugins
   require 'external-plugins.lazydev',
-  require 'external-plugins.nvim-lspconfig',
+  -- require 'external-plugins.nvim-lspconfig',
 
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 

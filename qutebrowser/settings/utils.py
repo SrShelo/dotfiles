@@ -45,7 +45,8 @@ c.aliases = {
     'wq':                   'quit --save',
     'x':                    'quit --save',
     '\'':                   'set-mark',
-    'savetopocket':         'open -t https://getpocket.com/edit?url={url}',
+    'savetolinkding':     "open \
+       javascript:%20(function%20()%20%7B%20%20const%20bookmarkUrl%20=%20window.location;%20%20let%20applicationUrl%20=%20'http://linkding.home/bookmarks/new';%20%20applicationUrl%20+=%20'?url=%27%20+%20encodeURIComponent(bookmarkUrl);%20%20applicationUrl%20+=%20%27&auto_close%27;%20%20window.open(applicationUrl);%7D)();",
     'open-hintmedia':       'hint media run open {hint-url}',
     'open-hintmedia-t':     'hint media run open -t {hint-url}',
     'mpv-open':             'spawn --detach umpv {url}', # Open YT video in mpv player

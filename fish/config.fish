@@ -20,9 +20,11 @@ abbr gs "git status"
 abbr gd "git diff"
 abbr gm "git commit"
 abbr gmm "git commit --amend"
-abbr gpl "git pull origin"
-abbr gps "git push origin"
+abbr gpl "git pull"
+abbr gps "git push"
 abbr grs "git reset --soft"
+abbr gpr "git pull --rebase"
+abbr grundo "git rebase --abort"
 
 # [[ KEY BINDINGS ]]
 
@@ -95,7 +97,7 @@ bind alt-backspace backward-kill-path-component
 bind alt-backspace -M insert backward-kill-path-component
 
 # visual clearance
-bind ctrl-g clear-commandline
+# bind ctrl-g clear-commandline
 bind ctrl-l 'reset' clear-screen
 bind -M insert ctrl-g clear-commandline
 # bind -M insert ctrl-shift-l 'reset' clear-screen
@@ -143,6 +145,6 @@ if test -d $HOME/.bin
 end
 export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 
-## Run StarShip promt ##
+## Run StarShip prompt ##
 starship init fish | source
 fish_add_path /home/shelo/.cargo/bin

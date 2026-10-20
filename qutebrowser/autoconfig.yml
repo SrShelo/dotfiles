@@ -66,6 +66,7 @@ settings:
   content.notifications.enabled:
     https://chile.trabajos.com: false
     https://elplacerdelalectura.com: false
+    https://mail.proton.me: false
     https://meet.google.com: true
     https://ouo.io: false
     https://ouo.press: false
@@ -93,7 +94,7 @@ settings:
     https://www.windowscentral.com: false
     https://www.youtube.com: false
   content.pdfjs:
-    global: true
+    global: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
   content.tls.certificate_errors:

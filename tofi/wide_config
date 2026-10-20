@@ -1,5 +1,6 @@
 # tofi: https://github.com/philj56/tofi
 # to see available options run: man 5 tofi
+ascii-input = false
 prompt-text = ": "
 placeholder-text = ""
 placeholder-color = "AAA3"

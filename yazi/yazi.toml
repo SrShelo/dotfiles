@@ -3,19 +3,19 @@
 [plugin]
 prepend_preloaders = [
     # Replace magick, image, video with mediainfo
-    { name = "*.{djvu,djv}", run  = "djvu-view" },
+    { url = "*.{djvu,djv}", run  = "djvu-view" },
     { mime = "{audio,video,image}/*", run = "mediainfo" },
     { mime = "application/subrip", run = "mediainfo" },
 ]
 prepend_previewers = [
     { mime = "application/epub+zip", run = "epub-preview"},
-    { name = "*.md", run = "glow" },
-    { name = "*.csv", run = "rich-preview"}, # for csv files
-    # { name = "*.md", run = "rich-preview" }, # for markdown (.md) files
-    { name = "*.rst", run = "rich-preview"}, # for restructured text (.rst) files
-    { name = "*.ipynb", run = "rich-preview"}, # for jupyter notebooks (.ipynb)
-    { name = "*.json", run = "rich-preview"}, # for json (.json) files
-    # { name = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
+    { url = "*.md", run = "glow" },
+    { url = "*.csv", run = "rich-preview"}, # for csv files
+    # { url = "*.md", run = "rich-preview" }, # for markdown (.md) files
+    { url = "*.rst", run = "rich-preview"}, # for restructured text (.rst) files
+    { url = "*.ipynb", run = "rich-preview"}, # for jupyter notebooks (.ipynb)
+    { url = "*.json", run = "rich-preview"}, # for json (.json) files
+    # { url = "*.lang_type", run = "rich-preview"} # for particular language files eg. .py, .go., .lua, etc.
     # { mime = "audio/*",   run = "exifaudio"},
     { mime = "{audio,video,image}/*", run = "mediainfo"},
     { mime = "application/subrip", run = "mediainfo" },
@@ -29,17 +29,17 @@ prepend_previewers = [
     { mime = "application/x-xz",            run = "ouch" },
     { mime = "application/xz",              run = "ouch" },
     # Werid extensions
-    { name = "*.vim*", run = "code"},
+    { url = "*.vim*", run = "code"},
 ]
 
 append_previewers = [
-    { name = "*", run = "hexyl" },
+    { url = "*", run = "hexyl" },
 ]
 
 prepend_fetchers = [
     # git: https://github.com/yazi-rs/plugins/tree/main/git.yazi
-    { id = "git", name = "*", run = "git" },
-    { id = "git", name = "*/", run = "git" },
+    { group = "git", url = "*", run = "git" },
+    { group = "git", url = "*/", run = "git" },
 ]
 
 [mgr]
@@ -59,40 +59,46 @@ wrap = "no"
 
 [opener]
 edit = [
-    { run = 'nvim "$@"', block = true, for = "unix" },
+    { run = 'nvim %s', block = true, for = "unix", desc = "Edit here" },
+]
+edit_out = [
+    { run = 'kitty -e nvim %s', orphan = true, for = "unix", desc = "Edit in new terminal" },
 ]
 # Go into the folder when is opened
 dir = [
-    { run = 'ya emit cd "$1"', for = "unix" },
+    { run = 'ya emit cd "$1"', for = "unix", desc = "Enter" },
 ]
 read = [
-    { run = 'nohup xdg-open "$@" &', for = "unix" }
+    { run = 'nohup xdg-open "$@" &', for = "unix", desc = "Read" }
 ]
-
+open = [
+    { run = "xdg-open %s1", orphan = true, desc = "Open" },
+]
 [open]
 rules = [
     # Folder (to open go into a folder when is opened)
-    { mime = "inode/directory", use = [ "dir", "edit", "open", "reveal" ] },
-    { name = "*/", use = [ "dir", "edit", "open", "reveal" ] },
+    { mime = "inode/directory", use = [ "dir", "edit", "edit_out", "open", "reveal" ] },
+    { url = "*/", use = [ "dir", "edit", "edit_out", "open", "reveal" ] },
     # Text
-    { mime = "text/*", use = [ "edit", "reveal" ] },
+    { mime = "text/*", use = [ "edit", "edit_out", "reveal" ] },
     # Read
-    { mime = "*/{pdf, epub}", use = [ "read", "reveal" ] },
-    { mime = "application/epub+zip", use = [ "read", "reveal" ] },
+    { mime = "*/{pdf, epub}", use = [ "read", "reveal", "edit", "edit_out" ] },
+    { mime = "application/epub+zip", use = [ "read", "reveal", "edit", "edit_out" ] },
     # Image
-    { mime = "image/*", use = [ "open", "reveal" ] },
+    { url = "*.svg", use = [ "open", "edit", "edit_out", "reveal" ] },
+    { mime = "image/*", use = [ "open", "reveal", "edit", "edit_out" ] },
     # Media
-    { mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+    { mime = "{audio,video}/*", use = [ "play", "reveal", "edit", "edit_out" ] },
     # Archive
-    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal", "edit", "edit_out" ] },
     # JSON
-    { mime = "application/{json,ndjson}", use = [ "edit", "reveal" ] },
-    { mime = "*/javascript", use = [ "edit", "reveal" ] },
+    { mime = "application/{json,ndjson}", use = [ "edit", "edit_out", "reveal" ] },
+    { mime = "*/javascript", use = [ "edit", "edit_out", "reveal" ] },
     # Empty file
-    { mime = "inode/empty", use = [ "edit", "reveal" ] },
+    { mime = "inode/empty", use = [ "edit", "edit_out", "reveal" ] },
     # Fallback
-    { name = "*.*", use = [ "edit", "open", "reveal" ] },
-    { name = "*", use = [ "edit", "open", "reveal" ] },
+    # { url = "*.*", use = [ "edit", "open", "reveal" ] },
+    { url = "*", use = [ "edit", "edit_out", "open", "reveal" ] },
 ]
 
 extract = [

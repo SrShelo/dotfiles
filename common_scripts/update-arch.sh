@@ -30,12 +30,12 @@ OPTIONS[4]='silent;s'
 # FUNCTIONS FOR PKG MANAGER:
 func_pacman () {
     sudo printf "pacman:\n" | lolcat --seed=-25
-    sudo pacman -Syyu --noconfirm
+    sudo pacman -Syyuu --noconfirm
 }
 
 func_yay () {
     printf "yay:\n" | lolcat --seed=-15
-    yay -Syyu --noconfirm
+    yay -Syyuu --noconfirm
 }
 
 func_snap () {

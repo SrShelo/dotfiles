@@ -32,7 +32,7 @@ window-rule {
 }
 
 window-rule {
-    match title=r#"^quick notes$"#
+    match app-id=r#"^quick-notes$"#
     open-floating true
     default-window-height { proportion 0.8; }
     default-column-width { proportion 0.5; }
@@ -59,6 +59,13 @@ window-rule {
     open-focused false
     open-maximized true
     scroll-factor 1.5
+}
+window-rule {
+    match app-id=r#"^brave$"#
+    open-on-workspace "browser"
+    open-focused false
+    open-maximized true
+    scroll-factor 0.75
 }
 window-rule {
     match title=r#"^terminal-file-picker$"#

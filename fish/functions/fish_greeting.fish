@@ -329,7 +329,7 @@ function fish_greeting
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"
 # set style (random 1 4)
-set type (random 1 7) # Img or message
+set type (random 1 8) # Img or message
 set style (random 1 3)
 switch $type
     case 1
@@ -339,7 +339,7 @@ switch $type
     case 3
         set txt $messages[(random 1 (count $messages))]
     case 4
-        fastfetch
+        fastfetch --logo linux
     case 5
         sleep 0.1
         toilet -tf mono12 --gay $short_messages[(random 1 (count $short_messages))]
@@ -362,8 +362,8 @@ switch $type
                 end
                 set txt "$txt"\n"$i"
             end
-    # case 5
-    #     countryfetch
+    case 8
+        countryfetch $(countryfetch --list-countries | sed 's/^.. .*, //' | shuf -n 1) --no-palette
     # case 4
     #     pokeget -random 1,2,3
     # case 5

@@ -2,6 +2,7 @@
 // wiki: https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-at-startup
 spawn-at-startup "~/.config/common_scripts/wallpapers.sh"
 spawn-at-startup "waybar"
+spawn-at-startup "kanata"
 // sys tray
 spawn-at-startup "iwgtk -i"
 spawn-at-startup "mako" // mako or swaync
